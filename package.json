@@ -1,0 +1,8 @@
+{
+  "name": "MMTemplate",
+  "version": "0.0.1",
+  "description": "MM Auth Template",
+  "repository": "https://github.com/modhamanish/mm-template.git",
+  "author": "Manish Modha",
+  "license": "MIT"
+}
