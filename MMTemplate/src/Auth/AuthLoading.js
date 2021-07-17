@@ -50,7 +50,7 @@ export default class AuthLoadingScreen extends React.Component {
         await OneSignal.addSubscriptionObserver(() => {
             OneSignal.getDeviceState().then((res) => {
                 deviceState = res;
-                User.deviceToken = res.userId;
+                Global.main.setState({ deviceToken: res.userId });
             });
         });
 
