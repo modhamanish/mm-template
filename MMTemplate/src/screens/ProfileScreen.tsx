@@ -1,28 +1,31 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeType } from '../theme/Colors';
 import FullScreenContainer from '../components/FullScreenContainer';
 import AnimationView from '../components/AnimationView';
 import { useAuth } from '../context/AuthContext';
 import InfoCard from '../components/InfoCard';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 const ProfileScreen = () => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const styles = getStyles(theme);
   const { user, handleLogout } = useAuth();
 
   const confirmLogout = () => {
     Alert.alert(
-      'Logout',
-      'Are you sure you want to logout?',
+      t('profile.logoutConfirmTitle'),
+      t('profile.logoutConfirmMessage'),
       [
         {
-          text: 'Cancel',
+          text: t('common.cancel'),
           style: 'cancel',
         },
         {
-          text: 'Logout',
+          text: t('common.logout'),
           onPress: handleLogout,
           style: 'destructive',
         },
@@ -49,21 +52,25 @@ const ProfileScreen = () => {
         </AnimationView>
 
         <AnimationView delay={200} animType="FadeIn" duration={800}>
-          <InfoCard title="Account Information" icon="👤">
+          <LanguageSwitcher />
+        </AnimationView>
+
+        <AnimationView delay={300} animType="FadeIn" duration={800}>
+          <InfoCard title={t('profile.accountInformation')} icon="👤">
             <View style={styles.infoRow}>
-              <Text style={styles.infoLabel}>Name:</Text>
+              <Text style={styles.infoLabel}>{t('profile.name')}:</Text>
               <Text style={styles.infoValue}>{user?.name || 'N/A'}</Text>
             </View>
             <View style={styles.infoRow}>
-              <Text style={styles.infoLabel}>Email:</Text>
+              <Text style={styles.infoLabel}>{t('profile.email')}:</Text>
               <Text style={styles.infoValue}>{user?.email || 'N/A'}</Text>
             </View>
           </InfoCard>
         </AnimationView>
 
-        <AnimationView delay={400} animType="FadeIn" duration={800}>
+        <AnimationView delay={500} animType="FadeIn" duration={800}>
           <TouchableOpacity style={styles.logoutButton} onPress={confirmLogout}>
-            <Text style={styles.logoutButtonText}>Logout</Text>
+            <Text style={styles.logoutButtonText}>{t('common.logout')}</Text>
           </TouchableOpacity>
         </AnimationView>
       </View>

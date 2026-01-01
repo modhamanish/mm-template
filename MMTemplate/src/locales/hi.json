@@ -1,0 +1,56 @@
+{
+  "common": {
+    "appName": "MMTemplate",
+    "welcome": "स्वागत है",
+    "logout": "लॉग आउट",
+    "cancel": "रद्द करें",
+    "confirm": "पुष्टि करें",
+    "save": "सहेजें",
+    "edit": "संपादित करें",
+    "delete": "हटाएं",
+    "back": "वापस",
+    "next": "आगे",
+    "done": "पूर्ण",
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि",
+    "success": "सफलता"
+  },
+  "auth": {
+    "welcomeBack": "वापसी पर स्वागत है!",
+    "signInToContinue": "जारी रखने के लिए साइन इन करें",
+    "email": "ईमेल",
+    "password": "पासवर्ड",
+    "enterEmail": "अपना ईमेल दर्ज करें",
+    "enterPassword": "अपना पासवर्ड दर्ज करें",
+    "forgotPassword": "पासवर्ड भूल गए?",
+    "login": "लॉगिन",
+    "dontHaveAccount": "खाता नहीं है?",
+    "signUp": "साइन अप करें",
+    "invalidCredentials": "अमान्य क्रेडेंशियल",
+    "loginSuccessful": "लॉगिन सफल",
+    "emailRequired": "ईमेल आवश्यक है",
+    "invalidEmail": "अमान्य ईमेल पता",
+    "passwordRequired": "पासवर्ड आवश्यक है",
+    "passwordMinLength": "पासवर्ड कम से कम 6 अक्षर का होना चाहिए"
+  },
+  "profile": {
+    "profile": "प्रोफ़ाइल",
+    "accountInformation": "खाता जानकारी",
+    "name": "नाम",
+    "email": "ईमेल",
+    "logoutConfirmTitle": "लॉग आउट",
+    "logoutConfirmMessage": "क्या आप वाकई लॉग आउट करना चाहते हैं?"
+  },
+  "home": {
+    "welcomeToTemplate": "MMTemplate में आपका स्वागत है!",
+    "subtitle": "एक आधुनिक React Native TypeScript बॉयलरप्लेट",
+    "quickStart": "त्वरित शुरुआत",
+    "quickStartDesc": "कुछ ही मिनटों में अपने नए प्रोजेक्ट के साथ शुरुआत करें:",
+    "projectStructure": "प्रोजेक्ट संरचना",
+    "includedFeatures": "शामिल सुविधाएं",
+    "bestPractices": "सर्वोत्तम प्रथाएं",
+    "nextSteps": "अगले कदम",
+    "happyCoding": "खुश कोडिंग! 🚀",
+    "builtWith": "MMTemplate का उपयोग करके ❤️ के साथ बनाया गया"
+  }
+}

@@ -7,6 +7,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeType } from '../theme/Colors';
 import FullScreenContainer from '../components/FullScreenContainer';
@@ -20,6 +21,7 @@ import Toast from 'react-native-toast-message';
 import { useAuth } from '../context/AuthContext';
 
 const LoginScreen = () => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const { updateUser } = useAuth();
   const styles = getStyles(theme);
@@ -37,14 +39,14 @@ const LoginScreen = () => {
       ) {
         Toast.show({
           type: 'success',
-          text1: 'Login successful',
+          text1: t('auth.loginSuccessful'),
         });
         updateUser(userMockData);
         resetAndNavigate(Routes.AppStack);
       } else {
         Toast.show({
           type: 'error',
-          text1: 'Invalid credentials',
+          text1: t('auth.invalidCredentials'),
         });
       }
     },
@@ -63,8 +65,8 @@ const LoginScreen = () => {
       >
         <AnimationView animType="FadeIn" duration={800}>
           <View style={styles.header}>
-            <Text style={styles.title}>Welcome Back!</Text>
-            <Text style={styles.subtitle}>Sign in to continue</Text>
+            <Text style={styles.title}>{t('auth.welcomeBack')}</Text>
+            <Text style={styles.subtitle}>{t('auth.signInToContinue')}</Text>
           </View>
         </AnimationView>
 
@@ -72,8 +74,8 @@ const LoginScreen = () => {
           <View style={styles.formContainer}>
             {/* Email Input */}
             <TextInput
-              label="Email"
-              placeholder="Enter your email"
+              label={t('auth.email')}
+              placeholder={t('auth.enterEmail')}
               value={formik.values.email}
               onChangeText={formik.handleChange('email')}
               onBlur={formik.handleBlur('email')}
@@ -86,8 +88,8 @@ const LoginScreen = () => {
 
             {/* Password Input */}
             <TextInput
-              label="Password"
-              placeholder="Enter your password"
+              label={t('auth.password')}
+              placeholder={t('auth.enterPassword')}
               value={formik.values.password}
               onChangeText={formik.handleChange('password')}
               onBlur={formik.handleBlur('password')}
@@ -100,7 +102,9 @@ const LoginScreen = () => {
 
             {/* Forgot Password */}
             <TouchableOpacity style={styles.forgotPassword}>
-              <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+              <Text style={styles.forgotPasswordText}>
+                {t('auth.forgotPassword')}
+              </Text>
             </TouchableOpacity>
 
             {/* Login Button */}
@@ -108,14 +112,16 @@ const LoginScreen = () => {
               style={styles.loginButton}
               onPress={() => formik.handleSubmit()}
             >
-              <Text style={styles.loginButtonText}>Login</Text>
+              <Text style={styles.loginButtonText}>{t('auth.login')}</Text>
             </TouchableOpacity>
 
             {/* Sign Up Link */}
             <View style={styles.signupContainer}>
-              <Text style={styles.signupText}>Don't have an account? </Text>
+              <Text style={styles.signupText}>
+                {t('auth.dontHaveAccount')}{' '}
+              </Text>
               <TouchableOpacity>
-                <Text style={styles.signupLink}>Sign Up</Text>
+                <Text style={styles.signupLink}>{t('auth.signUp')}</Text>
               </TouchableOpacity>
             </View>
           </View>

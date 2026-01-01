@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import FullScreenContainer from '../components/FullScreenContainer';
 import InfoCard from '../components/InfoCard';
 import FeatureItem from '../components/FeatureItem';
@@ -19,6 +20,7 @@ import { navigate } from '../utils/navigationUtils';
 import Routes from '../navigation/routes';
 
 const HomeScreen = () => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const styles = getStyles(theme);
 
@@ -35,26 +37,26 @@ const HomeScreen = () => {
               style={styles.profileButton}
               onPress={() => navigate(Routes.ProfileScreen)}
             >
-              <Text style={styles.profileButtonText}>Profile →</Text>
+              <Text style={styles.profileButtonText}>
+                {t('profile.profile')} →
+              </Text>
             </TouchableOpacity>
             <AnimationView animType="ZoomIn" duration={1000}>
               <Image source={Images.logo} style={styles.logo} />
             </AnimationView>
             <AnimationView delay={400} animType="SlideInDown" duration={800}>
-              <Text style={styles.welcomeText}>Welcome to MMTemplate!</Text>
-              <Text style={styles.subtitle}>
-                A modern React Native TypeScript boilerplate
+              <Text style={styles.welcomeText}>
+                {t('home.welcomeToTemplate')}
               </Text>
+              <Text style={styles.subtitle}>{t('home.subtitle')}</Text>
             </AnimationView>
           </View>
         </AnimationView>
 
         {/* Quick Start Section */}
         <AnimationView delay={600} animType="FadeIn" duration={800}>
-          <InfoCard title="🚀 Quick Start" icon="">
-            <Text style={styles.cardText}>
-              Get started with your new project in minutes:
-            </Text>
+          <InfoCard title={`🚀 ${t('home.quickStart')}`} icon="">
+            <Text style={styles.cardText}>{t('home.quickStartDesc')}</Text>
             <View style={styles.codeBlock}>
               <Text style={styles.codeText}>yarn install</Text>
             </View>
@@ -69,7 +71,7 @@ const HomeScreen = () => {
 
         {/* Project Structure Section */}
         <AnimationView delay={800} animType="FadeIn" duration={800}>
-          <InfoCard title="📁 Project Structure" icon="">
+          <InfoCard title={`📁 ${t('home.projectStructure')}`} icon="">
             <FeatureItem
               icon="📱"
               title="screens/"
@@ -105,7 +107,7 @@ const HomeScreen = () => {
 
         {/* Features Section */}
         <AnimationView delay={1000} animType="FadeIn" duration={800}>
-          <InfoCard title="✨ Included Features" icon="">
+          <InfoCard title={`✨ ${t('home.includedFeatures')}`} icon="">
             <FeatureItem
               icon="⚡"
               title="React Navigation v7"
@@ -141,7 +143,7 @@ const HomeScreen = () => {
 
         {/* Best Practices Section */}
         <AnimationView delay={1200} animType="FadeIn" duration={800}>
-          <InfoCard title="💡 Best Practices" icon="">
+          <InfoCard title={`💡 ${t('home.bestPractices')}`} icon="">
             <FeatureItem
               icon="📝"
               title="Naming Conventions"
@@ -167,7 +169,7 @@ const HomeScreen = () => {
 
         {/* Next Steps Section */}
         <AnimationView delay={1400} animType="FadeIn" duration={800}>
-          <InfoCard title="🎯 Next Steps" icon="">
+          <InfoCard title={`🎯 ${t('home.nextSteps')}`} icon="">
             <Text style={styles.cardText}>
               1. Customize the theme in{' '}
               <Text style={styles.highlight}>theme/Colors.ts</Text>
@@ -193,10 +195,8 @@ const HomeScreen = () => {
         {/* Footer */}
         <AnimationView delay={1600} animType="FadeIn" duration={800}>
           <View style={styles.footer}>
-            <Text style={styles.footerText}>Happy Coding! 🚀</Text>
-            <Text style={styles.footerSubtext}>
-              Built with ❤️ using MMTemplate
-            </Text>
+            <Text style={styles.footerText}>{t('home.happyCoding')}</Text>
+            <Text style={styles.footerSubtext}>{t('home.builtWith')}</Text>
           </View>
         </AnimationView>
       </ScrollView>

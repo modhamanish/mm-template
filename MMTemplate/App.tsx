@@ -7,6 +7,7 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 import Toast, { ToastConfigParams } from 'react-native-toast-message';
 import { CustomToast } from './src/components/CustomToast';
 import { AuthProvider } from './src/context/AuthContext';
+import './src/utils/i18n';
 
 const toastConfig = {
   error: ({

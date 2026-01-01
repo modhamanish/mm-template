@@ -1,0 +1,56 @@
+{
+  "common": {
+    "appName": "MMTemplate",
+    "welcome": "Welcome",
+    "logout": "Logout",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "auth": {
+    "welcomeBack": "Welcome Back!",
+    "signInToContinue": "Sign in to continue",
+    "email": "Email",
+    "password": "Password",
+    "enterEmail": "Enter your email",
+    "enterPassword": "Enter your password",
+    "forgotPassword": "Forgot Password?",
+    "login": "Login",
+    "dontHaveAccount": "Don't have an account?",
+    "signUp": "Sign Up",
+    "invalidCredentials": "Invalid credentials",
+    "loginSuccessful": "Login successful",
+    "emailRequired": "Email is required",
+    "invalidEmail": "Invalid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 6 characters"
+  },
+  "profile": {
+    "profile": "Profile",
+    "accountInformation": "Account Information",
+    "name": "Name",
+    "email": "Email",
+    "logoutConfirmTitle": "Logout",
+    "logoutConfirmMessage": "Are you sure you want to logout?"
+  },
+  "home": {
+    "welcomeToTemplate": "Welcome to MMTemplate!",
+    "subtitle": "A modern React Native TypeScript boilerplate",
+    "quickStart": "Quick Start",
+    "quickStartDesc": "Get started with your new project in minutes:",
+    "projectStructure": "Project Structure",
+    "includedFeatures": "Included Features",
+    "bestPractices": "Best Practices",
+    "nextSteps": "Next Steps",
+    "happyCoding": "Happy Coding! 🚀",
+    "builtWith": "Built with ❤️ using MMTemplate"
+  }
+}

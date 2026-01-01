@@ -4,6 +4,7 @@ export const storage = createMMKV();
 
 enum STORAGE_KEYS {
   USER = 'user',
+  LANGUAGE = 'language',
 }
 
 const saveItem = (key: STORAGE_KEYS, value: string) => {
