@@ -52,5 +52,13 @@
     "nextSteps": "Next Steps",
     "happyCoding": "Happy Coding! 🚀",
     "builtWith": "Built with ❤️ using MMTemplate"
+  },
+  "settings": {
+    "settings": "Settings",
+    "customizeYourExperience": "Customize your experience",
+    "language": "Language",
+    "chooseYourPreferredLanguage": "Choose your preferred language",
+    "theme": "Theme",
+    "switchBetweenLightAndDark": "Switch between light and dark mode"
   }
 }

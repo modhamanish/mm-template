@@ -33,14 +33,24 @@ const HomeScreen = () => {
         {/* Header Section */}
         <AnimationView animType="FadeIn" duration={800}>
           <View style={styles.header}>
-            <TouchableOpacity
-              style={styles.profileButton}
-              onPress={() => navigate(Routes.ProfileScreen)}
-            >
-              <Text style={styles.profileButtonText}>
-                {t('profile.profile')} →
-              </Text>
-            </TouchableOpacity>
+            <View style={styles.headerButtons}>
+              <TouchableOpacity
+                style={styles.headerButton}
+                onPress={() => navigate(Routes.SettingsScreen)}
+              >
+                <Text style={styles.headerButtonText}>
+                  ⚙️ {t('settings.settings')}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.headerButton}
+                onPress={() => navigate(Routes.ProfileScreen)}
+              >
+                <Text style={styles.headerButtonText}>
+                  👤 {t('profile.profile')}
+                </Text>
+              </TouchableOpacity>
+            </View>
             <AnimationView animType="ZoomIn" duration={1000}>
               <Image source={Images.logo} style={styles.logo} />
             </AnimationView>
@@ -221,15 +231,19 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 24,
       paddingTop: 20,
     },
-    profileButton: {
+    headerButtons: {
+      flexDirection: 'row',
       alignSelf: 'flex-end',
+      gap: 12,
+      marginBottom: 16,
+    },
+    headerButton: {
       paddingHorizontal: 16,
       paddingVertical: 8,
       backgroundColor: colors.primary,
       borderRadius: 20,
-      marginBottom: 16,
     },
-    profileButtonText: {
+    headerButtonText: {
       color: colors.white,
       fontSize: 14,
       fontWeight: '600',

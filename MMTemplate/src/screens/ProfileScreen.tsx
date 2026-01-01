@@ -7,7 +7,6 @@ import FullScreenContainer from '../components/FullScreenContainer';
 import AnimationView from '../components/AnimationView';
 import { useAuth } from '../context/AuthContext';
 import InfoCard from '../components/InfoCard';
-import LanguageSwitcher from '../components/LanguageSwitcher';
 
 const ProfileScreen = () => {
   const { t } = useTranslation();
@@ -49,10 +48,6 @@ const ProfileScreen = () => {
               {user?.email || 'user@example.com'}
             </Text>
           </View>
-        </AnimationView>
-
-        <AnimationView delay={200} animType="FadeIn" duration={800}>
-          <LanguageSwitcher />
         </AnimationView>
 
         <AnimationView delay={300} animType="FadeIn" duration={800}>

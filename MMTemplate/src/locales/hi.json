@@ -52,5 +52,13 @@
     "nextSteps": "अगले कदम",
     "happyCoding": "खुश कोडिंग! 🚀",
     "builtWith": "MMTemplate का उपयोग करके ❤️ के साथ बनाया गया"
+  },
+  "settings": {
+    "settings": "सेटिंग्स",
+    "customizeYourExperience": "अपने अनुभव को अनुकूलित करें",
+    "language": "भाषा",
+    "chooseYourPreferredLanguage": "अपनी पसंदीदा भाषा चुनें",
+    "theme": "थीम",
+    "switchBetweenLightAndDark": "लाइट और डार्क मोड के बीच स्विच करें"
   }
 }

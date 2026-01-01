@@ -19,6 +19,7 @@ export type AuthStackParamList = {
 export type AppStackParamList = {
   [Routes.HomeScreen]: undefined;
   [Routes.ProfileScreen]: undefined;
+  [Routes.SettingsScreen]: undefined;
 };
 
 export type ParamsType = RootStackParamList &
