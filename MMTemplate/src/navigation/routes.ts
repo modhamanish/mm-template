@@ -9,6 +9,7 @@ enum Routes {
 
   // App Stack Screens
   HomeScreen = 'HomeScreen',
+  ProfileScreen = 'ProfileScreen',
 }
 
 export default Routes;

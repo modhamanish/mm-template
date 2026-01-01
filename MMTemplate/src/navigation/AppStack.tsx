@@ -6,6 +6,7 @@ import { AppStackParamList } from '../types/navigation.types';
 
 // Screens
 import HomeScreen from '../screens/HomeScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
@@ -18,6 +19,7 @@ const AppStack: FC = () => {
       }}
     >
       <Stack.Screen name={Routes.HomeScreen} component={HomeScreen} />
+      <Stack.Screen name={Routes.ProfileScreen} component={ProfileScreen} />
     </Stack.Navigator>
   );
 };

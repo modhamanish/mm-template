@@ -1,4 +1,11 @@
-import { Image, StyleSheet, Text, View, ScrollView } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import FullScreenContainer from '../components/FullScreenContainer';
 import InfoCard from '../components/InfoCard';
@@ -8,6 +15,8 @@ import { ThemeType } from '../theme/Colors';
 import { mobileScreenHeight, mobileScreenWidth } from '../utils/utilsHelper';
 import { useTheme } from '../context/ThemeContext';
 import AnimationView from '../components/AnimationView';
+import { navigate } from '../utils/navigationUtils';
+import Routes from '../navigation/routes';
 
 const HomeScreen = () => {
   const theme = useTheme();
@@ -22,6 +31,12 @@ const HomeScreen = () => {
         {/* Header Section */}
         <AnimationView animType="FadeIn" duration={800}>
           <View style={styles.header}>
+            <TouchableOpacity
+              style={styles.profileButton}
+              onPress={() => navigate(Routes.ProfileScreen)}
+            >
+              <Text style={styles.profileButtonText}>Profile →</Text>
+            </TouchableOpacity>
             <AnimationView animType="ZoomIn" duration={1000}>
               <Image source={Images.logo} style={styles.logo} />
             </AnimationView>
@@ -205,6 +220,19 @@ const getStyles = ({ colors }: ThemeType) =>
       alignItems: 'center',
       marginBottom: 24,
       paddingTop: 20,
+    },
+    profileButton: {
+      alignSelf: 'flex-end',
+      paddingHorizontal: 16,
+      paddingVertical: 8,
+      backgroundColor: colors.primary,
+      borderRadius: 20,
+      marginBottom: 16,
+    },
+    profileButtonText: {
+      color: colors.white,
+      fontSize: 14,
+      fontWeight: '600',
     },
     logo: {
       height: mobileScreenHeight * 0.15,
