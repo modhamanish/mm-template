@@ -18,6 +18,7 @@ type AuthContextType = {
   user?: UserType;
   updateUser: (user: UserType) => void;
   handleLogout: () => void;
+  isUserLoggedIn: () => boolean;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -35,6 +36,14 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     }
   }, []);
 
+  const isUserLoggedIn = useCallback(() => {
+    const userItem = StorageHelper.getItem(StorageHelper.STORAGE_KEYS.USER);
+    if (userItem) {
+      return true;
+    }
+    return false;
+  }, []);
+
   const updateUser = useCallback((_user: UserType) => {
     setUser(_user);
     StorageHelper.saveItem(
@@ -50,7 +59,9 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, updateUser, handleLogout }}>
+    <AuthContext.Provider
+      value={{ user, updateUser, handleLogout, isUserLoggedIn }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -61,4 +72,5 @@ export const useAuth = () =>
     user: undefined,
     updateUser: () => {},
     handleLogout: () => {},
+    isUserLoggedIn: () => false,
   };

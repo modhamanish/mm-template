@@ -4,8 +4,6 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  KeyboardAvoidingView,
-  Platform,
   ScrollView,
 } from 'react-native';
 import { useFormik } from 'formik';
@@ -19,9 +17,11 @@ import Routes from '../navigation/routes';
 import { LoginSchema } from '../utils/validationSchemas';
 import { userMockData } from '../mock';
 import Toast from 'react-native-toast-message';
+import { useAuth } from '../context/AuthContext';
 
 const LoginScreen = () => {
   const theme = useTheme();
+  const { updateUser } = useAuth();
   const styles = getStyles(theme);
 
   const formik = useFormik({
@@ -39,6 +39,7 @@ const LoginScreen = () => {
           type: 'success',
           text1: 'Login successful',
         });
+        updateUser(userMockData);
         resetAndNavigate(Routes.AppStack);
       } else {
         Toast.show({

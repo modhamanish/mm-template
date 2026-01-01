@@ -7,16 +7,18 @@ import { resetAndNavigate } from '../utils/navigationUtils';
 import Routes from './routes';
 import FullScreenContainer from '../components/FullScreenContainer';
 import { mobileScreenHeight, mobileScreenWidth } from '../utils/utilsHelper';
+import { useAuth } from '../context/AuthContext';
 
 const AuthCheck: FC = () => {
   const theme = useTheme();
+  const { isUserLoggedIn } = useAuth();
   const styles = getStyles(theme);
 
   useEffect(() => {
     setTimeout(() => {
-      resetAndNavigate(Routes.AuthStack);
+      resetAndNavigate(isUserLoggedIn() ? Routes.AppStack : Routes.AuthStack);
     }, 1500);
-  }, []);
+  }, [isUserLoggedIn]);
 
   return (
     <FullScreenContainer
