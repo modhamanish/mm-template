@@ -12,7 +12,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { mobileScreenHeight, mobileScreenWidth } from '../utils/utilsHelper';
 import FullScreenContainer from '../components/FullScreenContainer';
-import { resetAndNavigate } from '../utils/NavigationUtils';
+import { navigate } from '../utils/NavigationUtils';
 import Routes from '../navigation/routes';
 
 const WelcomeScreen: FC = () => {
@@ -27,11 +27,11 @@ const WelcomeScreen: FC = () => {
   useEffect(() => {
     height.value = withDelay(
       500,
-      withTiming(mobileScreenHeight * 0.6, { duration: 1000 }),
+      withTiming(mobileScreenHeight * 0.3, { duration: 1000 }),
     );
     width.value = withDelay(
       500,
-      withTiming(mobileScreenWidth * 0.6, {
+      withTiming(mobileScreenWidth * 0.5, {
         duration: 1000,
         easing: Easing.quad,
         reduceMotion: ReduceMotion.System,
@@ -61,16 +61,25 @@ const WelcomeScreen: FC = () => {
       </View>
 
       <Animated.View style={[{ flex: 1, opacity }]}>
+        <Text style={styles.titleText}>
+          <Text style={styles.titleBoldText}>Welcome</Text> to
+        </Text>
+        <View style={styles.rowContainer}>
+          <Text style={styles.matchText}>
+            <Text style={styles.matchBoldText}>MM Template</Text>
+          </Text>
+        </View>
+
         <FullScreenContainer
           barStyle="light-content"
           edges={['bottom']}
           style={styles.fullScreenContainer}
         >
           <TouchableOpacity
-            onPress={() => resetAndNavigate(Routes.AppStack)}
+            onPress={() => navigate(Routes.LoginScreen)}
             style={styles.button}
           >
-            <Text style={styles.buttonText}>Go to Home</Text>
+            <Text style={styles.buttonText}>Go to Login</Text>
           </TouchableOpacity>
         </FullScreenContainer>
       </Animated.View>
@@ -94,10 +103,50 @@ const getStyles = ({ colors }: ThemeContextType) =>
       tintColor: colors.white,
       alignSelf: 'center',
     },
+    titleText: {
+      color: colors.white,
+      fontWeight: '400',
+      textAlign: 'center',
+      fontSize: 30,
+    },
+    titleBoldText: {
+      fontWeight: '700',
+    },
+    rowContainer: {
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+    },
+    matchText: {
+      color: colors.white,
+      fontWeight: '400',
+      textAlign: 'center',
+      fontSize: 30,
+    },
+    matchBoldText: {
+      fontWeight: '700',
+    },
+    tmText: {
+      color: colors.white,
+      fontWeight: '500',
+      textAlign: 'center',
+      fontSize: 10,
+      marginTop: 3,
+    },
     fullScreenContainer: {
       flex: 1,
       backgroundColor: 'transparent',
+      justifyContent: 'flex-end',
       paddingHorizontal: 20,
+    },
+    termsText: {
+      textAlign: 'center',
+      color: colors.white,
+      fontWeight: '500',
+      marginBottom: 25,
+    },
+    underlineText: {
+      textDecorationLine: 'underline',
     },
     button: {
       alignSelf: 'center',
