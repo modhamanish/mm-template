@@ -1,0 +1,19 @@
+# MMTemplate Root Gitignore
+
+node_modules/
+*.log
+.DS_Store
+.gemini/
+MMTemplate/node_modules/
+MMTemplate/ios/Pods/
+MMTemplate/android/build/
+MMTemplate/ios/build/
+MMTemplate/ios/DerivedData/
+MMTemplate/ios/*.xcworkspace/
+MMTemplate/vendor/
+MMTemplate/Gemfile.lock
+MMTemplate/yarn.lock
+MMTemplate/package-lock.json
+MMTemplate/android/.gradle/
+MMTemplate/ios/.xcode.env.local
+MMTemplate/ios/Podfile.lock
