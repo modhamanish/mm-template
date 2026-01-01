@@ -50,77 +50,76 @@ const LoginScreen = () => {
   });
 
   return (
-    <FullScreenContainer style={styles.container} barStyle="light-content">
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.keyboardView}
+    <FullScreenContainer
+      isKeyboardAvoidingView
+      style={styles.container}
+      barStyle="light-content"
+    >
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
       >
-        <ScrollView
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-          keyboardShouldPersistTaps="handled"
-        >
-          <AnimationView animType="FadeIn" duration={800}>
-            <View style={styles.header}>
-              <Text style={styles.title}>Welcome Back!</Text>
-              <Text style={styles.subtitle}>Sign in to continue</Text>
-            </View>
-          </AnimationView>
+        <AnimationView animType="FadeIn" duration={800}>
+          <View style={styles.header}>
+            <Text style={styles.title}>Welcome Back!</Text>
+            <Text style={styles.subtitle}>Sign in to continue</Text>
+          </View>
+        </AnimationView>
 
-          <AnimationView delay={200} animType="FadeIn" duration={800}>
-            <View style={styles.formContainer}>
-              {/* Email Input */}
-              <TextInput
-                label="Email"
-                placeholder="Enter your email"
-                value={formik.values.email}
-                onChangeText={formik.handleChange('email')}
-                onBlur={formik.handleBlur('email')}
-                error={formik.errors.email}
-                touched={formik.touched.email}
-                keyboardType="email-address"
-                autoCapitalize="none"
-                autoCorrect={false}
-              />
+        <AnimationView delay={200} animType="FadeIn" duration={800}>
+          <View style={styles.formContainer}>
+            {/* Email Input */}
+            <TextInput
+              label="Email"
+              placeholder="Enter your email"
+              value={formik.values.email}
+              onChangeText={formik.handleChange('email')}
+              onBlur={formik.handleBlur('email')}
+              error={formik.errors.email}
+              touched={formik.touched.email}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
 
-              {/* Password Input */}
-              <TextInput
-                label="Password"
-                placeholder="Enter your password"
-                value={formik.values.password}
-                onChangeText={formik.handleChange('password')}
-                onBlur={formik.handleBlur('password')}
-                error={formik.errors.password}
-                touched={formik.touched.password}
-                secureTextEntry
-                autoCapitalize="none"
-                autoCorrect={false}
-              />
+            {/* Password Input */}
+            <TextInput
+              label="Password"
+              placeholder="Enter your password"
+              value={formik.values.password}
+              onChangeText={formik.handleChange('password')}
+              onBlur={formik.handleBlur('password')}
+              error={formik.errors.password}
+              touched={formik.touched.password}
+              secureTextEntry
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
 
-              {/* Forgot Password */}
-              <TouchableOpacity style={styles.forgotPassword}>
-                <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+            {/* Forgot Password */}
+            <TouchableOpacity style={styles.forgotPassword}>
+              <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+            </TouchableOpacity>
+
+            {/* Login Button */}
+            <TouchableOpacity
+              style={styles.loginButton}
+              onPress={() => formik.handleSubmit()}
+            >
+              <Text style={styles.loginButtonText}>Login</Text>
+            </TouchableOpacity>
+
+            {/* Sign Up Link */}
+            <View style={styles.signupContainer}>
+              <Text style={styles.signupText}>Don't have an account? </Text>
+              <TouchableOpacity>
+                <Text style={styles.signupLink}>Sign Up</Text>
               </TouchableOpacity>
-
-              {/* Login Button */}
-              <TouchableOpacity
-                style={styles.loginButton}
-                onPress={() => formik.handleSubmit()}
-              >
-                <Text style={styles.loginButtonText}>Login</Text>
-              </TouchableOpacity>
-
-              {/* Sign Up Link */}
-              <View style={styles.signupContainer}>
-                <Text style={styles.signupText}>Don't have an account? </Text>
-                <TouchableOpacity>
-                  <Text style={styles.signupLink}>Sign Up</Text>
-                </TouchableOpacity>
-              </View>
             </View>
-          </AnimationView>
-        </ScrollView>
-      </KeyboardAvoidingView>
+          </View>
+        </AnimationView>
+      </ScrollView>
     </FullScreenContainer>
   );
 };
@@ -132,9 +131,6 @@ const getStyles = ({ colors }: ThemeType) =>
     container: {
       flex: 1,
       backgroundColor: colors.backgroundColor,
-    },
-    keyboardView: {
-      flex: 1,
     },
     scrollContent: {
       flexGrow: 1,
