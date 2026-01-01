@@ -1,7 +1,7 @@
 {
   "name": "MMTemplate",
-  "version": "0.0.1",
-  "description": "MM Auth Template",
+  "version": "1.0.0",
+  "description": "A robust and modern React Native template built with TypeScript, designed to jumpstart your mobile application development.",
   "repository": "https://github.com/modhamanish/mm-template.git",
   "author": "Manish Modha",
   "license": "MIT"
