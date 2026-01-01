@@ -13,7 +13,7 @@ import { ThemeType } from '../theme/Colors';
 import FullScreenContainer from '../components/FullScreenContainer';
 import TextInput from '../components/TextInput';
 import AnimationView from '../components/AnimationView';
-import { resetAndNavigate } from '../utils/_navigationUtils';
+import { resetAndNavigate } from '../utils/navigationUtils';
 import Routes from '../navigation/routes';
 import { LoginSchema } from '../utils/validationSchemas';
 import { userMockData } from '../mock';
