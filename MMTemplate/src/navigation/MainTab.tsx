@@ -6,17 +6,25 @@ import Routes from './routes';
 import { MainTabParamList } from '../types/navigation.types';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import { useTheme } from '../context/ThemeContext';
 
 const BottomTab = createBottomTabNavigator<MainTabParamList>();
 
 const MainTab: FC = () => {
   const { t } = useTranslation();
+  const theme = useTheme();
 
   return (
     <BottomTab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarHideOnKeyboard: true,
+        tabBarStyle: {
+          backgroundColor: theme.colors.backgroundColor,
+          borderTopColor: theme.colors.textColor + '20',
+        },
+        tabBarActiveTintColor: theme.colors.primary,
+        tabBarInactiveTintColor: theme.colors.textColor + '80',
       }}
     >
       <BottomTab.Screen
