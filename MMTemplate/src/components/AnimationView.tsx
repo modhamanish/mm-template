@@ -13,6 +13,7 @@ const AnimationView = ({
   duration = 500,
   delay = 0,
   rotateValue = 360,
+  style,
 }: {
   children: React.ReactNode;
   animType:
@@ -21,14 +22,18 @@ const AnimationView = ({
     | 'ZoomIn'
     | 'ZoomOut'
     | 'RotateIn'
-    | 'RotateOut';
+    | 'RotateOut'
+    | 'SlideInDown';
   duration?: number;
   delay?: number;
   rotateValue?: number;
+  style?: any;
 }) => {
   const fadeAnim = useSharedValue(0);
   const zoomAnim = useSharedValue(0);
   const rotateAnim = useSharedValue(0);
+  const translateAnim = useSharedValue(-100);
+
   const animStyle = useAnimatedStyle(() => {
     switch (animType) {
       case 'FadeIn':
@@ -54,6 +59,10 @@ const AnimationView = ({
       case 'RotateOut':
         return {
           transform: [{ rotate: rotateAnim.value + 'deg' }],
+        };
+      case 'SlideInDown':
+        return {
+          transform: [{ translateY: translateAnim.value }],
         };
       default:
         return {};
@@ -91,9 +100,14 @@ const AnimationView = ({
           easing: Easing.elastic(1),
         }),
       );
+    } else if (animType === 'SlideInDown') {
+      translateAnim.value = withDelay(
+        delay,
+        withTiming(0, { duration: duration, easing: Easing.elastic(1) }),
+      );
     }
   }, [animType, duration, delay, rotateValue]);
-  return <Animated.View style={animStyle}>{children}</Animated.View>;
+  return <Animated.View style={[animStyle, style]}>{children}</Animated.View>;
 };
 
 export default memo(AnimationView);

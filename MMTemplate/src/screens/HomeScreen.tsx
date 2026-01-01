@@ -1,6 +1,8 @@
-import { Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, Text, View, ScrollView } from 'react-native';
 import React from 'react';
 import FullScreenContainer from '../components/FullScreenContainer';
+import InfoCard from '../components/InfoCard';
+import FeatureItem from '../components/FeatureItem';
 import { Images } from '../assets/images';
 import { ThemeType } from '../theme/Colors';
 import { mobileScreenHeight, mobileScreenWidth } from '../utils/utilsHelper';
@@ -12,17 +14,177 @@ const HomeScreen = () => {
   const styles = getStyles(theme);
 
   return (
-    <FullScreenContainer
-      edges={[]}
-      style={styles.container}
-      statusBarHidden
-      barStyle="light-content"
-    >
-      <AnimationView animType="FadeIn" duration={1000}>
-        <AnimationView animType="ZoomIn" duration={1000}>
-          <Image source={Images.logo} style={styles.logo} />
+    <FullScreenContainer style={styles.container} barStyle="light-content">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
+        {/* Header Section */}
+        <AnimationView animType="FadeIn" duration={800}>
+          <View style={styles.header}>
+            <AnimationView animType="ZoomIn" duration={1000}>
+              <Image source={Images.logo} style={styles.logo} />
+            </AnimationView>
+            <AnimationView delay={400} animType="SlideInDown" duration={800}>
+              <Text style={styles.welcomeText}>Welcome to MMTemplate!</Text>
+              <Text style={styles.subtitle}>
+                A modern React Native TypeScript boilerplate
+              </Text>
+            </AnimationView>
+          </View>
         </AnimationView>
-      </AnimationView>
+
+        {/* Quick Start Section */}
+        <AnimationView delay={600} animType="FadeIn" duration={800}>
+          <InfoCard title="🚀 Quick Start" icon="">
+            <Text style={styles.cardText}>
+              Get started with your new project in minutes:
+            </Text>
+            <View style={styles.codeBlock}>
+              <Text style={styles.codeText}>yarn install</Text>
+            </View>
+            <View style={styles.codeBlock}>
+              <Text style={styles.codeText}>cd ios && pod install</Text>
+            </View>
+            <View style={styles.codeBlock}>
+              <Text style={styles.codeText}>yarn ios / yarn android</Text>
+            </View>
+          </InfoCard>
+        </AnimationView>
+
+        {/* Project Structure Section */}
+        <AnimationView delay={800} animType="FadeIn" duration={800}>
+          <InfoCard title="📁 Project Structure" icon="">
+            <FeatureItem
+              icon="📱"
+              title="screens/"
+              description="All your screen components. Add new screens here."
+            />
+            <FeatureItem
+              icon="🧩"
+              title="components/"
+              description="Reusable UI components used across screens."
+            />
+            <FeatureItem
+              icon="🧭"
+              title="navigation/"
+              description="Navigation setup with AuthStack and AppStack."
+            />
+            <FeatureItem
+              icon="🎨"
+              title="theme/"
+              description="Centralized colors and styling configuration."
+            />
+            <FeatureItem
+              icon="🔧"
+              title="utils/"
+              description="Helper functions and utility methods."
+            />
+            <FeatureItem
+              icon="📦"
+              title="context/"
+              description="React Context for global state management."
+            />
+          </InfoCard>
+        </AnimationView>
+
+        {/* Features Section */}
+        <AnimationView delay={1000} animType="FadeIn" duration={800}>
+          <InfoCard title="✨ Included Features" icon="">
+            <FeatureItem
+              icon="⚡"
+              title="React Navigation v7"
+              description="Pre-configured navigation with stack navigators"
+            />
+            <FeatureItem
+              icon="🎬"
+              title="Reanimated v4"
+              description="Smooth animations with worklets support"
+            />
+            <FeatureItem
+              icon="🔷"
+              title="TypeScript"
+              description="Full type safety and better developer experience"
+            />
+            <FeatureItem
+              icon="🌓"
+              title="Theme Support"
+              description="Light/Dark mode ready with ThemeContext"
+            />
+            <FeatureItem
+              icon="⌨️"
+              title="Keyboard Controller"
+              description="Advanced keyboard handling for better UX"
+            />
+            <FeatureItem
+              icon="🔔"
+              title="Toast Messages"
+              description="Beautiful in-app notifications"
+            />
+          </InfoCard>
+        </AnimationView>
+
+        {/* Best Practices Section */}
+        <AnimationView delay={1200} animType="FadeIn" duration={800}>
+          <InfoCard title="💡 Best Practices" icon="">
+            <FeatureItem
+              icon="📝"
+              title="Naming Conventions"
+              description="Use PascalCase for components, camelCase for functions"
+            />
+            <FeatureItem
+              icon="🗂️"
+              title="File Organization"
+              description="Keep related files together, one component per file"
+            />
+            <FeatureItem
+              icon="🎯"
+              title="Component Design"
+              description="Create small, reusable components with single responsibility"
+            />
+            <FeatureItem
+              icon="🔐"
+              title="Type Safety"
+              description="Always define TypeScript types for props and state"
+            />
+          </InfoCard>
+        </AnimationView>
+
+        {/* Next Steps Section */}
+        <AnimationView delay={1400} animType="FadeIn" duration={800}>
+          <InfoCard title="🎯 Next Steps" icon="">
+            <Text style={styles.cardText}>
+              1. Customize the theme in{' '}
+              <Text style={styles.highlight}>theme/Colors.ts</Text>
+            </Text>
+            <Text style={styles.cardText}>
+              2. Add your screens in{' '}
+              <Text style={styles.highlight}>screens/</Text>
+            </Text>
+            <Text style={styles.cardText}>
+              3. Update navigation in{' '}
+              <Text style={styles.highlight}>navigation/</Text>
+            </Text>
+            <Text style={styles.cardText}>
+              4. Create reusable components in{' '}
+              <Text style={styles.highlight}>components/</Text>
+            </Text>
+            <Text style={styles.cardText}>
+              5. Configure your app name and bundle ID
+            </Text>
+          </InfoCard>
+        </AnimationView>
+
+        {/* Footer */}
+        <AnimationView delay={1600} animType="FadeIn" duration={800}>
+          <View style={styles.footer}>
+            <Text style={styles.footerText}>Happy Coding! 🚀</Text>
+            <Text style={styles.footerSubtext}>
+              Built with ❤️ using MMTemplate
+            </Text>
+          </View>
+        </AnimationView>
+      </ScrollView>
     </FullScreenContainer>
   );
 };
@@ -35,10 +197,72 @@ const getStyles = ({ colors }: ThemeType) =>
       flex: 1,
       backgroundColor: colors.backgroundColor,
     },
+    scrollContent: {
+      padding: 20,
+      paddingBottom: 40,
+    },
+    header: {
+      alignItems: 'center',
+      marginBottom: 24,
+      paddingTop: 20,
+    },
     logo: {
-      alignSelf: 'center',
-      height: mobileScreenHeight,
-      width: mobileScreenWidth * 0.6,
+      height: mobileScreenHeight * 0.15,
+      width: mobileScreenWidth * 0.5,
       resizeMode: 'contain',
+      marginBottom: 16,
+    },
+    welcomeText: {
+      fontSize: 24,
+      fontWeight: '700',
+      color: colors.textColor,
+      textAlign: 'center',
+      marginBottom: 8,
+    },
+    subtitle: {
+      fontSize: 14,
+      color: colors.textColor + 'CC',
+      textAlign: 'center',
+    },
+    cardText: {
+      fontSize: 14,
+      color: colors.textColor,
+      lineHeight: 20,
+      marginBottom: 8,
+    },
+    codeBlock: {
+      backgroundColor: colors.textColor + '10',
+      padding: 12,
+      borderRadius: 8,
+      marginBottom: 8,
+      borderLeftWidth: 3,
+      borderLeftColor: colors.primary,
+    },
+    codeText: {
+      fontFamily: 'monospace',
+      fontSize: 13,
+      color: colors.textColor,
+    },
+    highlight: {
+      color: colors.primary,
+      fontWeight: '600',
+      fontFamily: 'monospace',
+    },
+    footer: {
+      alignItems: 'center',
+      marginTop: 24,
+      paddingTop: 24,
+      borderTopWidth: 1,
+      borderTopColor: colors.textColor + '20',
+    },
+    footerText: {
+      fontSize: 18,
+      fontWeight: '600',
+      color: colors.primary,
+      marginBottom: 4,
+    },
+    footerSubtext: {
+      fontSize: 13,
+      color: colors.textColor + 'CC',
     },
   });
