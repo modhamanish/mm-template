@@ -1,12 +1,5 @@
-import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
-import React from 'react';
+import { Image, StyleSheet, Text, View, ScrollView } from 'react-native';
+import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import FullScreenContainer from '../components/FullScreenContainer';
 import InfoCard from '../components/InfoCard';
@@ -16,10 +9,8 @@ import { ThemeType } from '../theme/Colors';
 import { mobileScreenHeight, mobileScreenWidth } from '../utils/utilsHelper';
 import { useTheme } from '../context/ThemeContext';
 import AnimationView from '../components/AnimationView';
-import { navigate } from '../utils/navigationUtils';
-import Routes from '../navigation/routes';
 
-const HomeScreen = () => {
+const HomeScreen: FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const styles = getStyles(theme);
@@ -34,7 +25,12 @@ const HomeScreen = () => {
         <AnimationView animType="FadeIn" duration={800}>
           <View style={styles.header}>
             <AnimationView animType="ZoomIn" duration={1000}>
-              <Image source={Images.logo} style={styles.logo} />
+              <Image
+                source={
+                  theme.currentTheme === 'dark' ? Images.logoDark : Images.logo
+                }
+                style={styles.logo}
+              />
             </AnimationView>
             <AnimationView delay={400} animType="SlideInDown" duration={800}>
               <Text style={styles.welcomeText}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {
   View,
   Text,
@@ -20,7 +20,7 @@ import { userMockData } from '../mock';
 import Toast from 'react-native-toast-message';
 import { useAuth } from '../context/AuthContext';
 
-const LoginScreen = () => {
+const LoginScreen: FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const { updateUser } = useAuth();

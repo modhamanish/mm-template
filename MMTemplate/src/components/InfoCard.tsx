@@ -35,7 +35,7 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 16,
       borderWidth: 1,
       borderColor: colors.primary + '20',
-      shadowColor: colors.black,
+      shadowColor: colors.textColor,
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.1,
       shadowRadius: 4,

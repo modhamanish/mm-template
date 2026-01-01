@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
@@ -10,7 +10,7 @@ import InfoCard from '../components/InfoCard';
 import { navigate } from '../utils/navigationUtils';
 import Routes from '../navigation/routes';
 
-const ProfileScreen = () => {
+const ProfileScreen: FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const styles = getStyles(theme);
