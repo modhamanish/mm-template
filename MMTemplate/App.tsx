@@ -1,45 +1,37 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { ThemeProvider } from './src/context/ThemeContext';
+import AppNavigator from './src/navigation/AppNavigator';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+import Toast, { ToastConfigParams } from 'react-native-toast-message';
+import { CustomToast } from './src/components/CustomToast';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+const toastConfig = {
+  error: ({
+    text1,
+    props,
+  }: ToastConfigParams<{
+    onPress?: () => void;
+  }>) => <CustomToast text1={text1} onPress={props?.onPress} type="error" />,
+  success: ({
+    text1,
+    props,
+  }: ToastConfigParams<{
+    onPress?: () => void;
+  }>) => <CustomToast text1={text1} onPress={props?.onPress} type="success" />,
+};
+const App = () => {
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
+    <KeyboardProvider>
+      <SafeAreaProvider>
+        <ThemeProvider>
+          <AppNavigator />
+        </ThemeProvider>
+        <Toast config={toastConfig} />
+      </SafeAreaProvider>
+    </KeyboardProvider>
   );
-}
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+};
 
 export default App;
