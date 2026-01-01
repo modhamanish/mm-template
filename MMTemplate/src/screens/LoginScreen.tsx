@@ -14,9 +14,11 @@ import { ThemeType } from '../theme/Colors';
 import FullScreenContainer from '../components/FullScreenContainer';
 import TextInput from '../components/TextInput';
 import AnimationView from '../components/AnimationView';
-import { resetAndNavigate } from '../utils/NavigationUtils';
+import { resetAndNavigate } from '../utils/navigationUtils';
 import Routes from '../navigation/routes';
 import { LoginSchema } from '../utils/validationSchemas';
+import { userMockData } from '../mock';
+import Toast from 'react-native-toast-message';
 
 const LoginScreen = () => {
   const theme = useTheme();
@@ -29,8 +31,21 @@ const LoginScreen = () => {
     },
     validationSchema: LoginSchema,
     onSubmit: values => {
-      console.log('Login values:', values);
-      resetAndNavigate(Routes.AppStack);
+      if (
+        values.email === userMockData.email &&
+        values.password === userMockData.password
+      ) {
+        Toast.show({
+          type: 'success',
+          text1: 'Login successful',
+        });
+        resetAndNavigate(Routes.AppStack);
+      } else {
+        Toast.show({
+          type: 'error',
+          text1: 'Invalid credentials',
+        });
+      }
     },
   });
 

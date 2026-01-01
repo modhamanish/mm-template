@@ -6,6 +6,7 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import Toast, { ToastConfigParams } from 'react-native-toast-message';
 import { CustomToast } from './src/components/CustomToast';
+import { AuthProvider } from './src/context/AuthContext';
 
 const toastConfig = {
   error: ({
@@ -26,7 +27,9 @@ const App = () => {
     <KeyboardProvider>
       <SafeAreaProvider>
         <ThemeProvider>
-          <AppNavigator />
+          <AuthProvider>
+            <AppNavigator />
+          </AuthProvider>
         </ThemeProvider>
         <Toast config={toastConfig} />
       </SafeAreaProvider>

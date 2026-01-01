@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { RootStackParamList } from '../types/navigation.types';
-import { navigationRef } from '../utils/NavigationUtils';
+import { navigationRef } from '../utils/navigationUtils';
 
 import Routes from './routes';
 

@@ -12,7 +12,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { mobileScreenHeight, mobileScreenWidth } from '../utils/utilsHelper';
 import FullScreenContainer from '../components/FullScreenContainer';
-import { navigate } from '../utils/NavigationUtils';
+import { navigate } from '../utils/navigationUtils';
 import Routes from '../navigation/routes';
 
 const WelcomeScreen: FC = () => {
