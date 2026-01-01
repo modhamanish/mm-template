@@ -152,7 +152,7 @@ const getStyles = ({ colors }: ThemeContextType) =>
       alignSelf: 'center',
       paddingVertical: 12,
       paddingHorizontal: 35,
-      backgroundColor: colors.white,
+      backgroundColor: colors.backgroundColor,
       borderRadius: 100,
       marginBottom: 15,
     },
