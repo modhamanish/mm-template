@@ -13,6 +13,7 @@ export type RootStackParamList = {
 
 export type AuthStackParamList = {
   [Routes.WelcomeScreen]: undefined;
+  [Routes.LoginScreen]: undefined;
 };
 
 export type AppStackParamList = {

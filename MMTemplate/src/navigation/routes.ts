@@ -5,6 +5,7 @@ enum Routes {
 
   // Auth Stack Screens
   WelcomeScreen = 'WelcomeScreen',
+  LoginScreen = 'LoginScreen',
 
   // App Stack Screens
   HomeScreen = 'HomeScreen',
