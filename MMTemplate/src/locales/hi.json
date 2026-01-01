@@ -71,5 +71,13 @@
     "chooseYourPreferredLanguage": "अपनी पसंदीदा भाषा चुनें",
     "theme": "थीम",
     "switchBetweenLightAndDark": "लाइट और डार्क मोड के बीच स्विच करें"
+  },
+  "welcome": {
+    "titleBold": "स्वागत है",
+    "titleText": " ",
+    "appName": "MM Template में",
+    "subtitle": "एक प्रोडक्शन-रेडी React Native बॉयलरप्लेट जिसे उच्च प्रदर्शन और डेवलपर उत्पादकता के लिए डिज़ाइन किया गया है।",
+    "githubButton": "GitHub पर देखें",
+    "loginButton": "शुरू करें"
   }
 }

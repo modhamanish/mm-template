@@ -71,5 +71,13 @@
     "chooseYourPreferredLanguage": "Choose your preferred language",
     "theme": "Theme",
     "switchBetweenLightAndDark": "Switch between light and dark mode"
+  },
+  "welcome": {
+    "titleBold": "Welcome",
+    "titleText": " to",
+    "appName": "MM Template",
+    "subtitle": "A production-ready React Native boilerplate designed for high performance and developer productivity.",
+    "githubButton": "View on GitHub",
+    "loginButton": "Get Started"
   }
 }
