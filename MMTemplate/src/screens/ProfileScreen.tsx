@@ -7,7 +7,7 @@ import FullScreenContainer from '../components/FullScreenContainer';
 import AnimationView from '../components/AnimationView';
 import { useAuth } from '../context/AuthContext';
 import InfoCard from '../components/InfoCard';
-import { navigate } from '../utils/navigationUtils';
+import { navigate } from '../utils/_navigationUtils';
 import Routes from '../navigation/routes';
 
 const ProfileScreen: FC = () => {

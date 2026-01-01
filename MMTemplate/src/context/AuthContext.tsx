@@ -1,6 +1,6 @@
 import { userMockData } from '../mock';
 import Routes from '../navigation/routes';
-import { resetAndNavigate } from '../utils/navigationUtils';
+import { resetAndNavigate } from '../utils/_navigationUtils';
 import StorageHelper from '../utils/storageHelper';
 import {
   createContext,

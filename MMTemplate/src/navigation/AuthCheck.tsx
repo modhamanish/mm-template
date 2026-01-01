@@ -3,7 +3,7 @@ import React, { FC, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeType } from '../theme/Colors';
 import { Images } from '../assets/images';
-import { resetAndNavigate } from '../utils/navigationUtils';
+import { resetAndNavigate } from '../utils/_navigationUtils';
 import Routes from './routes';
 import FullScreenContainer from '../components/FullScreenContainer';
 import { mobileScreenHeight, mobileScreenWidth } from '../utils/utilsHelper';
