@@ -9,8 +9,12 @@ This template includes the following key libraries and configurations:
 *   **Core**: React Native (0.83.1), React (19.2.0)
 *   **Language**: TypeScript (v5) for static type checking
 *   **Navigation**: [React Navigation v7](https://reactnavigation.org/) (Native Stack)
+*   **Internationalization**: [react-i18next](https://react.i18next.com/) with multi-language support (English/Hindi)
+*   **Storage**: [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) for high-performance persistence
 *   **Animations**: [React Native Reanimated v4](https://docs.swmansion.com/react-native-reanimated/) & Worklets
 *   **UI/UX**:
+    *   **Theme Support**: Light/Dark mode with persistence
+    *   **Authentication**: Pre-configured login and profile flow
     *   [React Native Safe Area Context](https://github.com/th3rdwave/react-native-safe-area-context) for handling safe areas
     *   [React Native Keyboard Controller](https://github.com/kirillzyusko/react-native-keyboard-controller) for advanced keyboard handling
     *   [React Native Toast Message](https://github.com/calintamas/react-native-toast-message) for in-app notifications
@@ -25,7 +29,9 @@ src/
 ├── assets/       # Images, fonts, and other static assets
 ├── components/   # Reusable UI components
 ├── context/      # React Context definitions (Global State)
-├── navigation/   # Navigation configuration (Stacks, Tabs, etc.)
+├── locales/      # Translation files (i18n)
+├── mock/         # Mock data for testing and development
+├── navigation/   # Navigation configuration (Stacks, Stacks, etc.)
 ├── screens/      # Screen components (Views)
 ├── theme/        # Theme configuration (Colors, Typography, Spacing)
 ├── types/        # Global TypeScript types and interfaces

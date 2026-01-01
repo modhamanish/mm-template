@@ -51,7 +51,16 @@
     "bestPractices": "सर्वोत्तम प्रथाएं",
     "nextSteps": "अगले कदम",
     "happyCoding": "खुश कोडिंग! 🚀",
-    "builtWith": "MMTemplate का उपयोग करके ❤️ के साथ बनाया गया"
+    "builtWith": "MMTemplate का उपयोग करके ❤️ के साथ बनाया गया",
+    "i18nSupport": "अंतर्राष्ट्रीयकरण",
+    "i18nDescription": "react-i18next (अंग्रेजी/हिंदी) के साथ बहु-भाषा समर्थन",
+    "themeDescription": "दृढ़ता और टॉगल के साथ लाइट/डार्क मोड",
+    "authSupport": "प्रमाणीकरण प्रवाह",
+    "authDescription": "लॉगिन, प्रोफाइल और लॉगआउट लॉजिक उपयोग के लिए तैयार",
+    "storageSupport": "तेज़ स्टोरेज",
+    "storageDescription": "react-native-mmkv के साथ उच्च प्रदर्शन दृढ़ता",
+    "localesDescription": "बहु-भाषा समर्थन के लिए अनुवाद फ़ाइलें।",
+    "mockDescription": "विकास और परीक्षण के लिए मॉक डेटा।"
   },
   "settings": {
     "settings": "सेटिंग्स",

@@ -27,7 +27,7 @@ const LanguageSwitcher = () => {
             i18n.language === 'en' && styles.activeButtonText,
           ]}
         >
-          English
+          🇬🇧 English
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -40,7 +40,7 @@ const LanguageSwitcher = () => {
             i18n.language === 'hi' && styles.activeButtonText,
           ]}
         >
-          हिंदी
+          🇮🇳 हिंदी
         </Text>
       </TouchableOpacity>
     </View>

@@ -51,7 +51,16 @@
     "bestPractices": "Best Practices",
     "nextSteps": "Next Steps",
     "happyCoding": "Happy Coding! 🚀",
-    "builtWith": "Built with ❤️ using MMTemplate"
+    "builtWith": "Built with ❤️ using MMTemplate",
+    "i18nSupport": "Internationalization",
+    "i18nDescription": "Multi-language support with react-i18next (English/Hindi)",
+    "themeDescription": "Light/Dark mode with persistence and toggle",
+    "authSupport": "Authentication Flow",
+    "authDescription": "Ready-to-use login, profile, and logout logic",
+    "storageSupport": "Fast Storage",
+    "storageDescription": "High-performance persistence with react-native-mmkv",
+    "localesDescription": "Translation files for multi-language support.",
+    "mockDescription": "Mock data for development and testing."
   },
   "settings": {
     "settings": "Settings",

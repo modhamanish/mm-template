@@ -103,6 +103,16 @@ const HomeScreen = () => {
               description="Centralized colors and styling configuration."
             />
             <FeatureItem
+              icon="🌍"
+              title="locales/"
+              description={t('home.localesDescription')}
+            />
+            <FeatureItem
+              icon="🧪"
+              title="mock/"
+              description={t('home.mockDescription')}
+            />
+            <FeatureItem
               icon="🔧"
               title="utils/"
               description="Helper functions and utility methods."
@@ -135,8 +145,23 @@ const HomeScreen = () => {
             />
             <FeatureItem
               icon="🌓"
-              title="Theme Support"
-              description="Light/Dark mode ready with ThemeContext"
+              title={t('settings.theme')}
+              description={t('home.themeDescription')}
+            />
+            <FeatureItem
+              icon="🌐"
+              title={t('home.i18nSupport')}
+              description={t('home.i18nDescription')}
+            />
+            <FeatureItem
+              icon="🔐"
+              title={t('home.authSupport')}
+              description={t('home.authDescription')}
+            />
+            <FeatureItem
+              icon="💾"
+              title={t('home.storageSupport')}
+              description={t('home.storageDescription')}
             />
             <FeatureItem
               icon="⌨️"
