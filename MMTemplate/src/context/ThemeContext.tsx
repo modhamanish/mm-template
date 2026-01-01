@@ -11,7 +11,7 @@ import { darkTheme, lightTheme, ThemeType } from '../theme/Colors';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export type ThemeContextType = {
-  theme: ThemeType;
+  colors: ThemeType['colors'];
   currentTheme?: 'dark' | 'light';
   toggleTheme: () => void;
   safeAreaInsets: EdgeInsets;
@@ -27,13 +27,15 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   const safeAreaInsets = useSafeAreaInsets();
   const [currentTheme, setCurrentTheme] =
     useState<ThemeContextType['currentTheme']>();
-  const [theme, setTheme] = useState<ThemeContextType['theme']>(lightTheme);
+  const [colors, setColors] = useState<ThemeContextType['colors']>(
+    lightTheme.colors,
+  );
 
   useEffect(() => {
     if (currentTheme === 'dark') {
-      setTheme(darkTheme);
+      setColors(darkTheme.colors);
     } else {
-      setTheme(lightTheme);
+      setColors(lightTheme.colors);
     }
   }, [currentTheme]);
 
@@ -43,7 +45,12 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
 
   return (
     <ThemeContext.Provider
-      value={{ currentTheme, theme, toggleTheme, safeAreaInsets }}
+      value={{
+        currentTheme,
+        colors,
+        toggleTheme,
+        safeAreaInsets,
+      }}
     >
       {children}
     </ThemeContext.Provider>
@@ -51,7 +58,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
 };
 
 const defaultThemeContext: ThemeContextType = {
-  theme: lightTheme,
+  colors: lightTheme.colors,
   currentTheme: 'light',
   toggleTheme: () => {},
   safeAreaInsets: { top: 0, bottom: 0, left: 0, right: 0 },

@@ -9,7 +9,7 @@ import FullScreenContainer from '../components/FullScreenContainer';
 import { mobileScreenHeight, mobileScreenWidth } from '../utils/utilsHelper';
 
 const AuthCheck: FC = () => {
-  const { theme } = useTheme();
+  const theme = useTheme();
   const styles = getStyles(theme);
 
   useEffect(() => {

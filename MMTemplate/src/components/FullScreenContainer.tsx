@@ -15,11 +15,12 @@ export const FullScreenContainer: FC<FullScreenContainerProps> = ({
   keyboardAvoidingViewStyle,
   isKeyboardAvoidingView = false,
 }) => {
-  const { theme, currentTheme } = useTheme();
+  const theme = useTheme();
   const styles = getStyles(theme);
 
   const appBarStyle =
-    barStyle ?? (currentTheme === 'dark' ? 'light-content' : 'dark-content');
+    barStyle ??
+    (theme.currentTheme === 'dark' ? 'light-content' : 'dark-content');
 
   return (
     <SafeAreaView edges={edges} style={[styles.container, style]}>

@@ -80,7 +80,7 @@ const WelcomeScreen: FC = () => {
 
 export default WelcomeScreen;
 
-const getStyles = ({ theme: { colors }, safeAreaInsets }: ThemeContextType) =>
+const getStyles = ({ colors }: ThemeContextType) =>
   StyleSheet.create({
     container: {
       flex: 1,
