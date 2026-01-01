@@ -11,20 +11,25 @@ export type RootStackParamList = {
   [Routes.AppStack]: undefined;
 };
 
+export type MainTabParamList = {
+  [Routes.HomeScreen]: undefined;
+  [Routes.ProfileScreen]: undefined;
+};
+
 export type AuthStackParamList = {
   [Routes.WelcomeScreen]: undefined;
   [Routes.LoginScreen]: undefined;
 };
 
 export type AppStackParamList = {
-  [Routes.HomeScreen]: undefined;
-  [Routes.ProfileScreen]: undefined;
+  [Routes.MainTab]: undefined;
   [Routes.SettingsScreen]: undefined;
 };
 
 export type ParamsType = RootStackParamList &
   AuthStackParamList &
-  AppStackParamList;
+  AppStackParamList &
+  MainTabParamList;
 
 export type NavigationProps<RouteName extends keyof ParamsType> =
   NativeStackScreenProps<ParamsType, RouteName>;

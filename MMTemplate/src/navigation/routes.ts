@@ -2,6 +2,7 @@ enum Routes {
   AuthCheck = 'AuthCheck',
   AuthStack = 'AuthStack',
   AppStack = 'AppStack',
+  MainTab = 'MainTab',
 
   // Auth Stack Screens
   WelcomeScreen = 'WelcomeScreen',

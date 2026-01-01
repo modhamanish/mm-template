@@ -5,8 +5,7 @@ import Routes from './routes';
 import { AppStackParamList } from '../types/navigation.types';
 
 // Screens
-import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+import MainTab from './MainTab';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -14,13 +13,12 @@ const Stack = createNativeStackNavigator<AppStackParamList>();
 const AppStack: FC = () => {
   return (
     <Stack.Navigator
-      initialRouteName={Routes.HomeScreen}
+      initialRouteName={Routes.MainTab}
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name={Routes.HomeScreen} component={HomeScreen} />
-      <Stack.Screen name={Routes.ProfileScreen} component={ProfileScreen} />
+      <Stack.Screen name={Routes.MainTab} component={MainTab} />
       <Stack.Screen name={Routes.SettingsScreen} component={SettingsScreen} />
     </Stack.Navigator>
   );

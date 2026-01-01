@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
@@ -8,7 +8,7 @@ import AnimationView from '../components/AnimationView';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 
-const SettingsScreen = () => {
+const SettingsScreen: FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const styles = getStyles(theme);

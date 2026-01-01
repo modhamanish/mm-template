@@ -33,24 +33,6 @@ const HomeScreen = () => {
         {/* Header Section */}
         <AnimationView animType="FadeIn" duration={800}>
           <View style={styles.header}>
-            <View style={styles.headerButtons}>
-              <TouchableOpacity
-                style={styles.headerButton}
-                onPress={() => navigate(Routes.SettingsScreen)}
-              >
-                <Text style={styles.headerButtonText}>
-                  ⚙️ {t('settings.settings')}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.headerButton}
-                onPress={() => navigate(Routes.ProfileScreen)}
-              >
-                <Text style={styles.headerButtonText}>
-                  👤 {t('profile.profile')}
-                </Text>
-              </TouchableOpacity>
-            </View>
             <AnimationView animType="ZoomIn" duration={1000}>
               <Image source={Images.logo} style={styles.logo} />
             </AnimationView>
@@ -255,23 +237,6 @@ const getStyles = ({ colors }: ThemeType) =>
       alignItems: 'center',
       marginBottom: 24,
       paddingTop: 20,
-    },
-    headerButtons: {
-      flexDirection: 'row',
-      alignSelf: 'flex-end',
-      gap: 12,
-      marginBottom: 16,
-    },
-    headerButton: {
-      paddingHorizontal: 16,
-      paddingVertical: 8,
-      backgroundColor: colors.primary,
-      borderRadius: 20,
-    },
-    headerButtonText: {
-      color: colors.white,
-      fontSize: 14,
-      fontWeight: '600',
     },
     logo: {
       height: mobileScreenHeight * 0.15,

@@ -7,6 +7,8 @@ import FullScreenContainer from '../components/FullScreenContainer';
 import AnimationView from '../components/AnimationView';
 import { useAuth } from '../context/AuthContext';
 import InfoCard from '../components/InfoCard';
+import { navigate } from '../utils/navigationUtils';
+import Routes from '../navigation/routes';
 
 const ProfileScreen = () => {
   const { t } = useTranslation();
@@ -63,7 +65,18 @@ const ProfileScreen = () => {
           </InfoCard>
         </AnimationView>
 
-        <AnimationView delay={500} animType="FadeIn" duration={800}>
+        <AnimationView delay={450} animType="FadeIn" duration={800}>
+          <TouchableOpacity
+            style={styles.settingsButton}
+            onPress={() => navigate(Routes.SettingsScreen)}
+          >
+            <Text style={styles.settingsButtonText}>
+              ⚙️ {t('settings.settings')}
+            </Text>
+          </TouchableOpacity>
+        </AnimationView>
+
+        <AnimationView delay={600} animType="FadeIn" duration={800}>
           <TouchableOpacity style={styles.logoutButton} onPress={confirmLogout}>
             <Text style={styles.logoutButtonText}>{t('common.logout')}</Text>
           </TouchableOpacity>
@@ -138,6 +151,20 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     logoutButtonText: {
       color: colors.white,
+      fontSize: 16,
+      fontWeight: '700',
+    },
+    settingsButton: {
+      backgroundColor: colors.backgroundColor,
+      borderRadius: 12,
+      padding: 16,
+      alignItems: 'center',
+      marginTop: 32,
+      borderWidth: 1,
+      borderColor: colors.primary,
+    },
+    settingsButtonText: {
+      color: colors.primary,
       fontSize: 16,
       fontWeight: '700',
     },

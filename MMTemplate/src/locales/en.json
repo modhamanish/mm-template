@@ -13,7 +13,9 @@
     "done": "Done",
     "loading": "Loading...",
     "error": "Error",
-    "success": "Success"
+    "success": "Success",
+    "home": "Home",
+    "profile": "Profile"
   },
   "auth": {
     "welcomeBack": "Welcome Back!",
