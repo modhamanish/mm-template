@@ -7,7 +7,7 @@ Welcome to **MMTemplate**! This is a robust and modern React Native template bui
 To initialize a new project using this template, run the following command:
 
 ```bash
-npx @react-native-community/cli@latest init AwesomeProject --template https://github.com/modhamanish/mm-template
+npx @react-native-community/cli@latest init AwesomeProject --template @modhamanish/rn-mm-template
 ```
 
 Replace `AwesomeProject` with your desired project name.
