@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { darkTheme, lightTheme, ThemeType } from '../theme/Colors';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+import storageHelper from '../utils/storageHelper';
 
 export type ThemeContextType = {
   colors: ThemeType['colors'];
@@ -32,6 +33,11 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   );
 
   useEffect(() => {
+    const theme = storageHelper.getItem(storageHelper.STORAGE_KEYS.THEME);
+    setCurrentTheme(theme === 'dark' ? 'dark' : 'light');
+  }, []);
+
+  useEffect(() => {
     if (currentTheme === 'dark') {
       setColors(darkTheme.colors);
     } else {
@@ -40,7 +46,15 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   }, [currentTheme]);
 
   const toggleTheme = useCallback(() => {
-    setCurrentTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    setCurrentTheme(prev => {
+      if (prev === 'dark') {
+        storageHelper.saveItem(storageHelper.STORAGE_KEYS.THEME, 'light');
+        return 'light';
+      } else {
+        storageHelper.saveItem(storageHelper.STORAGE_KEYS.THEME, 'dark');
+        return 'dark';
+      }
+    });
   }, []);
 
   return (
