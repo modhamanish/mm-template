@@ -33,6 +33,7 @@
   "auth": {
     "welcomeBack": "वापसी पर स्वागत है!",
     "signInToContinue": "जारी रखने के लिए साइन इन करें",
+    "mockCredentialsHint": "लॉगिन करने के लिए निम्न क्रेडेंशियल का उपयोग करें:",
     "email": "ईमेल",
     "password": "पासवर्ड",
     "enterEmail": "अपना ईमेल दर्ज करें",

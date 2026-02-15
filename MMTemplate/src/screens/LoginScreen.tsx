@@ -72,6 +72,21 @@ const LoginScreen: FC = () => {
 
         <AnimationView delay={200} animType="FadeIn" duration={800}>
           <View style={styles.formContainer}>
+            {/* Hint Banner */}
+            <View style={styles.hintBanner}>
+              <Text style={styles.hintTitle}>
+                {t('auth.mockCredentialsHint')}
+              </Text>
+              <View style={styles.hintContent}>
+                <Text style={styles.hintLabel}>{t('auth.email')}: </Text>
+                <Text style={styles.hintValue}>{userMockData.email}</Text>
+              </View>
+              <View style={styles.hintContent}>
+                <Text style={styles.hintLabel}>{t('auth.password')}: </Text>
+                <Text style={styles.hintValue}>{userMockData.password}</Text>
+              </View>
+            </View>
+
             {/* Email Input */}
             <TextInput
               label={t('auth.email')}
@@ -160,6 +175,33 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     formContainer: {
       width: '100%',
+    },
+    hintBanner: {
+      backgroundColor: colors.primary + '10',
+      padding: 16,
+      borderRadius: 12,
+      borderWidth: 1,
+      borderColor: colors.primary + '30',
+      marginBottom: 24,
+    },
+    hintTitle: {
+      fontSize: 14,
+      fontWeight: '700',
+      color: colors.primary,
+      marginBottom: 8,
+    },
+    hintContent: {
+      flexDirection: 'row',
+      marginBottom: 4,
+    },
+    hintLabel: {
+      fontSize: 13,
+      fontWeight: '600',
+      color: colors.textColor,
+    },
+    hintValue: {
+      fontSize: 13,
+      color: colors.textColor + 'CC',
     },
     forgotPassword: {
       alignSelf: 'flex-end',
