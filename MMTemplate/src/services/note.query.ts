@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from './queryKeys';
 import { axiosInstance } from './axiosInstance';
+import { GetNotesResponse } from '../types/services.types';
 
 export const useGetNotesQuery = () => {
   return useQuery({
     queryKey: [QUERY_KEY.GET_NOTES],
     queryFn: async () => {
-      const response = await axiosInstance.get('/notes');
+      const response = await axiosInstance.get<GetNotesResponse>('/notes');
       if (response.status === 200) {
         return response.data;
       }

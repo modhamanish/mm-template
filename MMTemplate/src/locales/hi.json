@@ -16,7 +16,11 @@
     "success": "सफलता",
     "home": "होम",
     "profile": "प्रोफ़ाइल",
-    "api": "API"
+    "note": "नोट",
+    "notes": "नोट्स",
+    "noNotesFound": "कोई नोट्स नहीं मिले",
+    "addNote": "नोट जोड़ें",
+    "searchNotes": "नोट्स खोजें..."
   },
   "auth": {
     "welcomeBack": "वापसी पर स्वागत है!",

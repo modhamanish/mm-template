@@ -9,7 +9,7 @@ import { useTheme } from '../context/ThemeContext';
 // Screens
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import APIScreen from '../screens/APIScreen';
+import NoteScreen from '../screens/NoteScreen';
 
 const BottomTab = createBottomTabNavigator<MainTabParamList>();
 
@@ -39,11 +39,11 @@ const MainTab: FC = () => {
         }}
       />
       <BottomTab.Screen
-        name={Routes.APIScreen}
-        component={APIScreen}
+        name={Routes.NoteScreen}
+        component={NoteScreen}
         options={{
-          tabBarLabel: t('common.api'),
-          tabBarIcon: () => <Text>🔀</Text>,
+          tabBarLabel: t('common.note'),
+          tabBarIcon: () => <Text>📝</Text>,
         }}
       />
       <BottomTab.Screen

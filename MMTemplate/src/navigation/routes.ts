@@ -10,7 +10,7 @@ enum Routes {
 
   // App Stack Screens
   HomeScreen = 'HomeScreen',
-  APIScreen = 'APIScreen',
+  NoteScreen = 'NoteScreen',
   ProfileScreen = 'ProfileScreen',
   SettingsScreen = 'SettingsScreen',
 }

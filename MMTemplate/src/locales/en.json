@@ -16,7 +16,11 @@
     "success": "Success",
     "home": "Home",
     "profile": "Profile",
-    "api": "API"
+    "note": "Note",
+    "notes": "Notes",
+    "noNotesFound": "No notes found",
+    "addNote": "Add Note",
+    "searchNotes": "Search notes..."
   },
   "auth": {
     "welcomeBack": "Welcome Back!",
