@@ -4,9 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Routes from './routes';
 import { MainTabParamList } from '../types/navigation.types';
+import { useTheme } from '../context/ThemeContext';
+
+// Screens
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import { useTheme } from '../context/ThemeContext';
+import APIScreen from '../screens/APIScreen';
 
 const BottomTab = createBottomTabNavigator<MainTabParamList>();
 
@@ -33,6 +36,14 @@ const MainTab: FC = () => {
         options={{
           tabBarLabel: t('common.home'),
           tabBarIcon: () => <Text>🏠</Text>,
+        }}
+      />
+      <BottomTab.Screen
+        name={Routes.APIScreen}
+        component={APIScreen}
+        options={{
+          tabBarLabel: t('common.api'),
+          tabBarIcon: () => <Text>🔀</Text>,
         }}
       />
       <BottomTab.Screen

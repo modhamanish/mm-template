@@ -1,0 +1,4 @@
+export enum QUERY_KEY {
+  GET_NOTES = 'GET-NOTES',
+  CREATE_NOTE = 'CREATE-NOTE',
+}

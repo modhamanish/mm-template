@@ -15,7 +15,8 @@
     "error": "त्रुटि",
     "success": "सफलता",
     "home": "होम",
-    "profile": "प्रोफ़ाइल"
+    "profile": "प्रोफ़ाइल",
+    "api": "API"
   },
   "auth": {
     "welcomeBack": "वापसी पर स्वागत है!",

@@ -6,6 +6,7 @@ enum STORAGE_KEYS {
   USER = 'user',
   LANGUAGE = 'language',
   THEME = 'theme',
+  AUTH_TOKEN = 'auth_token',
 }
 
 const saveItem = (key: STORAGE_KEYS, value: string) => {

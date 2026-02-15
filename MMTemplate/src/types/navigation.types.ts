@@ -13,6 +13,7 @@ export type RootStackParamList = {
 
 export type MainTabParamList = {
   [Routes.HomeScreen]: undefined;
+  [Routes.APIScreen]: undefined;
   [Routes.ProfileScreen]: undefined;
 };
 

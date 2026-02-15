@@ -15,7 +15,8 @@
     "error": "Error",
     "success": "Success",
     "home": "Home",
-    "profile": "Profile"
+    "profile": "Profile",
+    "api": "API"
   },
   "auth": {
     "welcomeBack": "Welcome Back!",
