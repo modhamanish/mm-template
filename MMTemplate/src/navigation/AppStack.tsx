@@ -7,6 +7,7 @@ import { AppStackParamList } from '../types/navigation.types';
 // Screens
 import MainTab from './MainTab';
 import SettingsScreen from '../screens/SettingsScreen';
+import AddNoteScreen from '../screens/AddNoteScreen';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
@@ -20,6 +21,7 @@ const AppStack: FC = () => {
     >
       <Stack.Screen name={Routes.MainTab} component={MainTab} />
       <Stack.Screen name={Routes.SettingsScreen} component={SettingsScreen} />
+      <Stack.Screen name={Routes.AddNoteScreen} component={AddNoteScreen} />
     </Stack.Navigator>
   );
 };

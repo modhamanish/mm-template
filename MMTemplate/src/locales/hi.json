@@ -20,7 +20,15 @@
     "notes": "नोट्स",
     "noNotesFound": "कोई नोट्स नहीं मिले",
     "addNote": "नोट जोड़ें",
-    "searchNotes": "नोट्स खोजें..."
+    "searchNotes": "नोट्स खोजें...",
+    "title": "शीर्षक",
+    "description": "विवरण",
+    "enterTitle": "शीर्षक दर्ज करें",
+    "enterDescription": "विवरण दर्ज करें",
+    "creating": "बनाया जा रहा है...",
+    "noteCreated": "नोट सफलतापूर्वक बनाया गया",
+    "titleRequired": "शीर्षक आवश्यक है",
+    "descriptionRequired": "विवरण आवश्यक है"
   },
   "auth": {
     "welcomeBack": "वापसी पर स्वागत है!",

@@ -20,7 +20,15 @@
     "notes": "Notes",
     "noNotesFound": "No notes found",
     "addNote": "Add Note",
-    "searchNotes": "Search notes..."
+    "searchNotes": "Search notes...",
+    "title": "Title",
+    "description": "Description",
+    "enterTitle": "Enter title",
+    "enterDescription": "Enter description",
+    "creating": "Creating...",
+    "noteCreated": "Note created successfully",
+    "titleRequired": "Title is required",
+    "descriptionRequired": "Description is required"
   },
   "auth": {
     "welcomeBack": "Welcome Back!",

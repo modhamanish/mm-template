@@ -56,3 +56,9 @@ export const ProfileUpdateSchema = Yup.object().shape({
     .matches(/^[0-9]{10}$/, 'Phone number must be 10 digits')
     .optional(),
 });
+
+// Note Validation Schema
+export const NoteSchema = Yup.object().shape({
+  title: Yup.string().required('Title is required'),
+  description: Yup.string().required('Description is required'),
+});

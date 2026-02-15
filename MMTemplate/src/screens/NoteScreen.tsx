@@ -16,6 +16,9 @@ import { useGetNotesQuery } from '../services/note.query';
 import { Note } from '../types/services.types';
 import AnimationView from '../components/AnimationView';
 
+import { navigate } from '../utils/navigationUtils';
+import Routes from '../navigation/routes';
+
 const NoteScreen: FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -31,7 +34,7 @@ const NoteScreen: FC = () => {
             {item.title}
           </Text>
           <View style={styles.noteTag}>
-            <Text style={styles.noteTagText}>#{item.id.slice(0, 4)}</Text>
+            <Text style={styles.noteTagText}>#{index + 1}</Text>
           </View>
         </View>
         <Text style={styles.noteContent} numberOfLines={3}>
@@ -57,7 +60,11 @@ const NoteScreen: FC = () => {
     <View style={styles.emptyContainer}>
       <Text style={styles.emptyIcon}>📝</Text>
       <Text style={styles.emptyText}>{t('common.noNotesFound')}</Text>
-      <TouchableOpacity style={styles.addNoteButtonSmall} activeOpacity={0.8}>
+      <TouchableOpacity
+        style={styles.addNoteButtonSmall}
+        activeOpacity={0.8}
+        onPress={() => navigate(Routes.AddNoteScreen)}
+      >
         <Text style={styles.addNoteButtonTextSmall}>{t('common.addNote')}</Text>
       </TouchableOpacity>
     </View>
@@ -72,7 +79,7 @@ const NoteScreen: FC = () => {
       ) : (
         <FlatList
           data={notes}
-          keyExtractor={item => item.id}
+          keyExtractor={(_, index) => index.toString()}
           renderItem={renderNoteItem}
           ListHeaderComponent={listHeader}
           ListEmptyComponent={emptyComponent}
@@ -87,7 +94,11 @@ const NoteScreen: FC = () => {
           }
         />
       )}
-      <TouchableOpacity style={styles.fab} activeOpacity={0.8}>
+      <TouchableOpacity
+        style={styles.fab}
+        activeOpacity={0.8}
+        onPress={() => navigate(Routes.AddNoteScreen)}
+      >
         <Text style={styles.fabIcon}>+</Text>
       </TouchableOpacity>
     </FullScreenContainer>

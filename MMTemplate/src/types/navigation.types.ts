@@ -25,6 +25,7 @@ export type AuthStackParamList = {
 export type AppStackParamList = {
   [Routes.MainTab]: undefined;
   [Routes.SettingsScreen]: undefined;
+  [Routes.AddNoteScreen]: undefined;
 };
 
 export type ParamsType = RootStackParamList &
