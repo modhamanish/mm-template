@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Edges } from 'react-native-safe-area-context';
 
-export type CustomTextSize =
+export type AppTextSize =
   | 'xxsmall' // 8
   | 'xsmall' // 10
   | 'small' // 12
@@ -19,7 +19,7 @@ export type CustomTextSize =
   | 'xxlarge' // 32
   | number;
 
-export type CustomTextVariant =
+export type AppTextVariant =
   | 'h1'
   | 'h2'
   | 'h3'
@@ -32,19 +32,19 @@ export type CustomTextVariant =
   | 'regular'
   | 'light';
 
-export type CustomTextTransform =
+export type AppTextTransform =
   | 'uppercase'
   | 'lowercase'
   | 'capitalize'
   | 'none';
 
-export type CustomTextProps = TextProps & {
+export type AppTextProps = TextProps & {
   children?: ReactNode;
-  size?: CustomTextSize;
-  variant?: CustomTextVariant;
+  size?: AppTextSize;
+  variant?: AppTextVariant;
   color?: string;
   fontFamily?: string;
-  transform?: CustomTextTransform;
+  transform?: AppTextTransform;
   style?: StyleProp<TextStyle>;
 };
 

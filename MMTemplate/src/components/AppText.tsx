@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
 import { Text, TextStyle } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
-import { CustomTextProps, CustomTextSize } from '../types/components.types';
+import { AppTextProps, AppTextSize } from '../types/components.types';
 
 const FONTS: Record<string, string> | undefined = {
   // Define custom font families here. If empty or undefined, the component will use default system fonts with font weights.
@@ -24,7 +24,7 @@ const SIZES: Record<string, number> = {
   xxlarge: 32,
 };
 
-const CustomText: FC<CustomTextProps> = ({
+const AppText: FC<AppTextProps> = ({
   children,
   size = 'normal',
   variant = 'regular',
@@ -36,7 +36,7 @@ const CustomText: FC<CustomTextProps> = ({
 }) => {
   const { colors } = useTheme();
 
-  const getFontSize = (s: CustomTextSize): number => {
+  const getFontSize = (s: AppTextSize): number => {
     if (typeof s === 'number') return s;
     return SIZES[s as string] || SIZES.normal;
   };
@@ -122,4 +122,4 @@ const CustomText: FC<CustomTextProps> = ({
   );
 };
 
-export default memo(CustomText);
+export default memo(AppText);
