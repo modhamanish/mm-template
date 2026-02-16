@@ -109,6 +109,21 @@ const HomeScreen: FC = () => {
               title="context/"
               description="React Context for global state management."
             />
+            <FeatureItem
+              icon="🖼️"
+              title="assets/"
+              description={t('home.assetsDescription')}
+            />
+            <FeatureItem
+              icon="⚡"
+              title="services/"
+              description={t('home.servicesDescription')}
+            />
+            <FeatureItem
+              icon="🏷️"
+              title="types/"
+              description={t('home.typesDescription')}
+            />
           </InfoCard>
         </AnimationView>
 

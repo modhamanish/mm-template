@@ -76,7 +76,10 @@
     "storageSupport": "तेज़ स्टोरेज",
     "storageDescription": "react-native-mmkv के साथ उच्च प्रदर्शन दृढ़ता",
     "localesDescription": "बहु-भाषा समर्थन के लिए अनुवाद फ़ाइलें।",
-    "mockDescription": "विकास और परीक्षण के लिए मॉक डेटा।"
+    "mockDescription": "विकास और परीक्षण के लिए मॉक डेटा।",
+    "assetsDescription": "छवियों, आइकन और फोंट जैसे वैश्विक एसेट्स।",
+    "servicesDescription": "API कॉल और बाहरी सेवा एकीकरण।",
+    "typesDescription": "TypeScript इंटरफेस और टाइप परिभाषाएं।"
   },
   "settings": {
     "settings": "सेटिंग्स",

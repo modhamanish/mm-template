@@ -76,7 +76,10 @@
     "storageSupport": "Fast Storage",
     "storageDescription": "High-performance persistence with react-native-mmkv",
     "localesDescription": "Translation files for multi-language support.",
-    "mockDescription": "Mock data for development and testing."
+    "mockDescription": "Mock data for development and testing.",
+    "assetsDescription": "Global assets like images, icons, and fonts.",
+    "servicesDescription": "API calls and external service integrations.",
+    "typesDescription": "TypeScript interfaces and type definitions."
   },
   "settings": {
     "settings": "Settings",
