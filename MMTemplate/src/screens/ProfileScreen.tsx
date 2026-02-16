@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import AppText from '../components/AppText';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeType } from '../theme/Colors';
@@ -41,26 +42,32 @@ const ProfileScreen: FC = () => {
         <AnimationView animType="FadeIn" duration={800}>
           <View style={styles.header}>
             <View style={styles.avatarContainer}>
-              <Text style={styles.avatarText}>
+              <AppText variant="bold" size={40} style={styles.avatarText}>
                 {user?.name?.charAt(0).toUpperCase() || 'U'}
-              </Text>
+              </AppText>
             </View>
-            <Text style={styles.name}>{user?.name || 'User'}</Text>
-            <Text style={styles.email}>
+            <AppText variant="bold" style={styles.name}>
+              {user?.name || 'User'}
+            </AppText>
+            <AppText style={styles.email}>
               {user?.email || 'user@example.com'}
-            </Text>
+            </AppText>
           </View>
         </AnimationView>
 
         <AnimationView delay={300} animType="FadeIn" duration={800}>
           <InfoCard title={t('profile.accountInformation')} icon="👤">
             <View style={styles.infoRow}>
-              <Text style={styles.infoLabel}>{t('profile.name')}:</Text>
-              <Text style={styles.infoValue}>{user?.name || 'N/A'}</Text>
+              <AppText variant="semiBold" style={styles.infoLabel}>
+                {t('profile.name')}:
+              </AppText>
+              <AppText style={styles.infoValue}>{user?.name || 'N/A'}</AppText>
             </View>
             <View style={styles.infoRow}>
-              <Text style={styles.infoLabel}>{t('profile.email')}:</Text>
-              <Text style={styles.infoValue}>{user?.email || 'N/A'}</Text>
+              <AppText variant="semiBold" style={styles.infoLabel}>
+                {t('profile.email')}:
+              </AppText>
+              <AppText style={styles.infoValue}>{user?.email || 'N/A'}</AppText>
             </View>
           </InfoCard>
         </AnimationView>
@@ -70,15 +77,21 @@ const ProfileScreen: FC = () => {
             style={styles.settingsButton}
             onPress={() => navigate(Routes.SettingsScreen)}
           >
-            <Text style={styles.settingsButtonText}>
+            <AppText
+              variant="bold"
+              size="body"
+              style={styles.settingsButtonText}
+            >
               ⚙️ {t('settings.settings')}
-            </Text>
+            </AppText>
           </TouchableOpacity>
         </AnimationView>
 
         <AnimationView delay={600} animType="FadeIn" duration={800}>
           <TouchableOpacity style={styles.logoutButton} onPress={confirmLogout}>
-            <Text style={styles.logoutButtonText}>{t('common.logout')}</Text>
+            <AppText variant="bold" size="body" style={styles.logoutButtonText}>
+              {t('common.logout')}
+            </AppText>
           </TouchableOpacity>
         </AnimationView>
       </View>
@@ -113,18 +126,13 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 16,
     },
     avatarText: {
-      fontSize: 40,
-      fontWeight: '700',
       color: colors.white,
     },
     name: {
-      fontSize: 24,
-      fontWeight: '700',
       color: colors.textColor,
       marginBottom: 4,
     },
     email: {
-      fontSize: 14,
       color: colors.textColor + 'CC',
     },
     infoRow: {
@@ -134,12 +142,9 @@ const getStyles = ({ colors }: ThemeType) =>
       paddingVertical: 8,
     },
     infoLabel: {
-      fontSize: 14,
-      fontWeight: '600',
       color: colors.textColor,
     },
     infoValue: {
-      fontSize: 14,
       color: colors.textColor + 'CC',
     },
     logoutButton: {
@@ -151,8 +156,6 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     logoutButtonText: {
       color: colors.white,
-      fontSize: 16,
-      fontWeight: '700',
     },
     settingsButton: {
       backgroundColor: colors.backgroundColor,
@@ -165,7 +168,5 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     settingsButtonText: {
       color: colors.primary,
-      fontSize: 16,
-      fontWeight: '700',
     },
   });

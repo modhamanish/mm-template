@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import AppText from './AppText';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeType } from '../theme/Colors';
@@ -21,27 +22,29 @@ const LanguageSwitcher = () => {
         style={[styles.button, i18n.language === 'en' && styles.activeButton]}
         onPress={() => changeLanguage('en')}
       >
-        <Text
+        <AppText
+          variant="semiBold"
           style={[
             styles.buttonText,
             i18n.language === 'en' && styles.activeButtonText,
           ]}
         >
           🇬🇧 English
-        </Text>
+        </AppText>
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, i18n.language === 'hi' && styles.activeButton]}
         onPress={() => changeLanguage('hi')}
       >
-        <Text
+        <AppText
+          variant="semiBold"
           style={[
             styles.buttonText,
             i18n.language === 'hi' && styles.activeButtonText,
           ]}
         >
           🇮🇳 हिंदी
-        </Text>
+        </AppText>
       </TouchableOpacity>
     </View>
   );
@@ -70,8 +73,6 @@ const getStyles = ({ colors }: ThemeType) =>
       backgroundColor: colors.primary,
     },
     buttonText: {
-      fontSize: 14,
-      fontWeight: '600',
       color: colors.primary,
     },
     activeButtonText: {

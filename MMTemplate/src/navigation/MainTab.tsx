@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Text } from 'react-native';
+import AppText from '../components/AppText';
 import { useTranslation } from 'react-i18next';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Routes from './routes';
@@ -35,7 +35,7 @@ const MainTab: FC = () => {
         component={HomeScreen}
         options={{
           tabBarLabel: t('common.home'),
-          tabBarIcon: () => <Text>🏠</Text>,
+          tabBarIcon: () => <AppText>🏠</AppText>,
         }}
       />
       <BottomTab.Screen
@@ -43,7 +43,7 @@ const MainTab: FC = () => {
         component={NoteScreen}
         options={{
           tabBarLabel: t('common.note'),
-          tabBarIcon: () => <Text>📝</Text>,
+          tabBarIcon: () => <AppText>📝</AppText>,
         }}
       />
       <BottomTab.Screen
@@ -51,7 +51,7 @@ const MainTab: FC = () => {
         component={ProfileScreen}
         options={{
           tabBarLabel: t('common.profile'),
-          tabBarIcon: () => <Text>👤</Text>,
+          tabBarIcon: () => <AppText>👤</AppText>,
         }}
       />
     </BottomTab.Navigator>

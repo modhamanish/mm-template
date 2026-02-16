@@ -1,4 +1,5 @@
-import { Image, StyleSheet, Text, View, ScrollView } from 'react-native';
+import { Image, StyleSheet, View, ScrollView } from 'react-native';
+import AppText from '../components/AppText';
 import React, { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import FullScreenContainer from '../components/FullScreenContainer';
@@ -33,10 +34,10 @@ const HomeScreen: FC = () => {
               />
             </AnimationView>
             <AnimationView delay={400} animType="SlideInDown" duration={800}>
-              <Text style={styles.welcomeText}>
+              <AppText variant="h2" style={styles.welcomeText}>
                 {t('home.welcomeToTemplate')}
-              </Text>
-              <Text style={styles.subtitle}>{t('home.subtitle')}</Text>
+              </AppText>
+              <AppText style={styles.subtitle}>{t('home.subtitle')}</AppText>
             </AnimationView>
           </View>
         </AnimationView>
@@ -44,15 +45,23 @@ const HomeScreen: FC = () => {
         {/* Quick Start Section */}
         <AnimationView delay={600} animType="FadeIn" duration={800}>
           <InfoCard title={`🚀 ${t('home.quickStart')}`} icon="">
-            <Text style={styles.cardText}>{t('home.quickStartDesc')}</Text>
+            <AppText style={styles.cardText}>
+              {t('home.quickStartDesc')}
+            </AppText>
             <View style={styles.codeBlock}>
-              <Text style={styles.codeText}>yarn install</Text>
+              <AppText size={13} style={styles.codeText}>
+                yarn install
+              </AppText>
             </View>
             <View style={styles.codeBlock}>
-              <Text style={styles.codeText}>cd ios && pod install</Text>
+              <AppText size={13} style={styles.codeText}>
+                cd ios && pod install
+              </AppText>
             </View>
             <View style={styles.codeBlock}>
-              <Text style={styles.codeText}>yarn ios / yarn android</Text>
+              <AppText size={13} style={styles.codeText}>
+                yarn ios / yarn android
+              </AppText>
             </View>
           </InfoCard>
         </AnimationView>
@@ -183,33 +192,45 @@ const HomeScreen: FC = () => {
         {/* Next Steps Section */}
         <AnimationView delay={1400} animType="FadeIn" duration={800}>
           <InfoCard title={`🎯 ${t('home.nextSteps')}`} icon="">
-            <Text style={styles.cardText}>
+            <AppText style={styles.cardText}>
               1. Customize the theme in{' '}
-              <Text style={styles.highlight}>theme/Colors.ts</Text>
-            </Text>
-            <Text style={styles.cardText}>
+              <AppText variant="semiBold" style={styles.highlight}>
+                theme/Colors.ts
+              </AppText>
+            </AppText>
+            <AppText style={styles.cardText}>
               2. Add your screens in{' '}
-              <Text style={styles.highlight}>screens/</Text>
-            </Text>
-            <Text style={styles.cardText}>
+              <AppText variant="semiBold" style={styles.highlight}>
+                screens/
+              </AppText>
+            </AppText>
+            <AppText style={styles.cardText}>
               3. Update navigation in{' '}
-              <Text style={styles.highlight}>navigation/</Text>
-            </Text>
-            <Text style={styles.cardText}>
+              <AppText variant="semiBold" style={styles.highlight}>
+                navigation/
+              </AppText>
+            </AppText>
+            <AppText style={styles.cardText}>
               4. Create reusable components in{' '}
-              <Text style={styles.highlight}>components/</Text>
-            </Text>
-            <Text style={styles.cardText}>
+              <AppText variant="semiBold" style={styles.highlight}>
+                components/
+              </AppText>
+            </AppText>
+            <AppText style={styles.cardText}>
               5. Configure your app name and bundle ID
-            </Text>
+            </AppText>
           </InfoCard>
         </AnimationView>
 
         {/* Footer */}
         <AnimationView delay={1600} animType="FadeIn" duration={800}>
           <View style={styles.footer}>
-            <Text style={styles.footerText}>{t('home.happyCoding')}</Text>
-            <Text style={styles.footerSubtext}>{t('home.builtWith')}</Text>
+            <AppText variant="semiBold" size={18} style={styles.footerText}>
+              {t('home.happyCoding')}
+            </AppText>
+            <AppText size={13} style={styles.footerSubtext}>
+              {t('home.builtWith')}
+            </AppText>
           </View>
         </AnimationView>
       </ScrollView>
@@ -241,19 +262,15 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 16,
     },
     welcomeText: {
-      fontSize: 24,
-      fontWeight: '700',
       color: colors.textColor,
       textAlign: 'center',
       marginBottom: 8,
     },
     subtitle: {
-      fontSize: 14,
       color: colors.textColor + 'CC',
       textAlign: 'center',
     },
     cardText: {
-      fontSize: 14,
       color: colors.textColor,
       lineHeight: 20,
       marginBottom: 8,
@@ -268,12 +285,10 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     codeText: {
       fontFamily: 'monospace',
-      fontSize: 13,
       color: colors.textColor,
     },
     highlight: {
       color: colors.primary,
-      fontWeight: '600',
       fontFamily: 'monospace',
     },
     footer: {
@@ -284,13 +299,10 @@ const getStyles = ({ colors }: ThemeType) =>
       borderTopColor: colors.textColor + '20',
     },
     footerText: {
-      fontSize: 18,
-      fontWeight: '600',
       color: colors.primary,
       marginBottom: 4,
     },
     footerSubtext: {
-      fontSize: 13,
       color: colors.textColor + 'CC',
     },
   });

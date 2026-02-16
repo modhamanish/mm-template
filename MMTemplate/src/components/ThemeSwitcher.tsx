@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import AppText from './AppText';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeType } from '../theme/Colors';
 
@@ -15,17 +16,23 @@ const ThemeSwitcher = () => {
         style={[styles.button, !isDark && styles.activeButton]}
         onPress={() => !isDark || toggleTheme()}
       >
-        <Text style={[styles.buttonText, !isDark && styles.activeButtonText]}>
+        <AppText
+          variant="semiBold"
+          style={[styles.buttonText, !isDark && styles.activeButtonText]}
+        >
           ☀️ Light
-        </Text>
+        </AppText>
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, isDark && styles.activeButton]}
         onPress={() => isDark || toggleTheme()}
       >
-        <Text style={[styles.buttonText, isDark && styles.activeButtonText]}>
+        <AppText
+          variant="semiBold"
+          style={[styles.buttonText, isDark && styles.activeButtonText]}
+        >
           🌙 Dark
-        </Text>
+        </AppText>
       </TouchableOpacity>
     </View>
   );
@@ -53,8 +60,6 @@ const getStyles = ({ colors }: ThemeType) =>
       backgroundColor: colors.primary,
     },
     buttonText: {
-      fontSize: 14,
-      fontWeight: '600',
       color: colors.primary,
     },
     activeButtonText: {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import AppText from './AppText';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeType } from '../theme/Colors';
 
@@ -16,8 +17,14 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, children, icon }) => {
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        {icon && <Text style={styles.icon}>{icon}</Text>}
-        <Text style={styles.title}>{title}</Text>
+        {icon && (
+          <AppText size="xlarge" style={styles.icon}>
+            {icon}
+          </AppText>
+        )}
+        <AppText variant="bold" size={18} style={styles.title}>
+          {title}
+        </AppText>
       </View>
       <View style={styles.content}>{children}</View>
     </View>
@@ -47,12 +54,9 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 12,
     },
     icon: {
-      fontSize: 24,
       marginRight: 8,
     },
     title: {
-      fontSize: 18,
-      fontWeight: '700',
       color: colors.primary,
     },
     content: {

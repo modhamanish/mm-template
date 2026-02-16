@@ -3,9 +3,9 @@ import {
   TextInput as RNTextInput,
   TextInputProps,
   View,
-  Text,
   StyleSheet,
 } from 'react-native';
+import AppText from './AppText';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeType } from '../theme/Colors';
 
@@ -29,13 +29,21 @@ const TextInput: React.FC<CustomTextInputProps> = ({
 
   return (
     <View style={styles.container}>
-      {label && <Text style={styles.label}>{label}</Text>}
+      {label && (
+        <AppText variant="semiBold" style={styles.label}>
+          {label}
+        </AppText>
+      )}
       <RNTextInput
         style={[styles.input, hasError && styles.inputError, style]}
         placeholderTextColor={theme.colors.textColor + '60'}
         {...props}
       />
-      {hasError && <Text style={styles.errorText}>{error}</Text>}
+      {hasError && (
+        <AppText size="small" style={styles.errorText}>
+          {error}
+        </AppText>
+      )}
     </View>
   );
 };
@@ -48,8 +56,6 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 20,
     },
     label: {
-      fontSize: 14,
-      fontWeight: '600',
       color: colors.textColor,
       marginBottom: 8,
     },
@@ -67,7 +73,6 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     errorText: {
       color: colors.primary,
-      fontSize: 12,
       marginTop: 4,
       marginLeft: 4,
     },

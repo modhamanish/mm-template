@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import AppText from './AppText';
 
 type CustomToastProps = {
   text1?: string;
@@ -12,10 +13,14 @@ export const CustomToast = ({ text1, onPress, type }: CustomToastProps) => {
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <Text style={styles.text}>{text1}</Text>
+      <AppText variant="medium" style={styles.text}>
+        {text1}
+      </AppText>
       {onPress && (
         <TouchableOpacity onPress={onPress}>
-          <Text style={styles.buttonText}>OK</Text>
+          <AppText variant="semiBold" size="body" style={styles.buttonText}>
+            OK
+          </AppText>
         </TouchableOpacity>
       )}
     </View>
@@ -36,11 +41,8 @@ const styles = StyleSheet.create({
   text: {
     flex: 1,
     color: 'white',
-    fontWeight: '500',
   },
   buttonText: {
     color: 'white',
-    fontSize: 16,
-    fontWeight: '600',
   },
 });

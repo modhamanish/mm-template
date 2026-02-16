@@ -1,11 +1,6 @@
 import React, { FC } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
+import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import AppText from '../components/AppText';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
@@ -65,8 +60,12 @@ const LoginScreen: FC = () => {
       >
         <AnimationView animType="FadeIn" duration={800}>
           <View style={styles.header}>
-            <Text style={styles.title}>{t('auth.welcomeBack')}</Text>
-            <Text style={styles.subtitle}>{t('auth.signInToContinue')}</Text>
+            <AppText variant="h1" style={styles.title}>
+              {t('auth.welcomeBack')}
+            </AppText>
+            <AppText size="body" style={styles.subtitle}>
+              {t('auth.signInToContinue')}
+            </AppText>
           </View>
         </AnimationView>
 
@@ -74,16 +73,24 @@ const LoginScreen: FC = () => {
           <View style={styles.formContainer}>
             {/* Hint Banner */}
             <View style={styles.hintBanner}>
-              <Text style={styles.hintTitle}>
+              <AppText variant="bold" style={styles.hintTitle}>
                 {t('auth.mockCredentialsHint')}
-              </Text>
+              </AppText>
               <View style={styles.hintContent}>
-                <Text style={styles.hintLabel}>{t('auth.email')}: </Text>
-                <Text style={styles.hintValue}>{userMockData.email}</Text>
+                <AppText variant="semiBold" size={13} style={styles.hintLabel}>
+                  {t('auth.email')}:{' '}
+                </AppText>
+                <AppText size={13} style={styles.hintValue}>
+                  {userMockData.email}
+                </AppText>
               </View>
               <View style={styles.hintContent}>
-                <Text style={styles.hintLabel}>{t('auth.password')}: </Text>
-                <Text style={styles.hintValue}>{userMockData.password}</Text>
+                <AppText variant="semiBold" size={13} style={styles.hintLabel}>
+                  {t('auth.password')}:{' '}
+                </AppText>
+                <AppText size={13} style={styles.hintValue}>
+                  {userMockData.password}
+                </AppText>
               </View>
             </View>
 
@@ -117,9 +124,9 @@ const LoginScreen: FC = () => {
 
             {/* Forgot Password */}
             <TouchableOpacity style={styles.forgotPassword}>
-              <Text style={styles.forgotPasswordText}>
+              <AppText variant="semiBold" style={styles.forgotPasswordText}>
                 {t('auth.forgotPassword')}
-              </Text>
+              </AppText>
             </TouchableOpacity>
 
             {/* Login Button */}
@@ -127,16 +134,24 @@ const LoginScreen: FC = () => {
               style={styles.loginButton}
               onPress={() => formik.handleSubmit()}
             >
-              <Text style={styles.loginButtonText}>{t('auth.login')}</Text>
+              <AppText
+                variant="bold"
+                size="body"
+                style={styles.loginButtonText}
+              >
+                {t('auth.login')}
+              </AppText>
             </TouchableOpacity>
 
             {/* Sign Up Link */}
             <View style={styles.signupContainer}>
-              <Text style={styles.signupText}>
+              <AppText style={styles.signupText}>
                 {t('auth.dontHaveAccount')}{' '}
-              </Text>
+              </AppText>
               <TouchableOpacity>
-                <Text style={styles.signupLink}>{t('auth.signUp')}</Text>
+                <AppText variant="semiBold" style={styles.signupLink}>
+                  {t('auth.signUp')}
+                </AppText>
               </TouchableOpacity>
             </View>
           </View>
@@ -164,13 +179,10 @@ const getStyles = ({ colors }: ThemeType) =>
       alignItems: 'center',
     },
     title: {
-      fontSize: 32,
-      fontWeight: '700',
       color: colors.textColor,
       marginBottom: 8,
     },
     subtitle: {
-      fontSize: 16,
       color: colors.textColor + 'CC',
     },
     formContainer: {
@@ -185,8 +197,6 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 24,
     },
     hintTitle: {
-      fontSize: 14,
-      fontWeight: '700',
       color: colors.primary,
       marginBottom: 8,
     },
@@ -195,12 +205,9 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 4,
     },
     hintLabel: {
-      fontSize: 13,
-      fontWeight: '600',
       color: colors.textColor,
     },
     hintValue: {
-      fontSize: 13,
       color: colors.textColor + 'CC',
     },
     forgotPassword: {
@@ -209,8 +216,6 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     forgotPasswordText: {
       color: colors.primary,
-      fontSize: 14,
-      fontWeight: '600',
     },
     loginButton: {
       backgroundColor: colors.primary,
@@ -221,8 +226,6 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     loginButtonText: {
       color: colors.white,
-      fontSize: 16,
-      fontWeight: '700',
     },
     signupContainer: {
       flexDirection: 'row',
@@ -231,11 +234,8 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     signupText: {
       color: colors.textColor + 'CC',
-      fontSize: 14,
     },
     signupLink: {
       color: colors.primary,
-      fontSize: 14,
-      fontWeight: '600',
     },
   });

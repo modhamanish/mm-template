@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import AppText from '../components/AppText';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeType } from '../theme/Colors';
@@ -21,20 +22,24 @@ const SettingsScreen: FC = () => {
       >
         <AnimationView animType="FadeIn" duration={800}>
           <View style={styles.header}>
-            <Text style={styles.title}>{t('settings.settings')}</Text>
-            <Text style={styles.subtitle}>
+            <AppText variant="h1" style={styles.title}>
+              {t('settings.settings')}
+            </AppText>
+            <AppText size="body" style={styles.subtitle}>
               {t('settings.customizeYourExperience')}
-            </Text>
+            </AppText>
           </View>
         </AnimationView>
 
         {/* Language Section */}
         <AnimationView delay={200} animType="FadeIn" duration={800}>
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{t('settings.language')}</Text>
-            <Text style={styles.sectionDescription}>
+            <AppText variant="semiBold" size={18} style={styles.sectionTitle}>
+              {t('settings.language')}
+            </AppText>
+            <AppText style={styles.sectionDescription}>
               {t('settings.chooseYourPreferredLanguage')}
-            </Text>
+            </AppText>
             <LanguageSwitcher />
           </View>
         </AnimationView>
@@ -42,10 +47,12 @@ const SettingsScreen: FC = () => {
         {/* Theme Section */}
         <AnimationView delay={400} animType="FadeIn" duration={800}>
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>{t('settings.theme')}</Text>
-            <Text style={styles.sectionDescription}>
+            <AppText variant="semiBold" size={18} style={styles.sectionTitle}>
+              {t('settings.theme')}
+            </AppText>
+            <AppText style={styles.sectionDescription}>
               {t('settings.switchBetweenLightAndDark')}
-            </Text>
+            </AppText>
             <ThemeSwitcher />
           </View>
         </AnimationView>
@@ -70,26 +77,20 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 32,
     },
     title: {
-      fontSize: 32,
-      fontWeight: '700',
       color: colors.textColor,
       marginBottom: 8,
     },
     subtitle: {
-      fontSize: 16,
       color: colors.textColor + 'CC',
     },
     section: {
       marginBottom: 32,
     },
     sectionTitle: {
-      fontSize: 18,
-      fontWeight: '600',
       color: colors.textColor,
       marginBottom: 8,
     },
     sectionDescription: {
-      fontSize: 14,
       color: colors.textColor + 'CC',
       marginBottom: 16,
     },

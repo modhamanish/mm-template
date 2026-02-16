@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import AppText from './AppText';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeType } from '../theme/Colors';
 
@@ -19,10 +20,16 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.icon}>{icon}</Text>
+      <AppText size="large" style={styles.icon}>
+        {icon}
+      </AppText>
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.description}>{description}</Text>
+        <AppText variant="semiBold" size={15} style={styles.title}>
+          {title}
+        </AppText>
+        <AppText size={13} style={styles.description}>
+          {description}
+        </AppText>
       </View>
     </View>
   );
@@ -38,7 +45,6 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 12,
     },
     icon: {
-      fontSize: 20,
       marginRight: 12,
       marginTop: 2,
     },
@@ -46,13 +52,10 @@ const getStyles = ({ colors }: ThemeType) =>
       flex: 1,
     },
     title: {
-      fontSize: 15,
-      fontWeight: '600',
       color: colors.textColor,
       marginBottom: 2,
     },
     description: {
-      fontSize: 13,
       color: colors.textColor + 'CC',
       lineHeight: 18,
     },

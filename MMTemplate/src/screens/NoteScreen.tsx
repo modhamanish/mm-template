@@ -1,12 +1,12 @@
 import {
   StyleSheet,
-  Text,
   FlatList,
   View,
   TouchableOpacity,
   ActivityIndicator,
   RefreshControl,
 } from 'react-native';
+import AppText from '../components/AppText';
 import React, { FC, useMemo } from 'react';
 import FullScreenContainer from '../components/FullScreenContainer';
 import { useTheme } from '../context/ThemeContext';
@@ -30,16 +30,27 @@ const NoteScreen: FC = () => {
     <AnimationView delay={index * 100} animType="FadeIn" duration={500}>
       <TouchableOpacity style={styles.noteCard} activeOpacity={0.7}>
         <View style={styles.noteHeader}>
-          <Text style={styles.noteTitle} numberOfLines={1}>
+          <AppText
+            variant="bold"
+            size={18}
+            style={styles.noteTitle}
+            numberOfLines={1}
+          >
             {item.title}
-          </Text>
+          </AppText>
           <View style={styles.noteTag}>
-            <Text style={styles.noteTagText}>#{index + 1}</Text>
+            <AppText
+              variant="semiBold"
+              size="xsmall"
+              style={styles.noteTagText}
+            >
+              #{index + 1}
+            </AppText>
           </View>
         </View>
-        <Text style={styles.noteContent} numberOfLines={3}>
+        <AppText style={styles.noteContent} numberOfLines={3}>
           {item.description}
-        </Text>
+        </AppText>
       </TouchableOpacity>
     </AnimationView>
   );
@@ -47,10 +58,12 @@ const NoteScreen: FC = () => {
   const listHeader = useMemo(
     () => (
       <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}>{t('common.notes')}</Text>
-        <Text style={styles.headerSubtitle}>
+        <AppText variant="h1" style={styles.headerTitle}>
+          {t('common.notes')}
+        </AppText>
+        <AppText style={styles.headerSubtitle}>
           {notes?.length || 0} {t('common.notes').toLowerCase()}
-        </Text>
+        </AppText>
       </View>
     ),
     [notes?.length, styles, t],
@@ -58,14 +71,24 @@ const NoteScreen: FC = () => {
 
   const emptyComponent = () => (
     <View style={styles.emptyContainer}>
-      <Text style={styles.emptyIcon}>📝</Text>
-      <Text style={styles.emptyText}>{t('common.noNotesFound')}</Text>
+      <AppText size={60} style={styles.emptyIcon}>
+        📝
+      </AppText>
+      <AppText size={18} style={styles.emptyText}>
+        {t('common.noNotesFound')}
+      </AppText>
       <TouchableOpacity
         style={styles.addNoteButtonSmall}
         activeOpacity={0.8}
         onPress={() => navigate(Routes.AddNoteScreen)}
       >
-        <Text style={styles.addNoteButtonTextSmall}>{t('common.addNote')}</Text>
+        <AppText
+          variant="bold"
+          size="body"
+          style={styles.addNoteButtonTextSmall}
+        >
+          {t('common.addNote')}
+        </AppText>
       </TouchableOpacity>
     </View>
   );
@@ -99,7 +122,9 @@ const NoteScreen: FC = () => {
         activeOpacity={0.8}
         onPress={() => navigate(Routes.AddNoteScreen)}
       >
-        <Text style={styles.fabIcon}>+</Text>
+        <AppText size="xxlarge" style={styles.fabIcon}>
+          +
+        </AppText>
       </TouchableOpacity>
     </FullScreenContainer>
   );
@@ -127,13 +152,10 @@ const getStyles = ({ colors }: ThemeType) =>
       marginTop: 20,
     },
     headerTitle: {
-      fontSize: 32,
-      fontWeight: '800',
       color: colors.textColor,
       letterSpacing: -0.5,
     },
     headerSubtitle: {
-      fontSize: 14,
       color: colors.textColor + '80',
       marginTop: 4,
     },
@@ -157,8 +179,6 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 8,
     },
     noteTitle: {
-      fontSize: 18,
-      fontWeight: '700',
       color: colors.textColor,
       flex: 1,
       marginRight: 8,
@@ -170,13 +190,10 @@ const getStyles = ({ colors }: ThemeType) =>
       borderRadius: 8,
     },
     noteTagText: {
-      fontSize: 10,
       color: colors.primary,
-      fontWeight: '600',
       textTransform: 'uppercase',
     },
     noteContent: {
-      fontSize: 14,
       color: colors.textColor + 'B3',
       lineHeight: 20,
     },
@@ -187,11 +204,9 @@ const getStyles = ({ colors }: ThemeType) =>
       marginTop: 100,
     },
     emptyIcon: {
-      fontSize: 60,
       marginBottom: 16,
     },
     emptyText: {
-      fontSize: 18,
       color: colors.textColor + '80',
       marginBottom: 24,
     },
@@ -203,8 +218,6 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     addNoteButtonTextSmall: {
       color: colors.white,
-      fontWeight: '700',
-      fontSize: 16,
     },
     fab: {
       position: 'absolute',
@@ -223,8 +236,6 @@ const getStyles = ({ colors }: ThemeType) =>
       shadowRadius: 6,
     },
     fabIcon: {
-      fontSize: 32,
       color: colors.white,
-      fontWeight: '300',
     },
   });

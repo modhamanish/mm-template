@@ -1,10 +1,5 @@
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Linking,
-} from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Linking } from 'react-native';
+import AppText from '../components/AppText';
 import React, { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ThemeContextType, useTheme } from '../context/ThemeContext';
@@ -83,14 +78,20 @@ const WelcomeScreen: FC = () => {
       </View>
 
       <Animated.View style={[styles.contentContainer, { opacity }]}>
-        <Text style={styles.titleText}>
-          <Text style={styles.titleBoldText}>{t('welcome.titleBold')}</Text>
+        <AppText size={32} style={styles.titleText}>
+          <AppText variant="bold" style={styles.titleBoldText}>
+            {t('welcome.titleBold')}
+          </AppText>
           {t('welcome.titleText')}
-        </Text>
-        <Text style={styles.matchBoldText}>{t('welcome.appName')}</Text>
+        </AppText>
+        <AppText variant="bold" size={36} style={styles.matchBoldText}>
+          {t('welcome.appName')}
+        </AppText>
 
         <Animated.View style={[styles.infoContainer, animatedContentStyle]}>
-          <Text style={styles.subtitleText}>{t('welcome.subtitle')}</Text>
+          <AppText size="body" style={styles.subtitleText}>
+            {t('welcome.subtitle')}
+          </AppText>
         </Animated.View>
 
         <FullScreenContainer
@@ -103,9 +104,13 @@ const WelcomeScreen: FC = () => {
             style={styles.githubButton}
             activeOpacity={0.8}
           >
-            <Text style={styles.githubButtonText}>
+            <AppText
+              variant="semiBold"
+              size={15}
+              style={styles.githubButtonText}
+            >
               📦 {t('welcome.githubButton')}
-            </Text>
+            </AppText>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -113,7 +118,9 @@ const WelcomeScreen: FC = () => {
             style={styles.button}
             activeOpacity={0.8}
           >
-            <Text style={styles.buttonText}>{t('welcome.loginButton')}</Text>
+            <AppText variant="bold" style={styles.buttonText}>
+              {t('welcome.loginButton')}
+            </AppText>
           </TouchableOpacity>
         </FullScreenContainer>
       </Animated.View>
@@ -145,18 +152,12 @@ const getStyles = ({ colors }: ThemeContextType) =>
     },
     titleText: {
       color: colors.white,
-      fontWeight: '400',
       textAlign: 'center',
-      fontSize: 32,
     },
-    titleBoldText: {
-      fontWeight: '700',
-    },
+    titleBoldText: {},
     matchBoldText: {
       color: colors.white,
-      fontWeight: '800',
       textAlign: 'center',
-      fontSize: 36,
       marginTop: 4,
     },
     infoContainer: {
@@ -165,7 +166,6 @@ const getStyles = ({ colors }: ThemeContextType) =>
     },
     subtitleText: {
       color: colors.white + 'CC',
-      fontSize: 16,
       textAlign: 'center',
       lineHeight: 24,
     },
@@ -190,8 +190,6 @@ const getStyles = ({ colors }: ThemeContextType) =>
     },
     githubButtonText: {
       color: colors.white,
-      fontSize: 15,
-      fontWeight: '600',
     },
     button: {
       alignSelf: 'center',
@@ -208,8 +206,6 @@ const getStyles = ({ colors }: ThemeContextType) =>
     },
     buttonText: {
       color: colors.textColor,
-      fontSize: 18,
       textAlign: 'center',
-      fontWeight: '700',
     },
   });

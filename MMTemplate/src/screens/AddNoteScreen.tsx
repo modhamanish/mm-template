@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   TouchableOpacity,
   ActivityIndicator,
   ScrollView,
 } from 'react-native';
+import AppText from '../components/AppText';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeType } from '../theme/Colors';
@@ -43,9 +43,13 @@ const AddNoteScreen: FC = () => {
     <FullScreenContainer style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton} onPress={() => goBack()}>
-          <Text style={styles.backIcon}>←</Text>
+          <AppText size="xlarge" style={styles.backIcon}>
+            ←
+          </AppText>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>{t('common.addNote')}</Text>
+        <AppText variant="h3" style={styles.headerTitle}>
+          {t('common.addNote')}
+        </AppText>
         <View style={{ width: 40 }} />
       </View>
 
@@ -83,7 +87,9 @@ const AddNoteScreen: FC = () => {
             {isPending ? (
               <ActivityIndicator color={theme.colors.white} />
             ) : (
-              <Text style={styles.saveButtonText}>{t('common.save')}</Text>
+              <AppText variant="bold" size={18} style={styles.saveButtonText}>
+                {t('common.save')}
+              </AppText>
             )}
           </TouchableOpacity>
         </AnimationView>
@@ -116,12 +122,9 @@ const getStyles = ({ colors }: ThemeType) =>
       alignItems: 'center',
     },
     backIcon: {
-      fontSize: 24,
       color: colors.textColor,
     },
     headerTitle: {
-      fontSize: 20,
-      fontWeight: '700',
       color: colors.textColor,
     },
     content: {
@@ -148,7 +151,5 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     saveButtonText: {
       color: colors.white,
-      fontSize: 18,
-      fontWeight: '700',
     },
   });
