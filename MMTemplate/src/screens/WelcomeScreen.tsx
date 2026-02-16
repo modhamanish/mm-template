@@ -1,5 +1,4 @@
 import { StyleSheet, TouchableOpacity, View, Linking } from 'react-native';
-import AppText from '../components/AppText';
 import React, { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ThemeContextType, useTheme } from '../context/ThemeContext';
@@ -16,6 +15,7 @@ import { mobileScreenHeight, mobileScreenWidth } from '../utils/utilsHelper';
 import FullScreenContainer from '../components/FullScreenContainer';
 import { navigate } from '../utils/navigationUtils';
 import Routes from '../navigation/routes';
+import AppText from '../components/AppText';
 
 const WelcomeScreen: FC = () => {
   const theme = useTheme();
@@ -78,18 +78,18 @@ const WelcomeScreen: FC = () => {
       </View>
 
       <Animated.View style={[styles.contentContainer, { opacity }]}>
-        <AppText size={32} style={styles.titleText}>
-          <AppText variant="bold" style={styles.titleBoldText}>
+        <AppText style={styles.titleText}>
+          <AppText variant="bold" size="xxlarge" style={styles.titleBoldText}>
             {t('welcome.titleBold')}
           </AppText>
           {t('welcome.titleText')}
         </AppText>
-        <AppText variant="bold" size={36} style={styles.matchBoldText}>
+        <AppText variant="h1" size={36} style={styles.matchBoldText}>
           {t('welcome.appName')}
         </AppText>
 
         <Animated.View style={[styles.infoContainer, animatedContentStyle]}>
-          <AppText size="body" style={styles.subtitleText}>
+          <AppText variant="body1" style={styles.subtitleText}>
             {t('welcome.subtitle')}
           </AppText>
         </Animated.View>
@@ -118,7 +118,7 @@ const WelcomeScreen: FC = () => {
             style={styles.button}
             activeOpacity={0.8}
           >
-            <AppText variant="bold" style={styles.buttonText}>
+            <AppText variant="bold" size={18} style={styles.buttonText}>
               {t('welcome.loginButton')}
             </AppText>
           </TouchableOpacity>
@@ -152,9 +152,13 @@ const getStyles = ({ colors }: ThemeContextType) =>
     },
     titleText: {
       color: colors.white,
+      fontWeight: '400',
       textAlign: 'center',
+      fontSize: 32,
     },
-    titleBoldText: {},
+    titleBoldText: {
+      color: colors.white,
+    },
     matchBoldText: {
       color: colors.white,
       textAlign: 'center',
