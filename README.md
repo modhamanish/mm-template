@@ -43,6 +43,7 @@ src/
 ├── mock/         # Mock data for testing and development
 ├── navigation/   # Navigation configuration (Stacks, Stacks, etc.)
 ├── screens/      # Screen components (Views)
+├── services/     # Data fetching and API services (React Query)
 ├── theme/        # Theme configuration (Colors, Typography, Spacing)
 ├── types/        # Global TypeScript types and interfaces
 └── utils/        # Helper functions and utilities
@@ -63,6 +64,7 @@ src/
 | &nbsp;&nbsp; └ `AuthCheck.tsx` | `src/navigation/AuthCheck.tsx` | Entry splash screen logic. Determines authentication state and routes accordingly. |
 | &nbsp;&nbsp; └ `AuthStack.tsx` | `src/navigation/AuthStack.tsx` | Authentication flow stack. Defines screens like Login and Registration. |
 | **`screens/`** | `src/screens/` | Contains all the screen components (pages) of the application. |
+| **`services/`** | `src/services/` | Data fetching layer using **React Query** and **Axios**. Contains API hooks and instances. |
 | **`theme/`** | `src/theme/` | Centralized theme configuration (e.g., Colors, Typography). |
 | **`types/`** | `src/types/` |  Stores TypeScript type definitions and interfaces for the application. |
 | **`utils/`** | `src/utils/` | Contains utility functions and helper classes. |
@@ -92,6 +94,38 @@ For testing purposes, you can use the following credentials (defined in `src/moc
 
 ### 4. Storage Persistence
 User sessions are persisted locally using `react-native-mmkv`, ensuring users stay logged in even after closing the app.
+
+---
+
+## 🚀 Data Fetching (React Query)
+
+MMTemplate uses **TanStack Query (React Query) v5** for server state management and **Axios** for API requests.
+
+### 1. Services Structure
+- **`axiosInstance.ts`**: Configured Axios instance with base URL and interceptors.
+- **`queryKeys.ts`**: Centralized keys for consistency and easy invalidation.
+- **`*.query.ts`**: Feature-specific hooks for fetching and mutating data.
+
+### 2. Usage Example
+To fetch data, use a query hook defined in `src/services`:
+
+```tsx
+import { useGetNotesQuery } from '../services/note.query';
+
+const { data, isLoading, error } = useGetNotesQuery();
+```
+
+To update data, use a mutation hook:
+
+```tsx
+import { useAddNoteMutation } from '../services/note.query';
+
+const { mutate, isPending } = useAddNoteMutation();
+const handleSave = () => mutate({ title: 'New Note', content: '...' });
+```
+
+### 3. Global Configuration
+The `QueryClient` is pre-configured in `App.tsx` with optimized defaults (e.g., `refetchOnWindowFocus: false`).
 
 ---
 

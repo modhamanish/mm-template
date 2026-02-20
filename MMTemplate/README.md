@@ -33,10 +33,63 @@ src/
 ├── mock/         # Mock data for testing and development
 ├── navigation/   # Navigation configuration (Stacks, Stacks, etc.)
 ├── screens/      # Screen components (Views)
+├── services/     # Data fetching and API services (React Query)
 ├── theme/        # Theme configuration (Colors, Typography, Spacing)
 ├── types/        # Global TypeScript types and interfaces
 └── utils/        # Helper functions and utilities
 ```
+
+### Key Files & Directories
+
+| Directory / File | Path | Description |
+| :--- | :--- | :--- |
+| **`assets/`** | `src/assets/` | Stores static assets such as images, fonts, and icons. |
+| **`components/`** | `src/components/` | Contains reusable UI components used throughout the application. |
+| **`context/`** | `src/context/` | Holds React Context definitions for global state management. |
+| **`locales/`** | `src/locales/` | Contains translation files for internationalization. |
+| **`mock/`** | `src/mock/` | Stores mock data used for development and testing. |
+| **`navigation/`** | `src/navigation/` | Contains all navigation-related configuration. |
+| **`screens/`** | `src/screens/` | Contains all the screen components (pages) of the application. |
+| **`services/`** | `src/services/` | Data fetching layer using **React Query** and **Axios**. |
+| **`theme/`** | `src/theme/` | Centralized theme configuration (e.g., Colors, Typography). |
+| **`types/`** | `src/types/` | Stores TypeScript type definitions and interfaces. |
+| **`utils/`** | `src/utils/` | Contains utility functions and helper classes. |
+
+Navigation automatically switches between these stacks based on the `user` state in `AuthContext`.
+
+---
+
+## 🚀 Data Fetching (React Query)
+
+MMTemplate uses **TanStack Query (React Query) v5** for server state management and **Axios** for API requests.
+
+### 1. Services Structure
+- **`axiosInstance.ts`**: Configured Axios instance with base URL and interceptors.
+- **`queryKeys.ts`**: Centralized keys for consistency and easy invalidation.
+- **`*.query.ts`**: Feature-specific hooks for fetching and mutating data.
+
+### 2. Usage Example
+To fetch data, use a query hook defined in `src/services`:
+
+```tsx
+import { useGetNotesQuery } from '../services/note.query';
+
+const { data, isLoading, error } = useGetNotesQuery();
+```
+
+To update data, use a mutation hook:
+
+```tsx
+import { useAddNoteMutation } from '../services/note.query';
+
+const { mutate, isPending } = useAddNoteMutation();
+const handleSave = () => mutate({ title: 'New Note', content: '...' });
+```
+
+### 3. Global Configuration
+The `QueryClient` is pre-configured in `App.tsx` with optimized defaults (e.g., `refetchOnWindowFocus: false`).
+
+---
 
 ## 🛠 Prerequisites
 
