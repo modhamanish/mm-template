@@ -24,7 +24,7 @@ import { hexWithOpacity } from '@utils/utilsHelper';
 const NoteScreen: FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
   const { data: notes, isLoading, refetch, isRefetching } = useGetNotesQuery();
 

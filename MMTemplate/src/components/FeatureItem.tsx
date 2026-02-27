@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import AppText from '@components/AppText';
@@ -18,7 +18,7 @@ const FeatureItem: React.FC<FeatureItemProps> = ({
   description,
 }) => {
   const theme = useTheme();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
   return (
     <View style={styles.container}>

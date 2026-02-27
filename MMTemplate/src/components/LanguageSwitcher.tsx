@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,7 @@ import StorageHelper from '@utils/storageHelper';
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
   const theme = useTheme();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   TextInput as RNTextInput,
   TextInputProps,
@@ -65,7 +65,7 @@ const TextInput: React.FC<CustomTextInputProps> = ({
   ...props
 }) => {
   const theme = useTheme();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
   const [isFocused, setIsFocused] = useState(false);
   const [leftWidth, setLeftWidth] = useState(0);
 

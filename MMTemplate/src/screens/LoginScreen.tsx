@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 
 import { useFormik } from 'formik';
@@ -22,7 +22,7 @@ const LoginScreen: FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const { updateUser } = useAuth();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
   const formik = useFormik({
     initialValues: {

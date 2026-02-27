@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { StyleSheet, Image } from 'react-native';
 
 import { Images } from '@assets/images';
@@ -13,7 +13,7 @@ import { mobileScreenHeight, mobileScreenWidth } from '@utils/utilsHelper';
 const AuthCheck: FC = () => {
   const theme = useTheme();
   const { isUserLoggedIn } = useAuth();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
   useEffect(() => {
     setTimeout(() => {

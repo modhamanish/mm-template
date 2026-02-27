@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Image, StyleSheet, View, ScrollView } from 'react-native';
 
 import { useTranslation } from 'react-i18next';
@@ -20,7 +20,7 @@ import {
 const HomeScreen: FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
   return (
     <FullScreenContainer style={styles.container} barStyle="light-content">

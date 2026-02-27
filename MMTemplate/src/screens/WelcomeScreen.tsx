@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { StyleSheet, TouchableOpacity, View, Linking } from 'react-native';
 
 import { useTranslation } from 'react-i18next';
@@ -25,7 +25,7 @@ import {
 
 const WelcomeScreen: FC = () => {
   const theme = useTheme();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
   const { t } = useTranslation();
 
   const height = useSharedValue(mobileScreenHeight);

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
 import { useTranslation } from 'react-i18next';
@@ -17,7 +17,7 @@ import { hexWithOpacity } from '@utils/utilsHelper';
 const ProfileScreen: FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
   const { user, handleLogout } = useAuth();
 
   const confirmLogout = () => {

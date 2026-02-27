@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useMemo } from 'react';
 import { StatusBar, StyleSheet } from 'react-native';
 
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
@@ -18,7 +18,7 @@ const FullScreenContainer: FC<FullScreenContainerProps> = ({
   isKeyboardAvoidingView = false,
 }) => {
   const theme = useTheme();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
   const appBarStyle =
     barStyle ??

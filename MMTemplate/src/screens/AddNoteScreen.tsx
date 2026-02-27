@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import {
   StyleSheet,
   View,
@@ -24,7 +24,7 @@ import { NoteSchema } from '@utils/validationSchemas';
 const AddNoteScreen: FC = () => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const styles = getStyles(theme);
+  const styles = useMemo(() => getStyles(theme), [theme]);
 
   const { mutate: addNote, isPending } = useAddNoteMutation();
 
