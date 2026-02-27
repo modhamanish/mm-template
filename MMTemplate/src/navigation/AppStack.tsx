@@ -2,8 +2,7 @@ import React, { FC } from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AppStackParamList } from '@app-types/navigation.types';
-
+import type { AppStackParamList } from '@app-types/navigation.types';
 // Screens
 import MainTab from '@navigation/MainTab';
 import Routes from '@navigation/routes';

@@ -8,7 +8,7 @@ import { FullScreenContainerProps } from '@app-types/components.types';
 import { useTheme } from '@context/ThemeContext';
 import { ThemeType } from '@theme/Colors';
 
-export const FullScreenContainer: FC<FullScreenContainerProps> = ({
+const FullScreenContainer: FC<FullScreenContainerProps> = ({
   children,
   style,
   edges = ['top'],

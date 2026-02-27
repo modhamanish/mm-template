@@ -7,13 +7,16 @@ import { MainTabParamList } from '@app-types/navigation.types';
 import AppText from '@components/AppText';
 import { useTheme } from '@context/ThemeContext';
 import Routes from '@navigation/routes';
-
 // Screens
 import HomeScreen from '@screens/HomeScreen';
 import NoteScreen from '@screens/NoteScreen';
 import ProfileScreen from '@screens/ProfileScreen';
 
 const BottomTab = createBottomTabNavigator<MainTabParamList>();
+
+const HomeIcon = () => <AppText>🏠</AppText>;
+const NoteIcon = () => <AppText>📝</AppText>;
+const ProfileIcon = () => <AppText>👤</AppText>;
 
 const MainTab: FC = () => {
   const { t } = useTranslation();
@@ -37,7 +40,7 @@ const MainTab: FC = () => {
         component={HomeScreen}
         options={{
           tabBarLabel: t('common.home'),
-          tabBarIcon: () => <AppText>🏠</AppText>,
+          tabBarIcon: HomeIcon,
         }}
       />
       <BottomTab.Screen
@@ -45,7 +48,7 @@ const MainTab: FC = () => {
         component={NoteScreen}
         options={{
           tabBarLabel: t('common.note'),
-          tabBarIcon: () => <AppText>📝</AppText>,
+          tabBarIcon: NoteIcon,
         }}
       />
       <BottomTab.Screen
@@ -53,7 +56,7 @@ const MainTab: FC = () => {
         component={ProfileScreen}
         options={{
           tabBarLabel: t('common.profile'),
-          tabBarIcon: () => <AppText>👤</AppText>,
+          tabBarIcon: ProfileIcon,
         }}
       />
     </BottomTab.Navigator>

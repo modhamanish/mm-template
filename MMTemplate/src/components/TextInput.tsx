@@ -7,6 +7,9 @@ import {
   StyleProp,
   TextStyle,
   ViewStyle,
+  NativeSyntheticEvent,
+  TextInputFocusEventData,
+  LayoutChangeEvent,
 } from 'react-native';
 
 import Animated, {
@@ -121,17 +124,21 @@ const TextInput: React.FC<CustomTextInputProps> = ({
     };
   });
 
-  const handleFocus = (e: any) => {
+  const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setIsFocused(true);
-    onFocus?.(e);
+    if (onFocus) {
+      onFocus(e);
+    }
   };
 
-  const handleBlur = (e: any) => {
+  const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
     setIsFocused(false);
-    onBlur?.(e);
+    if (onBlur) {
+      onBlur(e);
+    }
   };
 
-  const onLeftLayout = (event: any) => {
+  const onLeftLayout = (event: LayoutChangeEvent) => {
     setLeftWidth(event.nativeEvent.layout.width);
   };
 

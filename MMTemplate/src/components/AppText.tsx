@@ -42,7 +42,9 @@ const AppText: FC<AppTextProps> = ({
     return SIZES[s as string] || SIZES.normal;
   };
 
-  const getTransform = (t?: string): any => {
+  const getTransform = (
+    t?: string,
+  ): 'uppercase' | 'lowercase' | 'capitalize' | undefined => {
     if (!t) return undefined;
     switch (t) {
       case 'capital':
@@ -55,7 +57,7 @@ const AppText: FC<AppTextProps> = ({
       case 'capitalize':
         return 'capitalize';
       default:
-        return t;
+        return undefined;
     }
   };
 

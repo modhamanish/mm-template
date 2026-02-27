@@ -44,7 +44,7 @@ const WelcomeScreen: FC = () => {
     );
     opacity.value = withDelay(1000, withTiming(1, { duration: 1000 }));
     contentOpacity.value = withDelay(1200, withTiming(1, { duration: 800 }));
-  }, []);
+  }, [height, width, opacity, contentOpacity]);
 
   const animatedLogoStyle = useAnimatedStyle(() => {
     return {

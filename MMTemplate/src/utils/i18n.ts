@@ -1,4 +1,4 @@
-import i18n from 'i18next';
+import appI18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 import en from '@locales/en.json';
@@ -10,7 +10,8 @@ const savedLanguage = StorageHelper.getItem(
   StorageHelper.STORAGE_KEYS.LANGUAGE,
 );
 
-i18n.use(initReactI18next).init({
+// eslint-disable-next-line import/no-named-as-default-member
+appI18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: en,
@@ -26,4 +27,4 @@ i18n.use(initReactI18next).init({
   },
 });
 
-export default i18n;
+export default appI18n;

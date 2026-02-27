@@ -52,7 +52,7 @@ const AddNoteScreen: FC = () => {
         <AppText variant="h3" style={styles.headerTitle}>
           {t('common.addNote')}
         </AppText>
-        <View style={{ width: 40 }} />
+        <View style={styles.spacer} />
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
@@ -153,5 +153,8 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     saveButtonText: {
       color: colors.white,
+    },
+    spacer: {
+      width: 40,
     },
   });

@@ -92,5 +92,7 @@ module.exports = {
       },
     ],
     'import/no-unresolved': 'error',
+    'no-console': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
   },
 };

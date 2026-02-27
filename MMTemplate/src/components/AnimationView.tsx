@@ -1,4 +1,5 @@
 import React, { memo, useEffect } from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
 
 import Animated, {
   Easing,
@@ -28,7 +29,7 @@ const AnimationView = ({
   duration?: number;
   delay?: number;
   rotateValue?: number;
-  style?: any;
+  style?: StyleProp<ViewStyle>;
 }) => {
   const fadeAnim = useSharedValue(0);
   const zoomAnim = useSharedValue(0);
@@ -107,7 +108,16 @@ const AnimationView = ({
         withTiming(0, { duration: duration, easing: Easing.elastic(1) }),
       );
     }
-  }, [animType, duration, delay, rotateValue]);
+  }, [
+    animType,
+    duration,
+    delay,
+    rotateValue,
+    fadeAnim,
+    zoomAnim,
+    rotateAnim,
+    translateAnim,
+  ]);
   return <Animated.View style={[animStyle, style]}>{children}</Animated.View>;
 };
 

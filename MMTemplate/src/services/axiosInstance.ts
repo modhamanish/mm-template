@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 import Routes from '@navigation/routes';
 import { resetAndNavigate } from '@utils/navigationUtils';
@@ -14,7 +14,7 @@ const ResponseInterceptor = (response: AxiosResponse) => {
   return response;
 };
 
-const RequestInterceptor = (config: AxiosRequestConfig | any) => {
+const RequestInterceptor = (config: InternalAxiosRequestConfig) => {
   const token = storageHelper.getItem(storageHelper.STORAGE_KEYS.AUTH_TOKEN);
   config.headers.device = Platform.OS;
 
