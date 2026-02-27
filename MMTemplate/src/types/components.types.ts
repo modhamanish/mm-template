@@ -79,3 +79,19 @@ export interface AlertOptionsProps {
 }
 
 export type ShowAlert = (opts: AlertOptionsProps) => void;
+
+export interface AnimationViewProps {
+  children: React.ReactNode;
+  animType:
+    | 'FadeIn'
+    | 'FadeOut'
+    | 'ZoomIn'
+    | 'ZoomOut'
+    | 'RotateIn'
+    | 'RotateOut'
+    | 'SlideInDown';
+  duration?: number;
+  delay?: number;
+  rotateValue?: number;
+  style?: StyleProp<ViewStyle | TextStyle>;
+}
