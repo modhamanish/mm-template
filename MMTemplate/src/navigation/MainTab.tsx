@@ -11,6 +11,7 @@ import Routes from '@navigation/routes';
 import HomeScreen from '@screens/HomeScreen';
 import NoteScreen from '@screens/NoteScreen';
 import ProfileScreen from '@screens/ProfileScreen';
+import { hexWithOpacity } from '@src/utils/utilsHelper';
 
 const BottomTab = createBottomTabNavigator<MainTabParamList>();
 
@@ -29,10 +30,10 @@ const MainTab: FC = () => {
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: theme.colors.backgroundColor,
-          borderTopColor: theme.colors.textColor + '20',
+          borderTopColor: hexWithOpacity(theme.colors.textColor, 12),
         },
         tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: theme.colors.textColor + '80',
+        tabBarInactiveTintColor: hexWithOpacity(theme.colors.textColor, 50),
       }}
     >
       <BottomTab.Screen

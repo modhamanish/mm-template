@@ -28,7 +28,10 @@
     "creating": "Creating...",
     "noteCreated": "Note created successfully",
     "titleRequired": "Title is required",
-    "descriptionRequired": "Description is required"
+    "descriptionRequired": "Description is required",
+    "errorOccurred": "An error occurred",
+    "errorDescription": "Something went wrong. Please try again or contact support if the problem persists.",
+    "tryAgain": "Try Again"
   },
   "auth": {
     "welcomeBack": "Welcome Back!",

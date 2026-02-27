@@ -17,7 +17,11 @@ import FullScreenContainer from '@components/FullScreenContainer';
 import { ThemeContextType, useTheme } from '@context/ThemeContext';
 import Routes from '@navigation/routes';
 import { navigate } from '@utils/navigationUtils';
-import { mobileScreenHeight, mobileScreenWidth } from '@utils/utilsHelper';
+import {
+  hexWithOpacity,
+  mobileScreenHeight,
+  mobileScreenWidth,
+} from '@utils/utilsHelper';
 
 const WelcomeScreen: FC = () => {
   const theme = useTheme();
@@ -171,7 +175,7 @@ const getStyles = ({ colors }: ThemeContextType) =>
       width: '100%',
     },
     subtitleText: {
-      color: colors.white + 'CC',
+      color: hexWithOpacity(colors.white, 80),
       textAlign: 'center',
       lineHeight: 24,
     },
@@ -186,11 +190,11 @@ const getStyles = ({ colors }: ThemeContextType) =>
       alignSelf: 'center',
       paddingVertical: 12,
       paddingHorizontal: 30,
-      backgroundColor: 'rgba(255, 255, 255, 0.15)',
+      backgroundColor: hexWithOpacity(colors.white, 15),
       borderRadius: 12,
       marginBottom: 16,
       borderWidth: 1,
-      borderColor: 'rgba(255, 255, 255, 0.3)',
+      borderColor: hexWithOpacity(colors.white, 30),
       width: '100%',
       alignItems: 'center',
     },

@@ -1,16 +1,18 @@
 import React from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ErrorBoundary from 'react-native-error-boundary';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Toast, { ToastConfigParams } from 'react-native-toast-message';
 
 import { CustomToast } from '@components/CustomToast';
+import ErrorBoundaryFallback from '@components/ErrorBoundaryFallback';
 import { AuthProvider } from '@context/AuthContext';
 import { ThemeProvider } from '@context/ThemeContext';
 import AppNavigator from '@navigation/AppNavigator';
-import '@utils/i18n';
 import CustomAlert from '@src/components/CustomAlert';
+import '@utils/i18n';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,19 +39,21 @@ const toastConfig = {
 
 const App = () => {
   return (
-    <KeyboardProvider>
-      <SafeAreaProvider>
-        <ThemeProvider>
-          <AuthProvider>
-            <QueryClientProvider client={queryClient}>
-              <AppNavigator />
-              <CustomAlert />
-              <Toast config={toastConfig} />
-            </QueryClientProvider>
-          </AuthProvider>
-        </ThemeProvider>
-      </SafeAreaProvider>
-    </KeyboardProvider>
+    <ErrorBoundary FallbackComponent={ErrorBoundaryFallback}>
+      <KeyboardProvider>
+        <SafeAreaProvider>
+          <ThemeProvider>
+            <AuthProvider>
+              <QueryClientProvider client={queryClient}>
+                <AppNavigator />
+                <CustomAlert />
+                <Toast config={toastConfig} />
+              </QueryClientProvider>
+            </AuthProvider>
+          </ThemeProvider>
+        </SafeAreaProvider>
+      </KeyboardProvider>
+    </ErrorBoundary>
   );
 };
 

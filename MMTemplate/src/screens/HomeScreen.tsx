@@ -11,7 +11,11 @@ import FullScreenContainer from '@components/FullScreenContainer';
 import InfoCard from '@components/InfoCard';
 import { useTheme } from '@context/ThemeContext';
 import { ThemeType } from '@theme/Colors';
-import { mobileScreenHeight, mobileScreenWidth } from '@utils/utilsHelper';
+import {
+  hexWithOpacity,
+  mobileScreenHeight,
+  mobileScreenWidth,
+} from '@utils/utilsHelper';
 
 const HomeScreen: FC = () => {
   const { t } = useTranslation();
@@ -284,7 +288,7 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 8,
     },
     subtitle: {
-      color: colors.textColor + 'CC',
+      color: hexWithOpacity(colors.textColor, 80),
       textAlign: 'center',
     },
     cardText: {
@@ -293,7 +297,7 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 8,
     },
     codeBlock: {
-      backgroundColor: colors.textColor + '10',
+      backgroundColor: hexWithOpacity(colors.textColor, 6),
       padding: 12,
       borderRadius: 8,
       marginBottom: 8,
@@ -313,13 +317,13 @@ const getStyles = ({ colors }: ThemeType) =>
       marginTop: 24,
       paddingTop: 24,
       borderTopWidth: 1,
-      borderTopColor: colors.textColor + '20',
+      borderTopColor: hexWithOpacity(colors.textColor, 12),
     },
     footerText: {
       color: colors.primary,
       marginBottom: 4,
     },
     footerSubtext: {
-      color: colors.textColor + 'CC',
+      color: hexWithOpacity(colors.textColor, 80),
     },
   });

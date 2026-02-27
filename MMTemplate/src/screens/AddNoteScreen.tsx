@@ -18,6 +18,7 @@ import { useTheme } from '@context/ThemeContext';
 import { useAddNoteMutation } from '@services/note.query';
 import { ThemeType } from '@theme/Colors';
 import { goBack } from '@utils/navigationUtils';
+import { hexWithOpacity } from '@utils/utilsHelper';
 import { NoteSchema } from '@utils/validationSchemas';
 
 const AddNoteScreen: FC = () => {
@@ -115,7 +116,7 @@ const getStyles = ({ colors }: ThemeType) =>
       paddingHorizontal: 16,
       paddingVertical: 12,
       borderBottomWidth: 1,
-      borderBottomColor: colors.textColor + '10',
+      borderBottomColor: hexWithOpacity(colors.textColor, 6),
     },
     backButton: {
       width: 40,

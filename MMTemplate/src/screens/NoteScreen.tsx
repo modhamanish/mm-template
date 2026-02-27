@@ -19,6 +19,7 @@ import Routes from '@navigation/routes';
 import { useGetNotesQuery } from '@services/note.query';
 import { ThemeType } from '@theme/Colors';
 import { navigate } from '@utils/navigationUtils';
+import { hexWithOpacity } from '@utils/utilsHelper';
 
 const NoteScreen: FC = () => {
   const { t } = useTranslation();
@@ -157,7 +158,7 @@ const getStyles = ({ colors }: ThemeType) =>
       letterSpacing: -0.5,
     },
     headerSubtitle: {
-      color: colors.textColor + '80',
+      color: hexWithOpacity(colors.textColor, 50),
       marginTop: 4,
     },
     noteCard: {
@@ -166,7 +167,7 @@ const getStyles = ({ colors }: ThemeType) =>
       padding: 16,
       marginBottom: 16,
       borderWidth: 1,
-      borderColor: colors.textColor + '15',
+      borderColor: hexWithOpacity(colors.textColor, 8),
       shadowColor: colors.black,
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.05,
@@ -185,7 +186,7 @@ const getStyles = ({ colors }: ThemeType) =>
       marginRight: 8,
     },
     noteTag: {
-      backgroundColor: colors.primary + '15',
+      backgroundColor: hexWithOpacity(colors.primary, 8),
       paddingHorizontal: 8,
       paddingVertical: 4,
       borderRadius: 8,
@@ -195,7 +196,7 @@ const getStyles = ({ colors }: ThemeType) =>
       textTransform: 'uppercase',
     },
     noteContent: {
-      color: colors.textColor + 'B3',
+      color: hexWithOpacity(colors.textColor, 70),
       lineHeight: 20,
     },
     emptyContainer: {
@@ -208,7 +209,7 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 16,
     },
     emptyText: {
-      color: colors.textColor + '80',
+      color: hexWithOpacity(colors.textColor, 50),
       marginBottom: 24,
     },
     addNoteButtonSmall: {

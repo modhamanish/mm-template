@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import AppText from '@components/AppText';
 import { useTheme } from '@context/ThemeContext';
 import { ThemeType } from '@theme/Colors';
+import { hexWithOpacity } from '@utils/utilsHelper';
 
 interface FeatureItemProps {
   icon: string;
@@ -57,7 +58,7 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 2,
     },
     description: {
-      color: colors.textColor + 'CC',
+      color: hexWithOpacity(colors.textColor, 80),
       lineHeight: 18,
     },
   });

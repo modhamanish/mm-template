@@ -10,6 +10,7 @@ import LanguageSwitcher from '@components/LanguageSwitcher';
 import ThemeSwitcher from '@components/ThemeSwitcher';
 import { useTheme } from '@context/ThemeContext';
 import { ThemeType } from '@theme/Colors';
+import { hexWithOpacity } from '@utils/utilsHelper';
 
 const SettingsScreen: FC = () => {
   const { t } = useTranslation();
@@ -83,7 +84,7 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 8,
     },
     subtitle: {
-      color: colors.textColor + 'CC',
+      color: hexWithOpacity(colors.textColor, 80),
     },
     section: {
       marginBottom: 32,
@@ -93,7 +94,7 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 8,
     },
     sectionDescription: {
-      color: colors.textColor + 'CC',
+      color: hexWithOpacity(colors.textColor, 80),
       marginBottom: 16,
     },
   });

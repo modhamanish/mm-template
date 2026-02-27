@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import AppText from '@components/AppText';
 import { useTheme } from '@context/ThemeContext';
 import { ThemeType } from '@theme/Colors';
+import { hexWithOpacity } from '@utils/utilsHelper';
 
 interface InfoCardProps {
   title: string;
@@ -42,7 +43,7 @@ const getStyles = ({ colors }: ThemeType) =>
       padding: 16,
       marginBottom: 16,
       borderWidth: 1,
-      borderColor: colors.primary + '20',
+      borderColor: hexWithOpacity(colors.primary, 12),
       shadowColor: colors.textColor,
       shadowOffset: { width: 0, height: 2 },
       shadowOpacity: 0.1,

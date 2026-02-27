@@ -15,6 +15,7 @@ import { userMockData } from '@mock';
 import Routes from '@navigation/routes';
 import { ThemeType } from '@theme/Colors';
 import { resetAndNavigate } from '@utils/navigationUtils';
+import { hexWithOpacity } from '@utils/utilsHelper';
 import { LoginSchema } from '@utils/validationSchemas';
 
 const LoginScreen: FC = () => {
@@ -185,17 +186,17 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 8,
     },
     subtitle: {
-      color: colors.textColor + 'CC',
+      color: hexWithOpacity(colors.textColor, 80),
     },
     formContainer: {
       width: '100%',
     },
     hintBanner: {
-      backgroundColor: colors.primary + '10',
+      backgroundColor: hexWithOpacity(colors.primary, 6),
       padding: 16,
       borderRadius: 12,
       borderWidth: 1,
-      borderColor: colors.primary + '30',
+      borderColor: hexWithOpacity(colors.primary, 18),
       marginBottom: 24,
     },
     hintTitle: {
@@ -210,7 +211,7 @@ const getStyles = ({ colors }: ThemeType) =>
       color: colors.textColor,
     },
     hintValue: {
-      color: colors.textColor + 'CC',
+      color: hexWithOpacity(colors.textColor, 80),
     },
     forgotPassword: {
       alignSelf: 'flex-end',
@@ -235,7 +236,7 @@ const getStyles = ({ colors }: ThemeType) =>
       alignItems: 'center',
     },
     signupText: {
-      color: colors.textColor + 'CC',
+      color: hexWithOpacity(colors.textColor, 80),
     },
     signupLink: {
       color: colors.primary,

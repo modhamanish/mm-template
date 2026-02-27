@@ -23,6 +23,7 @@ import Animated, {
 import AppText from '@components/AppText';
 import { useTheme } from '@context/ThemeContext';
 import { ThemeType } from '@theme/Colors';
+import { hexWithOpacity } from '@utils/utilsHelper';
 
 interface CustomTextInputProps extends TextInputProps {
   label?: string;
@@ -120,7 +121,7 @@ const TextInput: React.FC<CustomTextInputProps> = ({
           ? hasError
             ? theme.colors.primary
             : theme.colors.primary
-          : theme.colors.textColor + '80',
+          : hexWithOpacity(theme.colors.textColor, 50),
     };
   });
 
@@ -180,7 +181,7 @@ const TextInput: React.FC<CustomTextInputProps> = ({
         <RNTextInput
           style={[styles.input, style]}
           placeholder={showPlaceholder ? placeholder : ''}
-          placeholderTextColor={theme.colors.textColor + '60'}
+          placeholderTextColor={hexWithOpacity(theme.colors.textColor, 37)}
           onFocus={handleFocus}
           onBlur={handleBlur}
           value={value}
@@ -222,7 +223,7 @@ const getStyles = ({ colors }: ThemeType) =>
       alignItems: 'center',
       backgroundColor: colors.backgroundColor,
       borderWidth: 1,
-      borderColor: colors.textColor + '30',
+      borderColor: hexWithOpacity(colors.textColor, 18),
       borderRadius: 12,
       paddingHorizontal: 12,
       minHeight: 56,
@@ -260,11 +261,11 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     prefix: {
       marginRight: 4,
-      color: colors.textColor + '80',
+      color: hexWithOpacity(colors.textColor, 50),
     },
     suffix: {
       marginLeft: 4,
-      color: colors.textColor + '80',
+      color: hexWithOpacity(colors.textColor, 50),
     },
     errorText: {
       color: colors.primary,

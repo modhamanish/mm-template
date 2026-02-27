@@ -28,7 +28,10 @@
     "creating": "बनाया जा रहा है...",
     "noteCreated": "नोट सफलतापूर्वक बनाया गया",
     "titleRequired": "शीर्षक आवश्यक है",
-    "descriptionRequired": "विवरण आवश्यक है"
+    "descriptionRequired": "विवरण आवश्यक है",
+    "errorOccurred": "एक त्रुटि हुई",
+    "errorDescription": "कुछ गलत हो गया। कृपया पुन: प्रयास करें या समस्या बनी रहने पर सहायता टीम से संपर्क करें।",
+    "tryAgain": "पुन: प्रयास करें"
   },
   "auth": {
     "welcomeBack": "वापसी पर स्वागत है!",

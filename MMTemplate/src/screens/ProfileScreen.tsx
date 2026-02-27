@@ -12,6 +12,7 @@ import { useTheme } from '@context/ThemeContext';
 import Routes from '@navigation/routes';
 import { ThemeType } from '@theme/Colors';
 import { navigate } from '@utils/navigationUtils';
+import { hexWithOpacity } from '@utils/utilsHelper';
 
 const ProfileScreen: FC = () => {
   const { t } = useTranslation();
@@ -135,7 +136,7 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 4,
     },
     email: {
-      color: colors.textColor + 'CC',
+      color: hexWithOpacity(colors.textColor, 80),
     },
     infoRow: {
       flexDirection: 'row',
@@ -147,7 +148,7 @@ const getStyles = ({ colors }: ThemeType) =>
       color: colors.textColor,
     },
     infoValue: {
-      color: colors.textColor + 'CC',
+      color: hexWithOpacity(colors.textColor, 80),
     },
     logoutButton: {
       backgroundColor: colors.primary,
