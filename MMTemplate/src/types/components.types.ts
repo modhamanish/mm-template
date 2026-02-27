@@ -58,3 +58,24 @@ export type FullScreenContainerProps = {
   keyboardAvoidingViewStyle?: StyleProp<ViewStyle>;
   isKeyboardAvoidingView?: boolean;
 };
+
+export interface AlertOptionsProps {
+  title?: string;
+  message?: string;
+  onConfirm?: () => void;
+  onCancel?: () => void;
+  onClose?: () => void;
+  confirmText?: string;
+  cancelText?: string;
+  boxStyle?: ViewStyle;
+  titleStyle?: TextStyle;
+  messageStyle?: TextStyle;
+  confirmButtonStyle?: ViewStyle;
+  cancelButtonStyle?: ViewStyle;
+  confirmTextStyle?: TextStyle;
+  cancelTextStyle?: TextStyle;
+  isCancellable?: boolean;
+  isError?: boolean;
+}
+
+export type ShowAlert = (opts: AlertOptionsProps) => void;

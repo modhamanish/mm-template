@@ -8,6 +8,9 @@ const lightTheme = {
     backgroundColor: '#FFFFFF',
     white: '#FFFFFF',
     black: '#000000',
+    borderColor: '#E1E1E1',
+    error: '#D32F2F',
+    success: '#4CD964',
   },
 };
 
@@ -19,6 +22,9 @@ const darkTheme = {
     backgroundColor: '#121212',
     white: '#FFFFFF',
     black: '#000000',
+    borderColor: '#333333',
+    error: '#D32F2F',
+    success: '#4CD964',
   },
 };
 

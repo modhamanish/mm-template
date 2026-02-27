@@ -10,6 +10,7 @@ import { AuthProvider } from '@context/AuthContext';
 import { ThemeProvider } from '@context/ThemeContext';
 import AppNavigator from '@navigation/AppNavigator';
 import '@utils/i18n';
+import CustomAlert from '@src/components/CustomAlert';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,10 +43,11 @@ const App = () => {
           <AuthProvider>
             <QueryClientProvider client={queryClient}>
               <AppNavigator />
+              <CustomAlert />
+              <Toast config={toastConfig} />
             </QueryClientProvider>
           </AuthProvider>
         </ThemeProvider>
-        <Toast config={toastConfig} />
       </SafeAreaProvider>
     </KeyboardProvider>
   );
