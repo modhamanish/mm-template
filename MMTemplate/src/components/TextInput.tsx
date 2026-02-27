@@ -7,9 +7,9 @@ import {
   StyleProp,
   TextStyle,
   ViewStyle,
-  NativeSyntheticEvent,
-  TextInputFocusEventData,
   LayoutChangeEvent,
+  FocusEvent,
+  BlurEvent,
 } from 'react-native';
 
 import Animated, {
@@ -125,14 +125,14 @@ const TextInput: React.FC<CustomTextInputProps> = ({
     };
   });
 
-  const handleFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  const handleFocus = (e: FocusEvent) => {
     setIsFocused(true);
     if (onFocus) {
       onFocus(e);
     }
   };
 
-  const handleBlur = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+  const handleBlur = (e: BlurEvent) => {
     setIsFocused(false);
     if (onBlur) {
       onBlur(e);
