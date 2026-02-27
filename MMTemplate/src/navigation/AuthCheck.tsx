@@ -1,13 +1,14 @@
-import { StyleSheet, Image } from 'react-native';
 import React, { FC, useEffect } from 'react';
-import { useTheme } from '@context/ThemeContext';
-import { ThemeType } from '@theme/Colors';
+import { StyleSheet, Image } from 'react-native';
+
 import { Images } from '@assets/images';
-import { resetAndNavigate } from '@utils/navigationUtils';
-import Routes from '@navigation/routes';
 import FullScreenContainer from '@components/FullScreenContainer';
-import { mobileScreenHeight, mobileScreenWidth } from '@utils/utilsHelper';
 import { useAuth } from '@context/AuthContext';
+import { useTheme } from '@context/ThemeContext';
+import Routes from '@navigation/routes';
+import { ThemeType } from '@theme/Colors';
+import { resetAndNavigate } from '@utils/navigationUtils';
+import { mobileScreenHeight, mobileScreenWidth } from '@utils/utilsHelper';
 
 const AuthCheck: FC = () => {
   const theme = useTheme();

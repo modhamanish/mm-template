@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Routes from '@navigation/routes';
 import { AppStackParamList } from '@app-types/navigation.types';
 
 // Screens
 import MainTab from '@navigation/MainTab';
-import SettingsScreen from '@screens/SettingsScreen';
+import Routes from '@navigation/routes';
 import AddNoteScreen from '@screens/AddNoteScreen';
+import SettingsScreen from '@screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 

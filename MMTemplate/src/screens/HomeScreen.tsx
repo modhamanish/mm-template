@@ -1,15 +1,17 @@
-import { Image, StyleSheet, View, ScrollView } from 'react-native';
-import AppText from '@components/AppText';
 import React, { FC } from 'react';
+import { Image, StyleSheet, View, ScrollView } from 'react-native';
+
 import { useTranslation } from 'react-i18next';
+
+import { Images } from '@assets/images';
+import AnimationView from '@components/AnimationView';
+import AppText from '@components/AppText';
+import FeatureItem from '@components/FeatureItem';
 import FullScreenContainer from '@components/FullScreenContainer';
 import InfoCard from '@components/InfoCard';
-import FeatureItem from '@components/FeatureItem';
-import { Images } from '@assets/images';
+import { useTheme } from '@context/ThemeContext';
 import { ThemeType } from '@theme/Colors';
 import { mobileScreenHeight, mobileScreenWidth } from '@utils/utilsHelper';
-import { useTheme } from '@context/ThemeContext';
-import AnimationView from '@components/AnimationView';
 
 const HomeScreen: FC = () => {
   const { t } = useTranslation();

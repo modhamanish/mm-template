@@ -1,13 +1,15 @@
 import React, { FC } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import AppText from '@components/AppText';
+
 import { useTranslation } from 'react-i18next';
-import { useTheme } from '@context/ThemeContext';
-import { ThemeType } from '@theme/Colors';
-import FullScreenContainer from '@components/FullScreenContainer';
+
 import AnimationView from '@components/AnimationView';
+import AppText from '@components/AppText';
+import FullScreenContainer from '@components/FullScreenContainer';
 import LanguageSwitcher from '@components/LanguageSwitcher';
 import ThemeSwitcher from '@components/ThemeSwitcher';
+import { useTheme } from '@context/ThemeContext';
+import { ThemeType } from '@theme/Colors';
 
 const SettingsScreen: FC = () => {
   const { t } = useTranslation();

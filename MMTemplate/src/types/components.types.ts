@@ -6,6 +6,7 @@ import {
   TextStyle,
   ViewStyle,
 } from 'react-native';
+
 import { Edges } from 'react-native-safe-area-context';
 
 export type AppTextSize =

@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Routes from '@navigation/routes';
+
 import { AuthStackParamList } from '@app-types/navigation.types';
-import WelcomeScreen from '@screens/WelcomeScreen';
+import Routes from '@navigation/routes';
 import LoginScreen from '@screens/LoginScreen';
+import WelcomeScreen from '@screens/WelcomeScreen';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 

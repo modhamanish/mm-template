@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+
 import AppText from '@components/AppText';
 import { useTheme } from '@context/ThemeContext';
 import { ThemeType } from '@theme/Colors';

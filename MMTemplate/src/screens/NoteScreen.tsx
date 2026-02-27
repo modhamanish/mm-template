@@ -1,3 +1,4 @@
+import React, { FC, useMemo } from 'react';
 import {
   StyleSheet,
   FlatList,
@@ -6,18 +7,18 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from 'react-native';
-import AppText from '@components/AppText';
-import React, { FC, useMemo } from 'react';
-import FullScreenContainer from '@components/FullScreenContainer';
-import { useTheme } from '@context/ThemeContext';
+
 import { useTranslation } from 'react-i18next';
-import { ThemeType } from '@theme/Colors';
-import { useGetNotesQuery } from '@services/note.query';
+
 import { Note } from '@app-types/services.types';
 import AnimationView from '@components/AnimationView';
-
-import { navigate } from '@utils/navigationUtils';
+import AppText from '@components/AppText';
+import FullScreenContainer from '@components/FullScreenContainer';
+import { useTheme } from '@context/ThemeContext';
 import Routes from '@navigation/routes';
+import { useGetNotesQuery } from '@services/note.query';
+import { ThemeType } from '@theme/Colors';
+import { navigate } from '@utils/navigationUtils';
 
 const NoteScreen: FC = () => {
   const { t } = useTranslation();

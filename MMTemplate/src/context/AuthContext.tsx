@@ -1,7 +1,3 @@
-import { userMockData } from '@mock';
-import Routes from '@navigation/routes';
-import { resetAndNavigate } from '@utils/navigationUtils';
-import StorageHelper from '@utils/storageHelper';
 import {
   createContext,
   FC,
@@ -11,6 +7,11 @@ import {
   useEffect,
   useState,
 } from 'react';
+
+import { userMockData } from '@mock';
+import Routes from '@navigation/routes';
+import { resetAndNavigate } from '@utils/navigationUtils';
+import StorageHelper from '@utils/storageHelper';
 
 type UserType = typeof userMockData;
 

@@ -8,6 +8,7 @@ import {
   TextStyle,
   ViewStyle,
 } from 'react-native';
+
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -15,6 +16,7 @@ import Animated, {
   interpolate,
   Extrapolate,
 } from 'react-native-reanimated';
+
 import AppText from '@components/AppText';
 import { useTheme } from '@context/ThemeContext';
 import { ThemeType } from '@theme/Colors';

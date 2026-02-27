@@ -1,10 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { QUERY_KEY } from './queryKeys';
-import { axiosInstance } from './axiosInstance';
-import { GetNotesResponse, Note } from '@app-types/services.types';
-import Toast from 'react-native-toast-message';
 import { useTranslation } from 'react-i18next';
+import Toast from 'react-native-toast-message';
+
+import { GetNotesResponse, Note } from '@app-types/services.types';
 import { goBack } from '@utils/navigationUtils';
+
+import { axiosInstance } from './axiosInstance';
+import { QUERY_KEY } from './queryKeys';
 
 export const useGetNotesQuery = () => {
   return useQuery({

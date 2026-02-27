@@ -1,19 +1,21 @@
 import React, { FC } from 'react';
 import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import AppText from '@components/AppText';
+
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from '@context/ThemeContext';
-import { ThemeType } from '@theme/Colors';
+import Toast from 'react-native-toast-message';
+
+import AnimationView from '@components/AnimationView';
+import AppText from '@components/AppText';
 import FullScreenContainer from '@components/FullScreenContainer';
 import TextInput from '@components/TextInput';
-import AnimationView from '@components/AnimationView';
-import { resetAndNavigate } from '@utils/navigationUtils';
-import Routes from '@navigation/routes';
-import { LoginSchema } from '@utils/validationSchemas';
-import { userMockData } from '@mock';
-import Toast from 'react-native-toast-message';
 import { useAuth } from '@context/AuthContext';
+import { useTheme } from '@context/ThemeContext';
+import { userMockData } from '@mock';
+import Routes from '@navigation/routes';
+import { ThemeType } from '@theme/Colors';
+import { resetAndNavigate } from '@utils/navigationUtils';
+import { LoginSchema } from '@utils/validationSchemas';
 
 const LoginScreen: FC = () => {
   const { t } = useTranslation();

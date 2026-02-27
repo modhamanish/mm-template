@@ -4,6 +4,7 @@ import {
   StackActions,
 } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import { ParamsType } from '@app-types/navigation.types';
 
 export const navigationRef =

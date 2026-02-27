@@ -1,7 +1,9 @@
-import { StatusBar, StyleSheet } from 'react-native';
 import React, { FC, memo } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar, StyleSheet } from 'react-native';
+
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 import { FullScreenContainerProps } from '@app-types/components.types';
 import { useTheme } from '@context/ThemeContext';
 import { ThemeType } from '@theme/Colors';

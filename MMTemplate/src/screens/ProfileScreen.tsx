@@ -1,15 +1,17 @@
 import React, { FC } from 'react';
 import { View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
-import AppText from '@components/AppText';
+
 import { useTranslation } from 'react-i18next';
-import { useTheme } from '@context/ThemeContext';
-import { ThemeType } from '@theme/Colors';
-import FullScreenContainer from '@components/FullScreenContainer';
+
 import AnimationView from '@components/AnimationView';
-import { useAuth } from '@context/AuthContext';
+import AppText from '@components/AppText';
+import FullScreenContainer from '@components/FullScreenContainer';
 import InfoCard from '@components/InfoCard';
-import { navigate } from '@utils/navigationUtils';
+import { useAuth } from '@context/AuthContext';
+import { useTheme } from '@context/ThemeContext';
 import Routes from '@navigation/routes';
+import { ThemeType } from '@theme/Colors';
+import { navigate } from '@utils/navigationUtils';
 
 const ProfileScreen: FC = () => {
   const { t } = useTranslation();

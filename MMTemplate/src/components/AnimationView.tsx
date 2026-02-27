@@ -1,4 +1,5 @@
 import React, { memo, useEffect } from 'react';
+
 import Animated, {
   Easing,
   useAnimatedStyle,

@@ -1,8 +1,7 @@
-import { StyleSheet, TouchableOpacity, View, Linking } from 'react-native';
 import React, { FC, useEffect } from 'react';
+import { StyleSheet, TouchableOpacity, View, Linking } from 'react-native';
+
 import { useTranslation } from 'react-i18next';
-import { ThemeContextType, useTheme } from '@context/ThemeContext';
-import { Images } from '@assets/images';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -11,11 +10,14 @@ import Animated, {
   Easing,
   ReduceMotion,
 } from 'react-native-reanimated';
-import { mobileScreenHeight, mobileScreenWidth } from '@utils/utilsHelper';
-import FullScreenContainer from '@components/FullScreenContainer';
-import { navigate } from '@utils/navigationUtils';
-import Routes from '@navigation/routes';
+
+import { Images } from '@assets/images';
 import AppText from '@components/AppText';
+import FullScreenContainer from '@components/FullScreenContainer';
+import { ThemeContextType, useTheme } from '@context/ThemeContext';
+import Routes from '@navigation/routes';
+import { navigate } from '@utils/navigationUtils';
+import { mobileScreenHeight, mobileScreenWidth } from '@utils/utilsHelper';
 
 const WelcomeScreen: FC = () => {
   const theme = useTheme();
