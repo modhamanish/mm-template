@@ -6,7 +6,7 @@ import FullScreenContainer from '@components/FullScreenContainer';
 import { useAuth } from '@context/AuthContext';
 import { useTheme } from '@context/ThemeContext';
 import Routes from '@navigation/routes';
-import { ThemeType } from '@theme/Colors';
+import { ThemeType } from '@src/theme/colors';
 import { resetAndNavigate } from '@utils/navigationUtils';
 import { mobileScreenHeight, mobileScreenWidth } from '@utils/utilsHelper';
 

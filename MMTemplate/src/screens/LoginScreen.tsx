@@ -13,7 +13,7 @@ import { useAuth } from '@context/AuthContext';
 import { useTheme } from '@context/ThemeContext';
 import { userMockData } from '@mock';
 import Routes from '@navigation/routes';
-import { ThemeType } from '@theme/Colors';
+import { ThemeType } from '@src/theme/colors';
 import { resetAndNavigate } from '@utils/navigationUtils';
 import { hexWithOpacity } from '@utils/utilsHelper';
 import { LoginSchema } from '@utils/validationSchemas';

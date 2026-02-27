@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { FullScreenContainerProps } from '@app-types/components.types';
 import { useTheme } from '@context/ThemeContext';
-import { ThemeType } from '@theme/Colors';
+import { ThemeType } from '@src/theme/colors';
 
 const FullScreenContainer: FC<FullScreenContainerProps> = ({
   children,

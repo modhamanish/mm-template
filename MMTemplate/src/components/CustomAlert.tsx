@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import AppText from '@components/AppText';
 import { useTheme } from '@src/context/ThemeContext';
-import { ThemeType } from '@src/theme/Colors';
+import { ThemeType } from '@src/theme/colors';
 import { AlertOptionsProps } from '@src/types/components.types';
 import { hexWithOpacity } from '@src/utils/utilsHelper';
 

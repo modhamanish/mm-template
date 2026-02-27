@@ -10,7 +10,7 @@ import InfoCard from '@components/InfoCard';
 import { useAuth } from '@context/AuthContext';
 import { useTheme } from '@context/ThemeContext';
 import Routes from '@navigation/routes';
-import { ThemeType } from '@theme/Colors';
+import { ThemeType } from '@src/theme/colors';
 import { navigate } from '@utils/navigationUtils';
 import { hexWithOpacity } from '@utils/utilsHelper';
 

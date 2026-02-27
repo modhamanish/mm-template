@@ -9,7 +9,7 @@ import FullScreenContainer from '@components/FullScreenContainer';
 import LanguageSwitcher from '@components/LanguageSwitcher';
 import ThemeSwitcher from '@components/ThemeSwitcher';
 import { useTheme } from '@context/ThemeContext';
-import { ThemeType } from '@theme/Colors';
+import { ThemeType } from '@src/theme/colors';
 import { hexWithOpacity } from '@utils/utilsHelper';
 
 const SettingsScreen: FC = () => {

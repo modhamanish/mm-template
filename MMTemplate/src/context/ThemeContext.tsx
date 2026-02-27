@@ -4,13 +4,12 @@ import {
   ReactNode,
   useCallback,
   useContext,
-  useEffect,
   useState,
 } from 'react';
 
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { darkTheme, lightTheme, ThemeType } from '@theme/Colors';
+import { darkTheme, lightTheme, ThemeType } from '@src/theme/colors';
 import storageHelper from '@utils/storageHelper';
 
 export type ThemeContextType = {
@@ -28,24 +27,14 @@ type ThemeProviderProps = {
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   const safeAreaInsets = useSafeAreaInsets();
-  const [currentTheme, setCurrentTheme] =
-    useState<ThemeContextType['currentTheme']>();
-  const [colors, setColors] = useState<ThemeContextType['colors']>(
-    lightTheme.colors,
-  );
-
-  useEffect(() => {
+  const [currentTheme, setCurrentTheme] = useState<
+    ThemeContextType['currentTheme']
+  >(() => {
     const theme = storageHelper.getItem(storageHelper.STORAGE_KEYS.THEME);
-    setCurrentTheme(theme === 'dark' ? 'dark' : 'light');
-  }, []);
+    return theme === 'dark' ? 'dark' : 'light';
+  });
 
-  useEffect(() => {
-    if (currentTheme === 'dark') {
-      setColors(darkTheme.colors);
-    } else {
-      setColors(lightTheme.colors);
-    }
-  }, [currentTheme]);
+  const colors = currentTheme === 'dark' ? darkTheme.colors : lightTheme.colors;
 
   const toggleTheme = useCallback(() => {
     setCurrentTheme(prev => {

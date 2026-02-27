@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import AppText from '@components/AppText';
 import FullScreenContainer from '@components/FullScreenContainer';
 import { useTheme } from '@context/ThemeContext';
-import { ThemeType } from '@theme/Colors';
+import { ThemeType } from '@src/theme/colors';
 import { hexWithOpacity } from '@utils/utilsHelper';
 
 interface Props {

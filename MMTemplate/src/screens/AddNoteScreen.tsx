@@ -16,7 +16,7 @@ import FullScreenContainer from '@components/FullScreenContainer';
 import TextInput from '@components/TextInput';
 import { useTheme } from '@context/ThemeContext';
 import { useAddNoteMutation } from '@services/note.query';
-import { ThemeType } from '@theme/Colors';
+import { ThemeType } from '@src/theme/colors';
 import { goBack } from '@utils/navigationUtils';
 import { hexWithOpacity } from '@utils/utilsHelper';
 import { NoteSchema } from '@utils/validationSchemas';

@@ -15,6 +15,7 @@ export {
 };
 
 export const hexWithOpacity = (hex: string, opacityPercent: number) => {
+  'worklet';
   hex = hex.replace('#', '');
 
   if (hex.length === 3) {

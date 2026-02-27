@@ -10,7 +10,7 @@ import FeatureItem from '@components/FeatureItem';
 import FullScreenContainer from '@components/FullScreenContainer';
 import InfoCard from '@components/InfoCard';
 import { useTheme } from '@context/ThemeContext';
-import { ThemeType } from '@theme/Colors';
+import { ThemeType } from '@src/theme/colors';
 import {
   hexWithOpacity,
   mobileScreenHeight,

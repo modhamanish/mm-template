@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native';
 
 import AppText from '@components/AppText';
 import { useTheme } from '@context/ThemeContext';
-import { ThemeType } from '@theme/Colors';
+import { ThemeType } from '@src/theme/colors';
 
 const ThemeSwitcher = () => {
   const { colors, currentTheme, toggleTheme } = useTheme();

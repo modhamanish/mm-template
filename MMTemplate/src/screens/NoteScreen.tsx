@@ -17,7 +17,7 @@ import FullScreenContainer from '@components/FullScreenContainer';
 import { useTheme } from '@context/ThemeContext';
 import Routes from '@navigation/routes';
 import { useGetNotesQuery } from '@services/note.query';
-import { ThemeType } from '@theme/Colors';
+import { ThemeType } from '@src/theme/colors';
 import { navigate } from '@utils/navigationUtils';
 import { hexWithOpacity } from '@utils/utilsHelper';
 
