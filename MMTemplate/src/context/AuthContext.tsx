@@ -1,7 +1,7 @@
-import { userMockData } from '../mock';
-import Routes from '../navigation/routes';
-import { resetAndNavigate } from '../utils/navigationUtils';
-import StorageHelper from '../utils/storageHelper';
+import { userMockData } from '@mock';
+import Routes from '@navigation/routes';
+import { resetAndNavigate } from '@utils/navigationUtils';
+import StorageHelper from '@utils/storageHelper';
 import {
   createContext,
   FC,

@@ -2,9 +2,9 @@ import { StatusBar, StyleSheet } from 'react-native';
 import React, { FC, memo } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
-import { FullScreenContainerProps } from '../types/components.types';
-import { useTheme } from '../context/ThemeContext';
-import { ThemeType } from '../theme/Colors';
+import { FullScreenContainerProps } from '@app-types/components.types';
+import { useTheme } from '@context/ThemeContext';
+import { ThemeType } from '@theme/Colors';
 
 export const FullScreenContainer: FC<FullScreenContainerProps> = ({
   children,

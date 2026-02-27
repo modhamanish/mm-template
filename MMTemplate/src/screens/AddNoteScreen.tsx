@@ -6,17 +6,17 @@ import {
   ActivityIndicator,
   ScrollView,
 } from 'react-native';
-import AppText from '../components/AppText';
+import AppText from '@components/AppText';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from '../context/ThemeContext';
-import { ThemeType } from '../theme/Colors';
-import FullScreenContainer from '../components/FullScreenContainer';
-import TextInput from '../components/TextInput';
-import AnimationView from '../components/AnimationView';
-import { useAddNoteMutation } from '../services/note.query';
-import { goBack } from '../utils/navigationUtils';
+import { useTheme } from '@context/ThemeContext';
+import { ThemeType } from '@theme/Colors';
+import FullScreenContainer from '@components/FullScreenContainer';
+import TextInput from '@components/TextInput';
+import AnimationView from '@components/AnimationView';
+import { useAddNoteMutation } from '@services/note.query';
+import { goBack } from '@utils/navigationUtils';
 import { useFormik } from 'formik';
-import { NoteSchema } from '../utils/validationSchemas';
+import { NoteSchema } from '@utils/validationSchemas';
 
 const AddNoteScreen: FC = () => {
   const { t } = useTranslation();

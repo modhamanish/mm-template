@@ -15,9 +15,9 @@ import Animated, {
   interpolate,
   Extrapolate,
 } from 'react-native-reanimated';
-import AppText from './AppText';
-import { useTheme } from '../context/ThemeContext';
-import { ThemeType } from '../theme/Colors';
+import AppText from '@components/AppText';
+import { useTheme } from '@context/ThemeContext';
+import { ThemeType } from '@theme/Colors';
 
 interface CustomTextInputProps extends TextInputProps {
   label?: string;

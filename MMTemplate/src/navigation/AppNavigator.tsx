@@ -2,14 +2,14 @@ import React, { FC } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { RootStackParamList } from '../types/navigation.types';
-import { navigationRef } from '../utils/navigationUtils';
+import { RootStackParamList } from '@app-types/navigation.types';
+import { navigationRef } from '@utils/navigationUtils';
 
-import Routes from './routes';
+import Routes from '@navigation/routes';
 
-import AuthCheck from './AuthCheck';
-import AuthStack from './AuthStack';
-import AppStack from './AppStack';
+import AuthCheck from '@navigation/AuthCheck';
+import AuthStack from '@navigation/AuthStack';
+import AppStack from '@navigation/AppStack';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

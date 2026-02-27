@@ -7,9 +7,9 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { darkTheme, lightTheme, ThemeType } from '../theme/Colors';
+import { darkTheme, lightTheme, ThemeType } from '@theme/Colors';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
-import storageHelper from '../utils/storageHelper';
+import storageHelper from '@utils/storageHelper';
 
 export type ThemeContextType = {
   colors: ThemeType['colors'];

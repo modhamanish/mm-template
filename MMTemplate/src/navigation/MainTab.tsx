@@ -1,15 +1,15 @@
 import React, { FC } from 'react';
-import AppText from '../components/AppText';
+import AppText from '@components/AppText';
 import { useTranslation } from 'react-i18next';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Routes from './routes';
-import { MainTabParamList } from '../types/navigation.types';
-import { useTheme } from '../context/ThemeContext';
+import Routes from '@navigation/routes';
+import { MainTabParamList } from '@app-types/navigation.types';
+import { useTheme } from '@context/ThemeContext';
 
 // Screens
-import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import NoteScreen from '../screens/NoteScreen';
+import HomeScreen from '@screens/HomeScreen';
+import ProfileScreen from '@screens/ProfileScreen';
+import NoteScreen from '@screens/NoteScreen';
 
 const BottomTab = createBottomTabNavigator<MainTabParamList>();
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import AppText from './AppText';
-import { useTheme } from '../context/ThemeContext';
-import { ThemeType } from '../theme/Colors';
+import AppText from '@components/AppText';
+import { useTheme } from '@context/ThemeContext';
+import { ThemeType } from '@theme/Colors';
 
 interface InfoCardProps {
   title: string;

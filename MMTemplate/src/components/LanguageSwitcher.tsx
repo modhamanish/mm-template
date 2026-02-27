@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import AppText from './AppText';
+import AppText from '@components/AppText';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from '../context/ThemeContext';
-import { ThemeType } from '../theme/Colors';
-import StorageHelper from '../utils/storageHelper';
+import { useTheme } from '@context/ThemeContext';
+import { ThemeType } from '@theme/Colors';
+import StorageHelper from '@utils/storageHelper';
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();

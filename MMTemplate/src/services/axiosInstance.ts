@@ -1,8 +1,8 @@
 import { Platform } from 'react-native';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-import Routes from '../navigation/routes';
-import storageHelper from '../utils/storageHelper';
-import { resetAndNavigate } from '../utils/navigationUtils';
+import Routes from '@navigation/routes';
+import storageHelper from '@utils/storageHelper';
+import { resetAndNavigate } from '@utils/navigationUtils';
 
 const axiosInstance = axios.create({
   baseURL: 'https://user-driven-mock-api-generator-serv.vercel.app/man',

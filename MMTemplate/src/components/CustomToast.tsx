@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
-import AppText from './AppText';
+import AppText from '@components/AppText';
 
 type CustomToastProps = {
   text1?: string;

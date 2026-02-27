@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import Routes from '../navigation/routes';
+import Routes from '@navigation/routes';
 
 export type VerifyNumberScreenProps =
   NativeStackScreenProps<RootStackParamList>;

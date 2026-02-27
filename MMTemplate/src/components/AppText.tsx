@@ -1,7 +1,7 @@
 import React, { FC, memo } from 'react';
 import { Text, TextStyle } from 'react-native';
-import { useTheme } from '../context/ThemeContext';
-import { AppTextProps, AppTextSize } from '../types/components.types';
+import { useTheme } from '@context/ThemeContext';
+import { AppTextProps, AppTextSize } from '@app-types/components.types';
 
 const FONTS: Record<string, string> | undefined = {
   // Define custom font families here. If empty or undefined, the component will use default system fonts with font weights.
