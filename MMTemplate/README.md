@@ -6,19 +6,21 @@ Welcome to **MMTemplate**! This is a robust and modern React Native template bui
 
 This template includes the following key libraries and configurations:
 
-*   **Core**: React Native (0.83.1), React (19.2.0)
-*   **Language**: TypeScript (v5) for static type checking
-*   **Navigation**: [React Navigation v7](https://reactnavigation.org/) (Native Stack)
-*   **Internationalization**: [react-i18next](https://react.i18next.com/) with multi-language support (English/Hindi)
-*   **Storage**: [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) for high-performance persistence
-*   **Animations**: [React Native Reanimated v4](https://docs.swmansion.com/react-native-reanimated/) & Worklets
-*   **UI/UX**:
-    *   **Theme Support**: Light/Dark mode with persistence
-    *   **Authentication**: Pre-configured login and profile flow
-    *   [React Native Safe Area Context](https://github.com/th3rdwave/react-native-safe-area-context) for handling safe areas
-    *   [React Native Keyboard Controller](https://github.com/kirillzyusko/react-native-keyboard-controller) for advanced keyboard handling
-    *   [React Native Toast Message](https://github.com/calintamas/react-native-toast-message) for in-app notifications
-*   **Testing**: Jest & React Test Renderer
+- **Core**: React Native (0.83.1), React (19.2.0)
+- **Language**: TypeScript (v5) for static type checking
+- **Navigation**: [React Navigation v7](https://reactnavigation.org/) (Native Stack & Bottom Tabs)
+- **Internationalization**: [react-i18next](https://react.i18next.com/) with multi-language support (English/Hindi)
+- **Storage**: [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) for high-performance persistence
+- **Forms**: [Formik](https://formik.org/) & [Yup](https://github.com/jquense/yup) for form state management and validation
+- **Animations**: [React Native Reanimated v4](https://docs.swmansion.com/react-native-reanimated/) & Worklets
+- **UI/UX**:
+  - **Theme Support**: Light/Dark mode with persistence
+  - **Authentication**: Pre-configured login and profile flow
+  - [React Native Safe Area Context](https://github.com/th3rdwave/react-native-safe-area-context) for handling safe areas
+  - [React Native Keyboard Controller](https://github.com/kirillzyusko/react-native-keyboard-controller) for advanced keyboard handling
+  - [React Native Toast Message](https://github.com/calintamas/react-native-toast-message) for in-app notifications
+- **Error Handling**: [react-native-error-boundary](https://github.com/cawfree/react-native-error-boundary) for robust error catching
+- **Testing**: Jest & React Test Renderer
 
 ## 📂 Project Structure
 
@@ -41,21 +43,50 @@ src/
 
 ### Key Files & Directories
 
-| Directory / File | Path | Description |
-| :--- | :--- | :--- |
-| **`assets/`** | `src/assets/` | Stores static assets such as images, fonts, and icons. |
+| Directory / File  | Path              | Description                                                      |
+| :---------------- | :---------------- | :--------------------------------------------------------------- |
+| **`assets/`**     | `src/assets/`     | Stores static assets such as images, fonts, and icons.           |
 | **`components/`** | `src/components/` | Contains reusable UI components used throughout the application. |
-| **`context/`** | `src/context/` | Holds React Context definitions for global state management. |
-| **`locales/`** | `src/locales/` | Contains translation files for internationalization. |
-| **`mock/`** | `src/mock/` | Stores mock data used for development and testing. |
-| **`navigation/`** | `src/navigation/` | Contains all navigation-related configuration. |
-| **`screens/`** | `src/screens/` | Contains all the screen components (pages) of the application. |
-| **`services/`** | `src/services/` | Data fetching layer using **React Query** and **Axios**. |
-| **`theme/`** | `src/theme/` | Centralized theme configuration (e.g., Colors, Typography). |
-| **`types/`** | `src/types/` | Stores TypeScript type definitions and interfaces. |
-| **`utils/`** | `src/utils/` | Contains utility functions and helper classes. |
+| **`context/`**    | `src/context/`    | Holds React Context definitions for global state management.     |
+| **`locales/`**    | `src/locales/`    | Contains translation files for internationalization.             |
+| **`mock/`**       | `src/mock/`       | Stores mock data used for development and testing.               |
+| **`navigation/`** | `src/navigation/` | Contains all navigation-related configuration.                   |
+| **`screens/`**    | `src/screens/`    | Contains all the screen components (pages) of the application.   |
+| **`services/`**   | `src/services/`   | Data fetching layer using **React Query** and **Axios**.         |
+| **`theme/`**      | `src/theme/`      | Centralized theme configuration (e.g., Colors, Typography).      |
+| **`types/`**      | `src/types/`      | Stores TypeScript type definitions and interfaces.               |
+| **`utils/`**      | `src/utils/`      | Contains utility functions and helper classes.                   |
+
+## 🔐 Authentication Flow
+
+MMTemplate comes with a pre-configured authentication flow managed via React Context.
+
+### 1. State Management
+
+Authentication state is managed globally using `AuthContext` (`src/context/AuthContext.tsx`). You can access user data and authentication methods anywhere in the app:
+
+```tsx
+const { user, updateUser, handleLogout, isUserLoggedIn } = useAuth();
+```
+
+### 2. Navigation Logic
+
+- **`AuthCheck`**: The entry point component that checks if a user is already logged in (via `react-native-mmkv` persistence).
+- **`AuthStack`**: contains screens for non-authenticated users (Welcome, Login).
+- **`AppStack`**: contains the main application screens (Home, Profile, Settings).
 
 Navigation automatically switches between these stacks based on the `user` state in `AuthContext`.
+
+### 3. Mock Credentials
+
+For testing purposes, you can use the following credentials (defined in `src/mock/index.ts`):
+
+- **Email**: `user@gmail.com`
+- **Password**: `123456`
+
+### 4. Storage Persistence
+
+User sessions are persisted locally using `react-native-mmkv`, ensuring users stay logged in even after closing the app.
 
 ---
 
@@ -64,11 +95,13 @@ Navigation automatically switches between these stacks based on the `user` state
 MMTemplate uses **TanStack Query (React Query) v5** for server state management and **Axios** for API requests.
 
 ### 1. Services Structure
+
 - **`axiosInstance.ts`**: Configured Axios instance with base URL and interceptors.
 - **`queryKeys.ts`**: Centralized keys for consistency and easy invalidation.
 - **`*.query.ts`**: Feature-specific hooks for fetching and mutating data.
 
 ### 2. Usage Example
+
 To fetch data, use a query hook defined in `src/services`:
 
 ```tsx
@@ -87,6 +120,7 @@ const handleSave = () => mutate({ title: 'New Note', content: '...' });
 ```
 
 ### 3. Global Configuration
+
 The `QueryClient` is pre-configured in `App.tsx` with optimized defaults (e.g., `refetchOnWindowFocus: false`).
 
 ---
@@ -95,17 +129,18 @@ The `QueryClient` is pre-configured in `App.tsx` with optimized defaults (e.g., 
 
 Before you begin, ensure you have the following installed on your machine:
 
-*   [Node.js](https://nodejs.org/) (>= 20)
-*   [Watchman](https://facebook.github.io/watchman/)
-*   [Ruby](https://www.ruby-lang.org/en/) (for iOS CocoaPods)
-*   **Android Studio** (for Android development)
-*   **Xcode** (for iOS development, macOS only)
+- [Node.js](https://nodejs.org/) (>= 20)
+- [Watchman](https://facebook.github.io/watchman/)
+- [Ruby](https://www.ruby-lang.org/en/) (for iOS CocoaPods)
+- **Android Studio** (for Android development)
+- **Xcode** (for iOS development, macOS only)
 
 > **Note**: For a detailed environment setup guide, refer to the [official React Native documentation](https://reactnative.dev/docs/set-up-your-environment).
 
 ## 📦 Installation
 
 1.  **Install Dependencies**:
+
     ```bash
     yarn install
     # OR
@@ -123,17 +158,21 @@ Before you begin, ensure you have the following installed on your machine:
 ## 🏃‍♂️ Running the App
 
 ### Start Metro Bundler
+
 First, start the Metro bundler in a dedicated terminal:
+
 ```bash
 yarn start
 ```
 
 ### Run on Android
+
 ```bash
 yarn android
 ```
 
 ### Run on iOS
+
 ```bash
 yarn ios
 ```
@@ -141,9 +180,11 @@ yarn ios
 ## 🔧 Customization
 
 ### Renaming the App
+
 To rename the application from "MMTemplate" to your own project name, you can use `react-native-rename` or manually rename the files.
 
 **Using `react-native-rename`:**
+
 1.  `npx react-native-rename "YourAppName" -b com.yourcompany.yourappname`
 2.  Edit `package.json` to update the name.
 3.  Delete `ios/Pods` and `node_modules`.
@@ -151,11 +192,11 @@ To rename the application from "MMTemplate" to your own project name, you can us
 
 ## 📝 Scripts
 
-*   `yarn start`: Starts the Metro Bundler.
-*   `yarn android`: Builds and runs the Android app.
-*   `yarn ios`: Builds and runs the iOS app.
-*   `yarn lint`: Lints the project files.
-*   `yarn test`: Runs Jest tests.
+- `yarn start`: Starts the Metro Bundler.
+- `yarn android`: Builds and runs the Android app.
+- `yarn ios`: Builds and runs the iOS app.
+- `yarn lint`: Lints the project files.
+- `yarn test`: Runs Jest tests.
 
 ---
 

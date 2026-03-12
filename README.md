@@ -18,9 +18,10 @@ This template includes the following key libraries and configurations:
 
 *   **Core**: React Native (0.83.1), React (19.2.0)
 *   **Language**: TypeScript (v5) for static type checking
-*   **Navigation**: [React Navigation v7](https://reactnavigation.org/) (Native Stack)
+*   **Navigation**: [React Navigation v7](https://reactnavigation.org/) (Native Stack & Bottom Tabs)
 *   **Internationalization**: [react-i18next](https://react.i18next.com/) with multi-language support (English/Hindi)
 *   **Storage**: [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) for high-performance persistence
+*   **Forms**: [Formik](https://formik.org/) & [Yup](https://github.com/jquense/yup) for form state management and validation
 *   **Animations**: [React Native Reanimated v4](https://docs.swmansion.com/react-native-reanimated/) & Worklets
 *   **UI/UX**:
     *   **Theme Support**: Light/Dark mode with persistence
@@ -28,6 +29,7 @@ This template includes the following key libraries and configurations:
     *   [React Native Safe Area Context](https://github.com/th3rdwave/react-native-safe-area-context) for handling safe areas
     *   [React Native Keyboard Controller](https://github.com/kirillzyusko/react-native-keyboard-controller) for advanced keyboard handling
     *   [React Native Toast Message](https://github.com/calintamas/react-native-toast-message) for in-app notifications
+*   **Error Handling**: [react-native-error-boundary](https://github.com/cawfree/react-native-error-boundary) for robust error catching
 *   **Testing**: Jest & React Test Renderer
 
 ## 📂 Project Structure
