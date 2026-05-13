@@ -64,7 +64,7 @@ rl.question('Select release type (patch, minor, major) [patch]: ', (type) => {
       run('git push origin main --tags');
       
       console.log('\n\x1b[33m\x1b[1mStep 5: Publishing to npm...\x1b[0m');
-      run('npm publish --access public');
+      run('npm publish --access public --registry https://registry.npmjs.org/');
       
       console.log(`\n\x1b[32m\x1b[1mSuccessfully released v${newVersion}! 🚀✨\x1b[0m`);
     } else {
