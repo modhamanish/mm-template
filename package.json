@@ -1,10 +1,13 @@
 {
   "name": "@modhamanish/rn-mm-template",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A robust and modern React Native template built with TypeScript, designed to jumpstart your mobile application development.",
   "repository": "https://github.com/modhamanish/mm-template.git",
   "author": "Manish Modha",
   "license": "ISC",
+  "scripts": {
+    "release": "node release.js"
+  },
   "keywords": [
     "react-native",
     "typescript",
