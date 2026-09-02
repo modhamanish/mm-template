@@ -1,0 +1,6 @@
+# NPM Authentication Token Configuration Example
+# Copy this file to `.npmrc` and replace `your_npm_token_here` with your actual npm automation or publish token.
+# Generate token at: https://www.npmjs.com/settings/tokens
+
+registry=https://registry.npmjs.org/
+//registry.npmjs.org/:_authToken=your_npm_token_here
