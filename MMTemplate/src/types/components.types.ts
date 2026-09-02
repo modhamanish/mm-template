@@ -34,10 +34,7 @@ export type AppTextVariant =
   | 'light';
 
 export type AppTextTransform =
-  | 'uppercase'
-  | 'lowercase'
-  | 'capitalize'
-  | 'none';
+  'uppercase' | 'lowercase' | 'capitalize' | 'none';
 
 export type AppTextProps = TextProps & {
   children?: ReactNode;

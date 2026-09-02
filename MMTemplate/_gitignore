@@ -57,6 +57,8 @@ yarn-error.log
 *.jsbundle
 
 # Ruby / CocoaPods
+.bundle/
+Gemfile.lock
 **/Pods/
 /vendor/bundle/
 **/Podfile.lock
