@@ -8,6 +8,12 @@
   "scripts": {
     "release": "node release.js"
   },
+  "files": [
+    "MMTemplate",
+    "template.config.js",
+    "script.js",
+    "README.md"
+  ],
   "keywords": [
     "react-native",
     "typescript",

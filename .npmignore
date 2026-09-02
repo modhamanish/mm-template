@@ -1,0 +1,34 @@
+# Secrets & Environment
+.npmrc
+.npmrc.*
+.env
+.env.*
+
+# Git & CI
+.git
+.github
+.gitignore
+
+# Release scripts & logs
+release.js
+*.log
+.DS_Store
+
+# Template nested artifacts
+MMTemplate/node_modules
+MMTemplate/package-lock.json
+MMTemplate/yarn.lock
+MMTemplate/vendor
+MMTemplate/Gemfile.lock
+MMTemplate/.bundle
+MMTemplate/ios/Pods
+MMTemplate/ios/build
+MMTemplate/ios/DerivedData
+MMTemplate/ios/*.xcworkspace
+MMTemplate/ios/Podfile.lock
+MMTemplate/ios/.xcode.env.local
+MMTemplate/android/build
+MMTemplate/android/app/build
+MMTemplate/android/.gradle
+MMTemplate/android/.cxx
+MMTemplate/android/local.properties
