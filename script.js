@@ -493,6 +493,33 @@ function updateAuthCheckDestination(projectRoot, { isOnboarding }) {
   fs.writeFileSync(authCheckPath, content, 'utf8');
 }
 
+// 8b. Update services and context references for non-auth mode
+function updateAuthReferences(projectRoot, { isAuth }) {
+  if (isAuth) return;
+
+  const axiosPath = path.join(projectRoot, 'src', 'services', 'axiosInstance.ts');
+  if (fs.existsSync(axiosPath)) {
+    let content = fs.readFileSync(axiosPath, 'utf8');
+    content = content.replace(
+      /if\s*\(error\.response\.status === 403\)\s*\{\s*\n\s*\/\/ Unauthorized\s*\n\s*resetAndNavigate\(Routes\.AuthStack\);\s*\n\s*\}/,
+      '// Without Auth: no redirect needed\n      // Pass through error'
+    );
+    content = content.replace(/import\s+Routes\s+from\s+['"]@navigation\/routes['"];\s*\n/, '');
+    content = content.replace(/,\s*resetAndNavigate/, '');
+    fs.writeFileSync(axiosPath, content, 'utf8');
+  }
+
+  const authContextPath = path.join(projectRoot, 'src', 'context', 'AuthContext.tsx');
+  if (fs.existsSync(authContextPath)) {
+    let content = fs.readFileSync(authContextPath, 'utf8');
+    content = content.replace(
+      'resetAndNavigate(Routes.AuthStack);',
+      'resetAndNavigate(Routes.AppStack);'
+    );
+    fs.writeFileSync(authContextPath, content, 'utf8');
+  }
+}
+
 // 9. Clean up screens/index.ts barrel exports
 function updateScreensIndex(projectRoot, { isAuth, isOnboarding }) {
   const indexPath = path.join(projectRoot, 'src', 'screens', 'index.ts');
@@ -551,25 +578,20 @@ function updateScreenHeaders(projectRoot, { navType }) {
   [notePath, profilePath, homePath].forEach(filePath => {
     if (!fs.existsSync(filePath)) return;
     let content = fs.readFileSync(filePath, 'utf8');
+
+    // First strip existing showDrawer or showBack
+    content = content.replace(/\bshowDrawer\b\s*/g, '');
+    content = content.replace(/\bshowBack\b\s*/g, '');
+
     if (navType === 'drawer') {
-      // Drawer mode: ensure showDrawer is present, no showBack on root screens
-      content = content.replace(/\bshowBack\b\s*/g, '');
-      if (!content.includes('showDrawer')) {
-        content = content.replace(/(<Header\s+title=[^>]*?)(\/?>)/, '$1 showDrawer $2');
-      }
+      // All root screens in drawer mode show drawer button
+      content = content.replace(/(<Header\b)/, '$1\n        showDrawer');
     } else if (navType === 'tab') {
-      // Tab mode: tabs switch screens, so no drawer or back button on root screens
-      content = content.replace(/\bshowDrawer\b\s*/g, '');
-      content = content.replace(/\bshowBack\b\s*/g, '');
+      // In tab mode, tabs navigate between root screens - no left button
     } else if (navType === 'stack') {
-      // Pure stack mode: Note & Profile get showBack, Home gets no left button
-      content = content.replace(/\bshowDrawer\b\s*/g, '');
-      if (filePath.includes('HomeScreen')) {
-        content = content.replace(/\bshowBack\b\s*/g, '');
-      } else {
-        if (!content.includes('showBack')) {
-          content = content.replace(/(<Header\s+title=[^>]*?)(\/?>)/, '$1 showBack $2');
-        }
+      // In stack mode, Note and Profile have back button, Home has no left button
+      if (!filePath.includes('HomeScreen')) {
+        content = content.replace(/(<Header\b)/, '$1\n        showBack');
       }
     }
     fs.writeFileSync(filePath, content, 'utf8');
@@ -680,6 +702,7 @@ async function main() {
     console.log(`${colors.dim}  • Removing Auth screens and stack...${colors.reset}`);
     removePath(path.join(projectRoot, 'src', 'navigation', 'auth'));
     removePath(path.join(projectRoot, 'src', 'screens', 'auth'));
+    updateAuthReferences(projectRoot, userConfig);
   }
 
   // 2. Onboarding cleanup if Without Onboarding
