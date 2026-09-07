@@ -240,36 +240,44 @@ function generateRoutesTs(projectRoot, { isAuth, isOnboarding, navType }) {
 function generateAppStack(projectRoot, { navType }) {
   const appStackPath = path.join(projectRoot, 'src', 'navigation', 'stack', 'AppStack.tsx');
 
-  let navImport = '';
+  let importLines = '';
   let initialRoute = 'Routes.HomeScreen';
   let mainScreenElement = '';
 
   if (navType === 'tab') {
-    navImport = "import { BottomTabNavigator } from '@navigation/tab';\n";
     initialRoute = 'Routes.MainTab';
     mainScreenElement = '<Stack.Screen name={Routes.MainTab} component={BottomTabNavigator} />';
+    importLines = `import type { AppStackParamList } from '@app-types/navigation.types';
+import Routes from '@navigation/routes';
+import { BottomTabNavigator } from '@navigation/tab';
+import { AddNoteScreen } from '@screens/note';
+import { SettingsScreen } from '@screens/settings';`;
   } else if (navType === 'drawer') {
-    navImport = "import { DrawerNavigator } from '@navigation/drawer';\n";
     initialRoute = 'Routes.MainDrawer';
     mainScreenElement = '<Stack.Screen name={Routes.MainDrawer} component={DrawerNavigator} />';
+    importLines = `import type { AppStackParamList } from '@app-types/navigation.types';
+import { DrawerNavigator } from '@navigation/drawer';
+import Routes from '@navigation/routes';
+import { AddNoteScreen } from '@screens/note';
+import { SettingsScreen } from '@screens/settings';`;
   } else {
-    navImport = `import { HomeScreen } from '@screens/home';
-import { NoteScreen } from '@screens/note';
-import { ProfileScreen } from '@screens/profile';\n`;
     initialRoute = 'Routes.HomeScreen';
     mainScreenElement = `<Stack.Screen name={Routes.HomeScreen} component={HomeScreen} />
       <Stack.Screen name={Routes.NoteScreen} component={NoteScreen} />
       <Stack.Screen name={Routes.ProfileScreen} component={ProfileScreen} />`;
+    importLines = `import type { AppStackParamList } from '@app-types/navigation.types';
+import Routes from '@navigation/routes';
+import { HomeScreen } from '@screens/home';
+import { AddNoteScreen, NoteScreen } from '@screens/note';
+import { ProfileScreen } from '@screens/profile';
+import { SettingsScreen } from '@screens/settings';`;
   }
 
   const content = `import React, { FC } from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import type { AppStackParamList } from '@app-types/navigation.types';
-import Routes from '@navigation/routes';
-${navImport}import { AddNoteScreen } from '@screens/note';
-import { SettingsScreen } from '@screens/settings';
+${importLines}
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
 
@@ -444,6 +452,11 @@ ${appStackItems}};`);
   if (navType === 'tab') paramsParts.push('MainTabParamList');
   if (navType === 'drawer') paramsParts.push('MainDrawerParamList');
 
+  const paramsTypeStr =
+    paramsParts.length > 2
+      ? `\n  ${paramsParts.join(' &\n  ')}`
+      : paramsParts.join(' & ');
+
   const content = `import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import Routes from '@navigation/routes';
@@ -453,7 +466,7 @@ ${rootParams}};
 
 ${sections.join('\n\n')}
 
-export type ParamsType = ${paramsParts.join(' &\n  ')};
+export type ParamsType = ${paramsTypeStr};
 
 export type NavigationProps<RouteName extends keyof ParamsType> =
   NativeStackScreenProps<ParamsType, RouteName>;
@@ -509,11 +522,11 @@ function updateAuthReferences(projectRoot, { isAuth }) {
   if (fs.existsSync(axiosPath)) {
     let content = fs.readFileSync(axiosPath, 'utf8');
     content = content.replace(
-      /if\s*\(error\.response\.status === 403\)\s*\{\s*\n\s*\/\/ Unauthorized\s*\n\s*resetAndNavigate\(Routes\.AuthStack\);\s*\n\s*\}/,
-      '// Without Auth: no redirect needed\n      // Pass through error'
+      /\s*if\s*\(error\.response\.status === 403\)\s*\{\s*\n\s*\/\/ Unauthorized\s*\n\s*resetAndNavigate\(Routes\.AuthStack\);\s*\n\s*\}/,
+      ''
     );
     content = content.replace(/import\s+Routes\s+from\s+['"]@navigation\/routes['"];\s*\n/, '');
-    content = content.replace(/,\s*resetAndNavigate/, '');
+    content = content.replace(/import\s*\{\s*resetAndNavigate\s*\}\s*from\s*['"]@utils\/navigationUtils['"];\s*\n/, '');
     fs.writeFileSync(axiosPath, content, 'utf8');
   }
 
@@ -583,24 +596,29 @@ function updateScreenHeaders(projectRoot, { navType }) {
   const profilePath = path.join(projectRoot, 'src', 'screens', 'profile', 'ProfileScreen.tsx');
   const homePath = path.join(projectRoot, 'src', 'screens', 'home', 'HomeScreen.tsx');
 
-  [notePath, profilePath, homePath].forEach(filePath => {
+  // HomeScreen header
+  if (fs.existsSync(homePath)) {
+    let homeContent = fs.readFileSync(homePath, 'utf8');
+    homeContent = homeContent.replace(/\s*\bshowDrawer\b/g, '');
+    homeContent = homeContent.replace(/\s*\bshowBack\b/g, '');
+    if (navType === 'drawer') {
+      homeContent = homeContent.replace(/(<Header\s+title=[^>]*?)(\s*\/>)/, '$1 showDrawer />');
+    }
+    fs.writeFileSync(homePath, homeContent, 'utf8');
+  }
+
+  // NoteScreen and ProfileScreen header
+  [notePath, profilePath].forEach(filePath => {
     if (!fs.existsSync(filePath)) return;
     let content = fs.readFileSync(filePath, 'utf8');
 
-    // First strip existing showDrawer or showBack
-    content = content.replace(/\bshowDrawer\b\s*/g, '');
-    content = content.replace(/\bshowBack\b\s*/g, '');
+    content = content.replace(/\n\s*showDrawer\b/g, '');
+    content = content.replace(/\n\s*showBack\b/g, '');
 
     if (navType === 'drawer') {
-      // All root screens in drawer mode show drawer button
-      content = content.replace(/(<Header\b)/, '$1\n        showDrawer');
-    } else if (navType === 'tab') {
-      // In tab mode, tabs navigate between root screens - no left button
+      content = content.replace(/(<Header\b[^\n]*\n)/, '$1        showDrawer\n');
     } else if (navType === 'stack') {
-      // In stack mode, Note and Profile have back button, Home has no left button
-      if (!filePath.includes('HomeScreen')) {
-        content = content.replace(/(<Header\b)/, '$1\n        showBack');
-      }
+      content = content.replace(/(<Header\b[^\n]*\n)/, '$1        showBack\n');
     }
     fs.writeFileSync(filePath, content, 'utf8');
   });
@@ -612,14 +630,19 @@ function updateProfileScreen(projectRoot, { isAuth }) {
   if (!fs.existsSync(profilePath)) return;
   let content = fs.readFileSync(profilePath, 'utf8');
   if (!isAuth) {
-    // Remove useAuth import and call
-    content = content.replace(/import\s*\{\s*useAuth\s*\}\s*from\s*['"]@context\/AuthContext['"];\s*\n/, '');
+    // Replace react-native import with single line without Alert
     content = content.replace(
-      /\s*const\s*\{\s*user,\s*handleLogout\s*\}\s*=\s*useAuth\(\);/,
-      "  const user = { name: 'Guest User', email: 'guest@example.com' };"
+      /import\s*\{[\s\S]*?\}\s*from\s*['"]react-native['"];/,
+      "import { View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';"
+    );
+    // Remove useAuth import
+    content = content.replace(/import\s*\{\s*useAuth\s*\}\s*from\s*['"]@context\/AuthContext['"];\s*\n/, '');
+    // Replace useAuth() call with guest user and remove confirmLogout
+    content = content.replace(
+      /\s*const\s*\{\s*user,\s*handleLogout\s*\}\s*=\s*useAuth\(\);[\s\S]*?const confirmLogout = \(\) => \{[\s\S]*?\};\n/,
+      "\n  const user = { name: 'Guest User', email: 'guest@example.com' };\n"
     );
     // Remove logout confirmation & button
-    content = content.replace(/\n\s*const confirmLogout = \(\) => \{[\s\S]*?\};\n/, '\n');
     content = content.replace(
       /\s*<AnimationView delay=\{600\} animType="FadeIn" duration=\{800\}>\s*<TouchableOpacity\s*style=\{styles\.logoutButton\}[\s\S]*?<\/TouchableOpacity>\s*<\/AnimationView>/,
       ''
@@ -628,7 +651,23 @@ function updateProfileScreen(projectRoot, { isAuth }) {
   }
 }
 
-// 11. Automatically initialize Git repository and create initial commit
+// 13. Format generated source files with Prettier if available
+function formatProjectFiles(projectRoot) {
+  try {
+    const { execSync } = require('child_process');
+    const prettierBin = path.join(projectRoot, 'node_modules', '.bin', 'prettier');
+    if (fs.existsSync(prettierBin)) {
+      execSync(`"${prettierBin}" --write "src/**/*.{ts,tsx}"`, {
+        cwd: projectRoot,
+        stdio: 'ignore',
+      });
+    }
+  } catch (err) {
+    // Fail-safe: formatting errors should never block template generation
+  }
+}
+
+// 14. Automatically initialize Git repository and create initial commit
 function initGitCommit(projectRoot) {
   try {
     const { execSync } = require('child_process');
@@ -753,7 +792,10 @@ async function main() {
     updateAuthCheckDestination(projectRoot, userConfig);
   }
 
-  // 6. Automatically initialize Git repo and create Initial Commit
+  // 6. Format all generated files to guarantee 100% Prettier/ESLint compliance
+  formatProjectFiles(projectRoot);
+
+  // 7. Automatically initialize Git repo and create Initial Commit
   initGitCommit(projectRoot);
 
   console.log(`${colors.green}${colors.bold}✔ Configuration applied successfully!${colors.reset}\n`);

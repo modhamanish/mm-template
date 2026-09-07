@@ -69,10 +69,27 @@ For continuous integration, automated scripts, or fast setups without prompts, p
 | `--nav` | `1`, `2`, `3` | `1` | `1` = Stack only, `2` = Stack + Bottom Tabs, `3` = Stack + Drawer |
 | `--defaults` | Flag | - | Uses all defaults (`--onboarding=n --auth=1 --nav=1`) |
 
-```bash
-# Example: Non-interactive setup with Onboarding, Auth, and Bottom Tabs
-npx @react-native-community/cli@latest init MyApp --template @modhamanish/rn-mm-template --onboarding=y --auth=2 --nav=2
-```
+#### 💡 Direct Command Examples:
+
+* **Full Feature Setup (Onboarding + Auth + Bottom Tabs)**:
+  ```bash
+  npx @react-native-community/cli@latest init MyApp --template @modhamanish/rn-mm-template --onboarding=y --auth=2 --nav=2
+  ```
+
+* **Protected App with Side Drawer (Auth + Drawer Navigation)**:
+  ```bash
+  npx @react-native-community/cli@latest init MyApp --template @modhamanish/rn-mm-template --onboarding=n --auth=2 --nav=3
+  ```
+
+* **Direct App with Bottom Tabs (Without Auth)**:
+  ```bash
+  npx @react-native-community/cli@latest init MyApp --template @modhamanish/rn-mm-template --onboarding=n --auth=1 --nav=2
+  ```
+
+* **Minimal Clean Stack (Fastest / Default setup)**:
+  ```bash
+  npx @react-native-community/cli@latest init MyApp --template @modhamanish/rn-mm-template --defaults
+  ```
 
 ### 📦 Automatic Git Initialization
 Once configured, MMTemplate **automatically initializes a clean Git repository** and creates an initial commit (`Initial commit from MM Template`). Your project is instantly ready for version control!
