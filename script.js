@@ -87,9 +87,9 @@ function getProjectRoot(options) {
 async function promptUserConfig(options) {
   if (options.defaults || (!process.stdin.isTTY && !options.auth)) {
     return {
-      isAuth: options.auth !== '2',
-      isOnboarding: (options.onboarding || 'y').toLowerCase() !== 'n',
-      navType: options.nav === '2' ? 'drawer' : options.nav === '3' ? 'stack' : 'tab',
+      isAuth: options.auth === '2',
+      isOnboarding: (options.onboarding || 'n').toLowerCase() === 'y',
+      navType: options.nav === '2' ? 'tab' : options.nav === '3' ? 'drawer' : 'stack',
     };
   }
 
@@ -106,32 +106,40 @@ async function promptUserConfig(options) {
   if (!onboardingInput) {
     onboardingInput = await askQuestion(
       rl,
-      `${colors.cyan}👉 Do you need Onboarding screens? (y/n, default y): ${colors.reset}`
+      `${colors.cyan}👉 Do you need Onboarding screens? (y/n, default n): ${colors.reset}`
     );
   }
-  const isOnboarding = onboardingInput.trim().toLowerCase() !== 'n';
+  const isOnboarding =
+    onboardingInput.trim().toLowerCase() === 'y' ||
+    onboardingInput.trim().toLowerCase() === 'yes';
 
   // Question 2: Auth
   console.log(`\n${colors.yellow}${colors.bold}🔐 Step 2: Authentication Setup:${colors.reset}`);
-  console.log(`  ${colors.white}[1] With Auth${colors.reset} (Login, AuthCheck & Protected routes) ${colors.dim}[Default]${colors.reset}`);
-  console.log(`  ${colors.white}[2] Without Auth${colors.reset} (Direct App flow)`);
+  console.log(`  ${colors.white}[1] Without Auth${colors.reset} (Direct App flow) ${colors.dim}[Default]${colors.reset}`);
+  console.log(`  ${colors.white}[2] With Auth${colors.reset} (Login, AuthCheck & Protected routes)`);
   let authInput = options.auth;
   if (!authInput) {
-    authInput = await askQuestion(rl, `${colors.cyan}👉 Select Auth option (1 or 2, default 1): ${colors.reset}`);
+    authInput = await askQuestion(
+      rl,
+      `${colors.cyan}👉 Select Auth option (1 or 2, default 1): ${colors.reset}`
+    );
   }
-  const isAuth = authInput.trim() !== '2';
+  const isAuth = authInput.trim() === '2';
 
   // Question 3: Navigation Type
   console.log(`\n${colors.yellow}${colors.bold}🧭 Step 3: Navigation Type:${colors.reset}`);
-  console.log(`  ${colors.white}[1] Stack Navigation + Bottom Tab Bar${colors.reset} ${colors.dim}[Default]${colors.reset}`);
-  console.log(`  ${colors.white}[2] Stack Navigation + Drawer Bar${colors.reset}`);
-  console.log(`  ${colors.white}[3] Only Stack Navigation${colors.reset}`);
+  console.log(`  ${colors.white}[1] Only Stack Navigation${colors.reset} ${colors.dim}[Default]${colors.reset}`);
+  console.log(`  ${colors.white}[2] Stack Navigation + Bottom Tab Bar${colors.reset}`);
+  console.log(`  ${colors.white}[3] Stack Navigation + Drawer Bar${colors.reset}`);
   let navInput = options.nav;
   if (!navInput) {
-    navInput = await askQuestion(rl, `${colors.cyan}👉 Select Navigation type (1, 2, or 3, default 1): ${colors.reset}`);
+    navInput = await askQuestion(
+      rl,
+      `${colors.cyan}👉 Select Navigation type (1, 2, or 3, default 1): ${colors.reset}`
+    );
   }
   const navType =
-    navInput.trim() === '2' ? 'drawer' : navInput.trim() === '3' ? 'stack' : 'tab';
+    navInput.trim() === '2' ? 'tab' : navInput.trim() === '3' ? 'drawer' : 'stack';
 
   rl.close();
 

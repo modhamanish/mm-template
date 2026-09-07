@@ -19,15 +19,15 @@ graph TD
     E1 --> F{Step 2: Auth Setup?}
     E2 --> F
     
-    F -->|1. Auth| G1[Keep AuthStack, LoginScreen, AuthCheck]
-    F -->|2. Without Auth| G2[Remove AuthStack, LoginScreen, direct main flow]
+    F -->|1. Without Auth| G1[Remove AuthStack, LoginScreen, direct main flow]
+    F -->|2. With Auth| G2[Keep AuthStack, LoginScreen, AuthCheck]
     
     G1 --> H{Step 3: Navigation Type?}
     G2 --> H
     
-    H -->|1. Stack + Tab Bar| I1[Setup Bottom Tabs + Stack Nav]
-    H -->|2. Stack + Drawer Bar| I2[Setup Drawer Nav + Stack Nav + install drawer deps]
-    H -->|3. Only Stack| I3[Setup Clean Stack Navigation only]
+    H -->|1. Only Stack| I1[Setup Clean Stack Navigation only]
+    H -->|2. Stack + Tab Bar| I2[Setup Bottom Tabs + Stack Nav]
+    H -->|3. Stack + Drawer Bar| I3[Setup Drawer Nav + Stack Nav + install drawer deps]
     
     I1 --> J[Finalize: Update package.json, routes.ts, AppNavigator.tsx, clean unused files]
     I2 --> J
