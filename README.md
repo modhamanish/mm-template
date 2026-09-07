@@ -1,144 +1,341 @@
 # MMTemplate - React Native TypeScript Boilerplate
 
-Welcome to **MMTemplate**! This is a robust and modern React Native template built with TypeScript, designed to jumpstart your mobile application development.
+[![React Native](https://img.shields.io/badge/React_Native-0.87.1-61dafb.svg?style=flat&logo=react)](https://reactnative.dev/)
+[![React](https://img.shields.io/badge/React-19.2.3-61dafb.svg?style=flat&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178c6.svg?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![React Navigation](https://img.shields.io/badge/React_Navigation-v7-green.svg?style=flat)](https://reactnavigation.org/)
+[![Reanimated](https://img.shields.io/badge/Reanimated-v4.6-purple.svg?style=flat)](https://docs.swmansion.com/react-native-reanimated/)
+[![TanStack Query](https://img.shields.io/badge/TanStack_Query-v5-ff4154.svg?style=flat)](https://tanstack.com/query/latest)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-## 🚀 Usage
+Welcome to **MMTemplate**! A production-ready, highly modular React Native boilerplate built with **TypeScript**, designed to jumpstart your mobile application development with industry best practices, modern architecture, and an **Interactive CLI Setup**.
 
-To initialize a new project using this template, run the following command:
+---
+
+## ⚡ Quick Start & Interactive CLI Setup
+
+Initialize a new project using `@react-native-community/cli`:
 
 ```bash
-npx @react-native-community/cli@latest init AwesomeProject --template @modhamanish/rn-mm-template
+npx @react-native-community/cli@latest init MyApp --template @modhamanish/rn-mm-template
 ```
 
-Replace `AwesomeProject` with your desired project name.
+> Replace `MyApp` with your desired application name.
 
-## 🚀 Features
+### 🎮 Interactive Setup Wizard
 
-This template includes the following key libraries and configurations:
+During project initialization, MMTemplate launches an **interactive CLI wizard** that lets you configure your app's core architecture before generating the code:
 
-*   **Core**: React Native (0.83.1), React (19.2.0)
-*   **Language**: TypeScript (v5) for static type checking
-*   **Navigation**: [React Navigation v7](https://reactnavigation.org/) (Native Stack & Bottom Tabs)
-*   **Internationalization**: [react-i18next](https://react.i18next.com/) with multi-language support (English/Hindi)
-*   **Storage**: [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) for high-performance persistence
-*   **Forms**: [Formik](https://formik.org/) & [Yup](https://github.com/jquense/yup) for form state management and validation
-*   **Animations**: [React Native Reanimated v4](https://docs.swmansion.com/react-native-reanimated/) & Worklets
-*   **UI/UX**:
-    *   **Theme Support**: Light/Dark mode with persistence
-    *   **Authentication**: Pre-configured login and profile flow
-    *   [React Native Safe Area Context](https://github.com/th3rdwave/react-native-safe-area-context) for handling safe areas
-    *   [React Native Keyboard Controller](https://github.com/kirillzyusko/react-native-keyboard-controller) for advanced keyboard handling
-    *   [React Native Toast Message](https://github.com/calintamas/react-native-toast-message) for in-app notifications
-*   **Error Handling**: [react-native-error-boundary](https://github.com/cawfree/react-native-error-boundary) for robust error catching
-*   **Testing**: Jest & React Test Renderer
+```text
+                        ███╗   ███╗███╗   ███╗
+                        ████╗ ████║████╗ ████║
+                        ██╔████╔██║██╔████╔██║
+                        ██║╚██╔╝██║██║╚██╔╝██║
+                        ██║ ╚═╝ ██║██║ ╚═╝ ██║
+                        ╚═╝     ╚═╝╚═╝     ╚═╝
 
-## 📂 Project Structure
+  ████████╗███████╗███╗   ███╗██████╗ ██╗      █████╗ ████████╗███████╗
+  ╚══██╔══╝██╔════╝████╗ ████║██╔══██╗██║     ██╔══██╗╚══██╔══╝██╔════╝
+     ██║   █████╗  ██╔████╔██║██████╔╝██║     ███████║   ██║   █████╗  
+     ██║   ██╔══╝  ██║╚██╔╝██║██╔═══╝ ██║     ██╔══██║   ██║   ██╔══╝  
+     ██║   ███████╗██║ ╚═╝ ██║██║     ███████╗██║  ██║   ██║   ███████╗
+     ╚═╝   ╚══════╝╚═╝     ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝
 
-The project is organized in the `src` directory to keep clean separation of concerns:
+⚙️  Configuring your MM Template App...
+
+📱 Step 1: Onboarding Screens:
+👉 Do you need Onboarding screens? (y/n, default n): 
+
+🔐 Step 2: Authentication Setup:
+  [1] Without Auth (Direct App flow) [Default]
+  [2] With Auth (Login, AuthCheck & Protected routes)
+👉 Select Auth option (1 or 2, default 1): 
+
+🧭 Step 3: Navigation Type:
+  [1] Only Stack Navigation [Default]
+  [2] Stack Navigation + Bottom Tab Bar
+  [3] Stack Navigation + Drawer Bar
+👉 Select Navigation type (1, 2, or 3, default 1): 
+```
+
+### 🤖 Non-Interactive / CI Flags
+
+For continuous integration, automated scripts, or fast setups without prompts, pass flags directly:
+
+| Flag | Values | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `--onboarding` | `y`, `n` | `n` | Include 3-step animated onboarding screens |
+| `--auth` | `1`, `2` | `1` | `1` = Without Auth, `2` = With Auth flow |
+| `--nav` | `1`, `2`, `3` | `1` | `1` = Stack only, `2` = Stack + Bottom Tabs, `3` = Stack + Drawer |
+| `--defaults` | Flag | - | Uses all defaults (`--onboarding=n --auth=1 --nav=1`) |
+
+#### 💡 Direct Command Examples:
+
+* **Full Feature Setup (Onboarding + Auth + Bottom Tabs)**:
+  ```bash
+  npx @react-native-community/cli@latest init MyApp --template @modhamanish/rn-mm-template --onboarding=y --auth=2 --nav=2
+  ```
+
+* **Protected App with Side Drawer (Auth + Drawer Navigation)**:
+  ```bash
+  npx @react-native-community/cli@latest init MyApp --template @modhamanish/rn-mm-template --onboarding=n --auth=2 --nav=3
+  ```
+
+* **Direct App with Bottom Tabs (Without Auth)**:
+  ```bash
+  npx @react-native-community/cli@latest init MyApp --template @modhamanish/rn-mm-template --onboarding=n --auth=1 --nav=2
+  ```
+
+* **Minimal Clean Stack (Fastest / Default setup)**:
+  ```bash
+  npx @react-native-community/cli@latest init MyApp --template @modhamanish/rn-mm-template --defaults
+  ```
+
+### 📦 Automatic Git Initialization
+Once configured, MMTemplate **automatically initializes a clean Git repository** and creates an initial commit (`Initial commit from MM Template`). Your project is instantly ready for version control!
+
+---
+
+## 🏗️ Configuration Options & Architecture
+
+MMTemplate adapts its file tree and dependencies to your exact choices:
+
+### 1. 📱 Onboarding Screens
+* **Enabled (`y`)**: Includes a 3-step animated onboarding carousel powered by **Reanimated v4** (`OnboardingScreen1`, `OnboardingScreen2`, `OnboardingScreen3`) with dot pagination, "Skip", and "Get Started" buttons. Automatically navigates to Login (if Auth is enabled) or directly into the main app.
+* **Disabled (`n`)**: Completely prunes `navigation/onboarding` and `screens/onboarding` for zero unused code.
+
+### 2. 🔐 Authentication Flow
+* **With Auth (`2`)**:
+  * **`AuthCheck` Splash Screen**: Checks for saved user session in `react-native-mmkv` on app launch.
+  * **`LoginScreen`**: Formik + Yup validated login with smooth animations.
+  * **`AuthContext`**: Global authentication state (`user`, `isUserLoggedIn`, `updateUser`, `handleLogout`).
+  * **Axios Interceptor**: Automatically attaches auth tokens to outgoing HTTP requests.
+* **Without Auth (`1`)**:
+  * Boots directly into the main application.
+  * Strips auth navigators, login screens, and auth check guards.
+  * Cleans up `axiosInstance.ts` and `AuthContext.tsx` without leaving dead imports.
+
+### 3. 🧭 Navigation Architecture (React Navigation v7)
+* **Only Stack Navigation (`1`)**:
+  * Lightweight, fast Native Stack navigation (`HomeScreen`, `NoteScreen`, `ProfileScreen`, `SettingsScreen`, `AddNoteScreen`).
+  * Universal `Header` with back navigation on child screens.
+  * Automatically removes unused tab/drawer dependencies (`@react-navigation/bottom-tabs`, `@react-navigation/drawer`, `react-native-gesture-handler`).
+* **Stack Navigation + Bottom Tab Bar (`2`)**:
+  * Bottom tab bar with custom SVG/vector icons for `Home`, `Notes`, `Profile`, and `Settings`.
+  * Preserves full native stack navigation for detail screens like `AddNoteScreen`.
+* **Stack Navigation + Drawer Bar (`3`)**:
+  * Side drawer menu with custom profile header and animated menu items using `react-native-gesture-handler`.
+  * Top navigation bar displays a burger icon button to open/toggle the drawer.
+  * Automatically configures `react-native-gesture-handler` in `index.js`.
+
+---
+
+## 📂 Project Folder Structure
+
+MMTemplate follows a clean, feature-driven, and modular architecture under `src/`:
 
 ```
 src/
-├── assets/       # Images, fonts, and other static assets
-├── components/   # Reusable UI components
-├── context/      # React Context definitions (Global State)
-├── locales/      # Translation files (i18n)
-├── mock/         # Mock data for testing and development
-├── navigation/   # Navigation configuration (Stacks, Stacks, etc.)
-├── screens/      # Screen components (Views)
-├── services/     # Data fetching and API services (React Query)
-├── theme/        # Theme configuration (Colors, Typography, Spacing)
-├── types/        # Global TypeScript types and interfaces
-└── utils/        # Helper functions and utilities
+├── assets/                     # Static media and assets
+│   └── images/                 # App icons, logos, light/dark brand assets
+├── components/                 # Reusable Design System components
+│   ├── AnimationView.tsx       # Reanimated v4 entrance animation wrapper
+│   ├── AppText.tsx             # Typography component with dynamic font weights
+│   ├── CustomAlert.tsx         # Modal alert dialog
+│   ├── CustomToast.tsx         # In-app toast notification config
+│   ├── ErrorBoundaryFallback.tsx # App crash fallback UI
+│   ├── FeatureItem.tsx         # Showcase list item component
+│   ├── FullScreenContainer.tsx # Safe area & keyboard-aware screen wrapper
+│   ├── Header.tsx              # Universal header (Back button, Drawer button, Title)
+│   ├── InfoCard.tsx            # Info & analytics card component
+│   ├── LanguageSwitcher.tsx    # Multi-language selector (EN / HI)
+│   ├── TextInput.tsx           # Formik-compatible input with error state
+│   └── ThemeSwitcher.tsx       # Dark / Light theme toggle
+├── context/                    # Global React Context providers
+│   ├── AuthContext.tsx         # Authentication state & MMKV session persistence
+│   └── ThemeContext.tsx        # Dynamic theme state & dark mode persistence
+├── locales/                    # Internationalization (i18n) dictionaries
+│   ├── en.json                 # English translations
+│   └── hi.json                 # Hindi translations
+├── mock/                       # Mock data for local testing
+│   └── index.ts                # Mock login credentials & sample notes
+├── navigation/                 # Modular Navigation System (React Navigation v7)
+│   ├── auth/                   # [Configurable] AuthCheck & AuthStack (Login)
+│   ├── drawer/                 # [Configurable] DrawerNavigator & CustomDrawerContent
+│   ├── onboarding/             # [Configurable] 3-step OnboardingStack
+│   ├── stack/                  # Main AppStack (Native Stack)
+│   ├── tab/                    # [Configurable] BottomTabNavigator
+│   ├── AppNavigator.tsx        # Root Navigation Container
+│   ├── index.ts                # Navigation barrel exports
+│   └── routes.ts               # Strongly-typed Route Enum
+├── screens/                    # Modular Screen Views
+│   ├── auth/                   # [Configurable] LoginScreen
+│   ├── home/                   # HomeScreen (Dashboard & Quick Actions)
+│   ├── note/                   # NoteScreen & AddNoteScreen (TanStack Query CRUD)
+│   ├── onboarding/             # [Configurable] OnboardingScreen1, 2, 3
+│   ├── profile/                # ProfileScreen (User details & navigation links)
+│   ├── settings/               # SettingsScreen (Language, Theme, App Info)
+│   └── index.ts                # Screens barrel exports
+├── services/                   # Networking & Data Layer
+│   ├── axiosInstance.ts        # Configured Axios instance with interceptors
+│   ├── note.query.ts           # TanStack Query v5 hooks (queries & mutations)
+│   └── queryKeys.ts            # Centralized query keys
+├── theme/                      # Centralized Theme & Design Tokens
+│   ├── colors.ts               # Semantic Light & Dark color palettes
+│   └── index.ts                # Typography, spacing, and layout tokens
+├── types/                      # Global TypeScript Definitions
+│   ├── components.types.ts     # Component props & animation types
+│   ├── navigation.types.ts     # Navigation param lists & screen route props
+│   └── services.types.ts       # API request & response types
+└── utils/                      # Helper Utilities
+    ├── i18n.ts                 # i18next configuration
+    ├── navigationUtils.ts      # Navigation reference helpers
+    ├── storageHelper.ts        # react-native-mmkv type-safe storage wrapper
+    ├── utilsHelper.ts          # General helper functions
+    └── validationSchemas.ts    # Yup validation schemas (Login, Note)
 ```
 
-### Key Files & Directories
+---
 
-| Directory / File | Path | Description |
-| :--- | :--- | :--- |
-| **`assets/`** | `src/assets/` | Stores static assets such as images, fonts, and icons. |
-| **`components/`** | `src/components/` | Contains reusable UI components used throughout the application (e.g., buttons, input fields). |
-| **`context/`** | `src/context/` | Holds React Context definitions for global state management (e.g., ThemeContext, AuthContext). |
-| **`locales/`** | `src/locales/` | Contains translation files for internationalization (e.g., `en.json`, `hi.json`). |
-| **`mock/`** | `src/mock/` | Stores mock data used for development and testing. |
-| **`navigation/`** | `src/navigation/` | Contains all navigation-related configuration. |
-| &nbsp;&nbsp; └ `AppNavigator.tsx` | `src/navigation/AppNavigator.tsx` | The root navigation container. Handles switching between `AuthCheck`, `AuthStack`, and `AppStack`. |
-| &nbsp;&nbsp; └ `AppStack.tsx` | `src/navigation/AppStack.tsx` | Main application stack (post-login). Defines screens accessible to authenticated users. |
-| &nbsp;&nbsp; └ `AuthCheck.tsx` | `src/navigation/AuthCheck.tsx` | Entry splash screen logic. Determines authentication state and routes accordingly. |
-| &nbsp;&nbsp; └ `AuthStack.tsx` | `src/navigation/AuthStack.tsx` | Authentication flow stack. Defines screens like Login and Registration. |
-| **`screens/`** | `src/screens/` | Contains all the screen components (pages) of the application. |
-| **`services/`** | `src/services/` | Data fetching layer using **React Query** and **Axios**. Contains API hooks and instances. |
-| **`theme/`** | `src/theme/` | Centralized theme configuration (e.g., Colors, Typography). |
-| **`types/`** | `src/types/` |  Stores TypeScript type definitions and interfaces for the application. |
-| **`utils/`** | `src/utils/` | Contains utility functions and helper classes. |
+## 🛠️ Prerequisites
 
-## 🔐 Authentication Flow
+Ensure your development environment meets the following requirements:
 
-MMTemplate comes with a pre-configured authentication flow managed via React Context.
+- **Node.js**: `>= 20`
+- **Yarn**: `>= 1.22` (or npm)
+- **Watchman**: `brew install watchman` (macOS)
+- **Android Studio**: Android SDK, Platform-Tools, Emulator
+- **Xcode**: `>= 16` (for iOS development, macOS only)
+- **Ruby & CocoaPods**: For iOS pod management (`bundle install` / `pod install`)
 
-### 1. State Management
-Authentication state is managed globally using `AuthContext` (`src/context/AuthContext.tsx`). You can access user data and authentication methods anywhere in the app:
+> For environment setup details, see the [React Native Environment Setup Guide](https://reactnative.dev/docs/set-up-your-environment).
 
+---
+
+## 📦 Installation & Setup
+
+1. **Initialize the template**:
+   ```bash
+   npx @react-native-community/cli@latest init MyAwesomeApp --template @modhamanish/rn-mm-template
+   ```
+
+2. **Navigate into the project**:
+   ```bash
+   cd MyAwesomeApp
+   ```
+
+3. **Install Dependencies**:
+   ```bash
+   yarn install
+   ```
+
+4. **Install iOS Pods** *(macOS only)*:
+   ```bash
+   cd ios
+   bundle install
+   bundle exec pod install
+   cd ..
+   ```
+
+5. **Start Metro Bundler**:
+   ```bash
+   yarn start
+   ```
+
+6. **Run on Device / Emulator**:
+   ```bash
+   # For Android
+   yarn android
+
+   # For iOS (macOS only)
+   yarn ios
+   ```
+
+---
+
+## 🚀 Key Features & Technologies
+
+### 1. ⚡ TanStack Query (React Query) v5 & Axios
+MMTemplate comes pre-configured with **TanStack Query v5** for server-state caching, automatic background refetching, and optimistic updates:
 ```tsx
-const { user, updateUser, handleLogout, isUserLoggedIn } = useAuth();
+import { useGetNotesQuery, useAddNoteMutation } from '@services/note.query';
+
+const { data: notes, isLoading, refetch } = useGetNotesQuery();
+const { mutate: addNote, isPending } = useAddNoteMutation();
+
+// Add note
+addNote({ title: 'My Note', description: 'Content here' });
 ```
 
-### 2. Navigation Logic
-- **`AuthCheck`**: The entry point component that checks if a user is already logged in (via `react-native-mmkv` persistence).
-- **`AuthStack`**: contains screens for non-authenticated users (Welcome, Login).
-- **`AppStack`**: contains the main application screens (Home, Profile, Settings).
+### 2. 💾 Ultra-Fast MMKV Storage
+Local key-value persistence is powered by **`react-native-mmkv`** (v4), providing instant synchronous reads and writes:
+```tsx
+import { storageHelper } from '@utils/storageHelper';
 
-Navigation automatically switches between these stacks based on the `user` state in `AuthContext`.
+// Save and retrieve values
+storageHelper.set('user_token', 'xyz123');
+const token = storageHelper.getString('user_token');
+```
 
-### 3. Mock Credentials
-For testing purposes, you can use the following credentials (defined in `src/mock/index.ts`):
+### 3. 🌐 Multi-Language Support (i18n)
+Built-in internationalization using **`react-i18next`** with English and Hindi pre-configured. Language preferences persist across app restarts using MMKV:
+```tsx
+import { useTranslation } from 'react-i18next';
+
+const { t } = useTranslation();
+<AppText>{t('common.welcome')}</AppText>
+```
+
+### 4. 🎨 Theme System (Dark & Light Mode)
+Centralized semantic color palette with automatic device theme synchronization or manual toggle:
+```tsx
+import { useTheme } from '@context/ThemeContext';
+
+const { isDark, theme, toggleTheme } = useTheme();
+```
+
+### 5. 🔐 Authentication Flow & Mock Credentials
+If authentication is enabled during CLI setup:
 - **Email**: `user@gmail.com`
 - **Password**: `123456`
 
-### 4. Storage Persistence
-User sessions are persisted locally using `react-native-mmkv`, ensuring users stay logged in even after closing the app.
-
----
-
-## 🚀 Data Fetching (React Query)
-
-MMTemplate uses **TanStack Query (React Query) v5** for server state management and **Axios** for API requests.
-
-### 1. Services Structure
-- **`axiosInstance.ts`**: Configured Axios instance with base URL and interceptors.
-- **`queryKeys.ts`**: Centralized keys for consistency and easy invalidation.
-- **`*.query.ts`**: Feature-specific hooks for fetching and mutating data.
-
-### 2. Usage Example
-To fetch data, use a query hook defined in `src/services`:
-
+State is accessible anywhere via the `useAuth` hook:
 ```tsx
-import { useGetNotesQuery } from '../services/note.query';
+import { useAuth } from '@context/AuthContext';
 
-const { data, isLoading, error } = useGetNotesQuery();
+const { user, isUserLoggedIn, handleLogout } = useAuth();
 ```
 
-To update data, use a mutation hook:
-
-```tsx
-import { useAddNoteMutation } from '../services/note.query';
-
-const { mutate, isPending } = useAddNoteMutation();
-const handleSave = () => mutate({ title: 'New Note', content: '...' });
-```
-
-### 3. Global Configuration
-The `QueryClient` is pre-configured in `App.tsx` with optimized defaults (e.g., `refetchOnWindowFocus: false`).
+### 6. 🛡️ Error Boundary & Crash Fallback
+Wrapped with **`react-native-error-boundary`** to gracefully handle unexpected runtime errors without closing the application.
 
 ---
 
-## 📝 Scripts
+## 📝 Available Scripts
 
-*   `yarn start`: Starts the Metro Bundler.
-*   `yarn android`: Builds and runs the Android app.
-*   `yarn ios`: Builds and runs the iOS app.
-*   `yarn lint`: Lints the project files.
-*   `yarn test`: Runs Jest tests.
+| Script | Command | Description |
+| :--- | :--- | :--- |
+| **Start Metro** | `yarn start` | Launches Metro bundler with cache reset |
+| **Android** | `yarn android` | Builds and runs the app on Android |
+| **iOS** | `yarn ios` | Builds and runs the app on iOS |
+| **Lint** | `yarn lint` | Runs ESLint static analysis |
+| **Lint Fix** | `yarn lint:fix` | Automatically fixes ESLint warnings and errors |
+| **Format** | `yarn format` | Formats codebase using Prettier |
+| **Test** | `yarn test` | Runs Jest unit and snapshot tests |
 
 ---
 
-Made with ❤️ using **MMTemplate**.
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+Feel free to check the [Issues page](https://github.com/modhamanish/mm-template/issues).
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Made with ❤️ by [Manish Modha](https://github.com/modhamanish)

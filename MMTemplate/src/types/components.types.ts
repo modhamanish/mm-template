@@ -86,7 +86,8 @@ export interface AnimationViewProps {
     | 'ZoomOut'
     | 'RotateIn'
     | 'RotateOut'
-    | 'SlideInDown';
+    | 'SlideInDown'
+    | 'SlideInUp';
   duration?: number;
   delay?: number;
   rotateValue?: number;

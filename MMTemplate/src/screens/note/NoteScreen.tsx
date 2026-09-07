@@ -14,6 +14,7 @@ import { Note } from '@app-types/services.types';
 import AnimationView from '@components/AnimationView';
 import AppText from '@components/AppText';
 import FullScreenContainer from '@components/FullScreenContainer';
+import Header from '@components/Header';
 import { useTheme } from '@context/ThemeContext';
 import Routes from '@navigation/routes';
 import { useGetNotesQuery } from '@services/note.query';
@@ -97,6 +98,14 @@ const NoteScreen: FC = () => {
 
   return (
     <FullScreenContainer style={styles.container}>
+      {/* Universal Header */}
+      <Header
+        title={t('common.notes', 'Notes')}
+        showDrawer
+        rightIcon={<AppText size={18}>➕</AppText>}
+        onRightPress={() => navigate(Routes.AddNoteScreen)}
+      />
+
       {isLoading && !isRefetching ? (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color={theme.colors.primary} />
@@ -112,7 +121,9 @@ const NoteScreen: FC = () => {
           refreshControl={
             <RefreshControl
               refreshing={isRefetching}
-              onRefresh={refetch}
+              onRefresh={() => {
+                refetch();
+              }}
               tintColor={theme.colors.primary}
               colors={[theme.colors.primary]}
             />
@@ -150,29 +161,22 @@ const getStyles = ({ colors }: ThemeType) =>
       paddingBottom: 100,
     },
     headerContainer: {
-      marginBottom: 24,
-      marginTop: 20,
+      marginBottom: 20,
     },
     headerTitle: {
       color: colors.textColor,
-      letterSpacing: -0.5,
+      marginBottom: 4,
     },
     headerSubtitle: {
-      color: hexWithOpacity(colors.textColor, 50),
-      marginTop: 4,
+      color: hexWithOpacity(colors.textColor, 70),
     },
     noteCard: {
-      backgroundColor: colors.backgroundColor,
+      backgroundColor: hexWithOpacity(colors.textColor, 6),
       borderRadius: 16,
       padding: 16,
-      marginBottom: 16,
+      marginBottom: 12,
       borderWidth: 1,
       borderColor: hexWithOpacity(colors.textColor, 8),
-      shadowColor: colors.black,
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.05,
-      shadowRadius: 10,
-      elevation: 2,
     },
     noteHeader: {
       flexDirection: 'row',
@@ -181,42 +185,40 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 8,
     },
     noteTitle: {
-      color: colors.textColor,
       flex: 1,
+      color: colors.textColor,
       marginRight: 8,
     },
     noteTag: {
-      backgroundColor: hexWithOpacity(colors.primary, 8),
+      backgroundColor: hexWithOpacity(colors.primary, 15),
       paddingHorizontal: 8,
-      paddingVertical: 4,
+      paddingVertical: 2,
       borderRadius: 8,
     },
     noteTagText: {
       color: colors.primary,
-      textTransform: 'uppercase',
     },
     noteContent: {
-      color: hexWithOpacity(colors.textColor, 70),
+      color: hexWithOpacity(colors.textColor, 75),
       lineHeight: 20,
     },
     emptyContainer: {
-      flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: 100,
+      paddingVertical: 60,
     },
     emptyIcon: {
       marginBottom: 16,
     },
     emptyText: {
-      color: hexWithOpacity(colors.textColor, 50),
-      marginBottom: 24,
+      color: hexWithOpacity(colors.textColor, 60),
+      marginBottom: 20,
     },
     addNoteButtonSmall: {
       backgroundColor: colors.primary,
-      paddingHorizontal: 24,
-      paddingVertical: 12,
-      borderRadius: 12,
+      paddingHorizontal: 20,
+      paddingVertical: 10,
+      borderRadius: 10,
     },
     addNoteButtonTextSmall: {
       color: colors.white,
@@ -225,19 +227,20 @@ const getStyles = ({ colors }: ThemeType) =>
       position: 'absolute',
       right: 20,
       bottom: 20,
-      width: 60,
-      height: 60,
-      borderRadius: 30,
+      width: 56,
+      height: 56,
+      borderRadius: 28,
       backgroundColor: colors.primary,
       justifyContent: 'center',
       alignItems: 'center',
-      elevation: 5,
-      shadowColor: colors.black,
+      shadowColor: colors.primary,
       shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.3,
-      shadowRadius: 6,
+      shadowOpacity: 0.4,
+      shadowRadius: 8,
+      elevation: 6,
     },
     fabIcon: {
       color: colors.white,
+      fontWeight: '300',
     },
   });

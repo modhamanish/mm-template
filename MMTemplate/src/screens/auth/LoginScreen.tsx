@@ -50,12 +50,16 @@ const LoginScreen: FC = () => {
     },
   });
 
+  const handleForgotPassword = () => {
+    Toast.show({
+      type: 'info',
+      text1: t('auth.forgotPassword'),
+      text2: `Use mock password: ${userMockData.password}`,
+    });
+  };
+
   return (
-    <FullScreenContainer
-      isKeyboardAvoidingView
-      style={styles.container}
-      barStyle="light-content"
-    >
+    <FullScreenContainer isKeyboardAvoidingView style={styles.container}>
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
@@ -126,7 +130,11 @@ const LoginScreen: FC = () => {
             />
 
             {/* Forgot Password */}
-            <TouchableOpacity style={styles.forgotPassword}>
+            <TouchableOpacity
+              style={styles.forgotPassword}
+              onPress={handleForgotPassword}
+              activeOpacity={0.7}
+            >
               <AppText variant="semiBold" style={styles.forgotPasswordText}>
                 {t('auth.forgotPassword')}
               </AppText>
@@ -136,27 +144,12 @@ const LoginScreen: FC = () => {
             <TouchableOpacity
               style={styles.loginButton}
               onPress={() => formik.handleSubmit()}
+              activeOpacity={0.8}
             >
-              <AppText
-                variant="bold"
-                size="body"
-                style={styles.loginButtonText}
-              >
+              <AppText variant="bold" size={16} style={styles.loginButtonText}>
                 {t('auth.login')}
               </AppText>
             </TouchableOpacity>
-
-            {/* Sign Up Link */}
-            <View style={styles.signupContainer}>
-              <AppText style={styles.signupText}>
-                {t('auth.dontHaveAccount')}{' '}
-              </AppText>
-              <TouchableOpacity>
-                <AppText variant="semiBold" style={styles.signupLink}>
-                  {t('auth.signUp')}
-                </AppText>
-              </TouchableOpacity>
-            </View>
           </View>
         </AnimationView>
       </ScrollView>
@@ -174,71 +167,69 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     scrollContent: {
       flexGrow: 1,
-      padding: 20,
+      paddingHorizontal: 24,
+      paddingTop: 40,
+      paddingBottom: 24,
       justifyContent: 'center',
     },
     header: {
-      marginBottom: 40,
-      alignItems: 'center',
+      marginBottom: 32,
     },
     title: {
       color: colors.textColor,
       marginBottom: 8,
     },
     subtitle: {
-      color: hexWithOpacity(colors.textColor, 80),
+      color: hexWithOpacity(colors.textColor, 70),
     },
     formContainer: {
       width: '100%',
     },
     hintBanner: {
-      backgroundColor: hexWithOpacity(colors.primary, 6),
-      padding: 16,
+      backgroundColor: hexWithOpacity(colors.primary, 10),
       borderRadius: 12,
-      borderWidth: 1,
-      borderColor: hexWithOpacity(colors.primary, 18),
-      marginBottom: 24,
+      padding: 14,
+      marginBottom: 20,
+      borderLeftWidth: 4,
+      borderLeftColor: colors.primary,
     },
     hintTitle: {
       color: colors.primary,
-      marginBottom: 8,
+      fontSize: 13,
+      marginBottom: 6,
     },
     hintContent: {
       flexDirection: 'row',
-      marginBottom: 4,
+      marginTop: 2,
     },
     hintLabel: {
-      color: colors.textColor,
+      color: hexWithOpacity(colors.textColor, 80),
     },
     hintValue: {
-      color: hexWithOpacity(colors.textColor, 80),
+      color: hexWithOpacity(colors.textColor, 90),
+      fontWeight: '600',
     },
     forgotPassword: {
       alignSelf: 'flex-end',
+      marginTop: 8,
       marginBottom: 24,
     },
     forgotPasswordText: {
       color: colors.primary,
+      fontSize: 14,
     },
     loginButton: {
       backgroundColor: colors.primary,
       borderRadius: 12,
-      padding: 16,
+      paddingVertical: 16,
       alignItems: 'center',
-      marginBottom: 20,
+      shadowColor: colors.primary,
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.3,
+      shadowRadius: 8,
+      elevation: 4,
     },
     loginButtonText: {
       color: colors.white,
-    },
-    signupContainer: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    signupText: {
-      color: hexWithOpacity(colors.textColor, 80),
-    },
-    signupLink: {
-      color: colors.primary,
     },
   });

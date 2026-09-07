@@ -22,6 +22,8 @@ const AnimationView: FC<AnimationViewProps> = ({
     switch (animType) {
       case 'SlideInDown':
         return -100;
+      case 'SlideInUp':
+        return 100;
       case 'FadeOut':
       case 'ZoomOut':
         return 1;
@@ -49,6 +51,7 @@ const AnimationView: FC<AnimationViewProps> = ({
           transform: [{ rotate: animValue.value + 'deg' }],
         };
       case 'SlideInDown':
+      case 'SlideInUp':
         return {
           transform: [{ translateY: animValue.value }],
         };
@@ -82,6 +85,7 @@ const AnimationView: FC<AnimationViewProps> = ({
         easing = Easing.elastic(1);
         break;
       case 'SlideInDown':
+      case 'SlideInUp':
         targetValue = 0;
         easing = Easing.elastic(1);
         break;

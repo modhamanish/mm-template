@@ -4,10 +4,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { RootStackParamList } from '@app-types/navigation.types';
-import AppStack from '@navigation/AppStack';
-import AuthCheck from '@navigation/AuthCheck';
-import AuthStack from '@navigation/AuthStack';
+import AuthCheck from '@navigation/auth/AuthCheck';
+import AuthStack from '@navigation/auth/AuthStack';
+import OnboardingStack from '@navigation/onboarding/OnboardingStack';
 import Routes from '@navigation/routes';
+import AppStack from '@navigation/stack/AppStack';
 import { navigationRef } from '@utils/navigationUtils';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -25,6 +26,11 @@ const AppNavigator: FC = () => {
           options={{ animation: 'fade' }}
           name={Routes.AuthCheck}
           component={AuthCheck}
+        />
+        <Stack.Screen
+          options={{ animation: 'fade' }}
+          name={Routes.OnboardingStack}
+          component={OnboardingStack}
         />
         <Stack.Screen
           options={{ animation: 'fade' }}

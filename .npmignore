@@ -14,6 +14,11 @@ release.js
 *.log
 .DS_Store
 
+# Internal documentation & design assets
+INTERACTIVE_TEMPLATE_GUIDE.md
+flow.svg
+flow.png
+
 # Template nested artifacts
 MMTemplate/node_modules
 MMTemplate/package-lock.json

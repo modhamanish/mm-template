@@ -1,11 +1,18 @@
 import React, { FC, useMemo } from 'react';
-import { View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  ScrollView,
+} from 'react-native';
 
 import { useTranslation } from 'react-i18next';
 
 import AnimationView from '@components/AnimationView';
 import AppText from '@components/AppText';
 import FullScreenContainer from '@components/FullScreenContainer';
+import Header from '@components/Header';
 import InfoCard from '@components/InfoCard';
 import { useAuth } from '@context/AuthContext';
 import { useTheme } from '@context/ThemeContext';
@@ -40,8 +47,19 @@ const ProfileScreen: FC = () => {
   };
 
   return (
-    <FullScreenContainer style={styles.container} barStyle="light-content">
-      <View style={styles.content}>
+    <FullScreenContainer style={styles.container}>
+      {/* Universal Header */}
+      <Header
+        title={t('common.profile', 'Profile')}
+        showDrawer
+        rightIcon={<AppText size={18}>⚙️</AppText>}
+        onRightPress={() => navigate(Routes.SettingsScreen)}
+      />
+
+      <ScrollView
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+      >
         <AnimationView animType="FadeIn" duration={800}>
           <View style={styles.header}>
             <View style={styles.avatarContainer}>
@@ -79,6 +97,7 @@ const ProfileScreen: FC = () => {
           <TouchableOpacity
             style={styles.settingsButton}
             onPress={() => navigate(Routes.SettingsScreen)}
+            activeOpacity={0.7}
           >
             <AppText
               variant="bold"
@@ -91,13 +110,17 @@ const ProfileScreen: FC = () => {
         </AnimationView>
 
         <AnimationView delay={600} animType="FadeIn" duration={800}>
-          <TouchableOpacity style={styles.logoutButton} onPress={confirmLogout}>
+          <TouchableOpacity
+            style={styles.logoutButton}
+            onPress={confirmLogout}
+            activeOpacity={0.7}
+          >
             <AppText variant="bold" size="body" style={styles.logoutButtonText}>
               {t('common.logout')}
             </AppText>
           </TouchableOpacity>
         </AnimationView>
-      </View>
+      </ScrollView>
     </FullScreenContainer>
   );
 };
@@ -111,13 +134,13 @@ const getStyles = ({ colors }: ThemeType) =>
       backgroundColor: colors.backgroundColor,
     },
     content: {
-      flex: 1,
       padding: 20,
+      paddingBottom: 40,
     },
     header: {
       alignItems: 'center',
-      marginBottom: 32,
-      marginTop: 40,
+      marginBottom: 30,
+      paddingTop: 10,
     },
     avatarContainer: {
       width: 100,
@@ -127,6 +150,11 @@ const getStyles = ({ colors }: ThemeType) =>
       justifyContent: 'center',
       alignItems: 'center',
       marginBottom: 16,
+      shadowColor: colors.primary,
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.3,
+      shadowRadius: 8,
+      elevation: 6,
     },
     avatarText: {
       color: colors.white,
@@ -136,13 +164,14 @@ const getStyles = ({ colors }: ThemeType) =>
       marginBottom: 4,
     },
     email: {
-      color: hexWithOpacity(colors.textColor, 80),
+      color: hexWithOpacity(colors.textColor, 70),
     },
     infoRow: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      alignItems: 'center',
-      paddingVertical: 8,
+      paddingVertical: 12,
+      borderBottomWidth: 1,
+      borderBottomColor: hexWithOpacity(colors.textColor, 8),
     },
     infoLabel: {
       color: colors.textColor,
@@ -150,26 +179,29 @@ const getStyles = ({ colors }: ThemeType) =>
     infoValue: {
       color: hexWithOpacity(colors.textColor, 80),
     },
-    logoutButton: {
-      backgroundColor: colors.primary,
-      borderRadius: 12,
+    settingsButton: {
+      backgroundColor: hexWithOpacity(colors.textColor, 8),
+      borderRadius: 14,
       padding: 16,
       alignItems: 'center',
-      marginTop: 24,
+      marginTop: 20,
+    },
+    settingsButtonText: {
+      color: colors.textColor,
+    },
+    logoutButton: {
+      backgroundColor: colors.primary,
+      borderRadius: 14,
+      padding: 16,
+      alignItems: 'center',
+      marginTop: 12,
+      shadowColor: colors.primary,
+      shadowOffset: { width: 0, height: 4 },
+      shadowOpacity: 0.3,
+      shadowRadius: 6,
+      elevation: 4,
     },
     logoutButtonText: {
       color: colors.white,
-    },
-    settingsButton: {
-      backgroundColor: colors.backgroundColor,
-      borderRadius: 12,
-      padding: 16,
-      alignItems: 'center',
-      marginTop: 32,
-      borderWidth: 1,
-      borderColor: colors.primary,
-    },
-    settingsButtonText: {
-      color: colors.primary,
     },
   });

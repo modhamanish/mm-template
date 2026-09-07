@@ -1,7 +1,6 @@
 import React, { FC, useMemo } from 'react';
 import {
   StyleSheet,
-  View,
   TouchableOpacity,
   ActivityIndicator,
   ScrollView,
@@ -13,12 +12,12 @@ import { useTranslation } from 'react-i18next';
 import AnimationView from '@components/AnimationView';
 import AppText from '@components/AppText';
 import FullScreenContainer from '@components/FullScreenContainer';
+import Header from '@components/Header';
 import TextInput from '@components/TextInput';
 import { useTheme } from '@context/ThemeContext';
 import { useAddNoteMutation } from '@services/note.query';
 import { ThemeType } from '@src/theme/colors';
 import { goBack } from '@utils/navigationUtils';
-import { hexWithOpacity } from '@utils/utilsHelper';
 import { NoteSchema } from '@utils/validationSchemas';
 
 const AddNoteScreen: FC = () => {
@@ -44,45 +43,40 @@ const AddNoteScreen: FC = () => {
 
   return (
     <FullScreenContainer style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton} onPress={() => goBack()}>
-          <AppText size="xlarge" style={styles.backIcon}>
-            ←
-          </AppText>
-        </TouchableOpacity>
-        <AppText variant="h3" style={styles.headerTitle}>
-          {t('common.addNote')}
-        </AppText>
-        <View style={styles.spacer} />
-      </View>
+      <Header
+        title={t('common.addNote', 'Add Note')}
+        showBack
+        onBackPress={() => goBack()}
+      />
 
       <ScrollView contentContainerStyle={styles.content}>
         <AnimationView animType="FadeIn" duration={500}>
           <TextInput
             label={t('common.title')}
-            placeholder={t('common.enterTitle')}
+            placeholder={t('common.titlePlaceholder')}
             value={values.title}
             onChangeText={handleChange('title')}
             onBlur={handleBlur('title')}
             error={errors.title}
             touched={touched.title}
+            autoFocus
           />
 
           <TextInput
             label={t('common.description')}
-            placeholder={t('common.enterDescription')}
+            placeholder={t('common.descriptionPlaceholder')}
             value={values.description}
             onChangeText={handleChange('description')}
             onBlur={handleBlur('description')}
             error={errors.description}
             touched={touched.description}
             multiline
-            numberOfLines={10}
+            numberOfLines={6}
             style={styles.textArea}
           />
 
           <TouchableOpacity
-            style={[styles.saveButton, isPending && styles.saveButtonDisabled]}
+            style={[styles.button, isPending && styles.buttonDisabled]}
             onPress={() => handleSubmit()}
             disabled={isPending}
             activeOpacity={0.8}
@@ -90,7 +84,7 @@ const AddNoteScreen: FC = () => {
             {isPending ? (
               <ActivityIndicator color={theme.colors.white} />
             ) : (
-              <AppText variant="bold" size={18} style={styles.saveButtonText}>
+              <AppText variant="bold" size={16} style={styles.buttonText}>
                 {t('common.save')}
               </AppText>
             )}
@@ -109,53 +103,29 @@ const getStyles = ({ colors }: ThemeType) =>
       flex: 1,
       backgroundColor: colors.backgroundColor,
     },
-    header: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      paddingHorizontal: 16,
-      paddingVertical: 12,
-      borderBottomWidth: 1,
-      borderBottomColor: hexWithOpacity(colors.textColor, 6),
-    },
-    backButton: {
-      width: 40,
-      height: 40,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    backIcon: {
-      color: colors.textColor,
-    },
-    headerTitle: {
-      color: colors.textColor,
-    },
     content: {
       padding: 20,
     },
     textArea: {
-      height: 150,
+      height: 120,
       textAlignVertical: 'top',
     },
-    saveButton: {
+    button: {
       backgroundColor: colors.primary,
-      borderRadius: 12,
-      padding: 16,
+      paddingVertical: 16,
+      borderRadius: 14,
       alignItems: 'center',
-      marginTop: 24,
+      marginTop: 20,
       shadowColor: colors.primary,
       shadowOffset: { width: 0, height: 4 },
       shadowOpacity: 0.3,
       shadowRadius: 8,
-      elevation: 5,
+      elevation: 4,
     },
-    saveButtonDisabled: {
+    buttonDisabled: {
       opacity: 0.6,
     },
-    saveButtonText: {
+    buttonText: {
       color: colors.white,
-    },
-    spacer: {
-      width: 40,
     },
   });

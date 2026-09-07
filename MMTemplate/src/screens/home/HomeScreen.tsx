@@ -1,5 +1,12 @@
 import React, { FC, useMemo } from 'react';
-import { Image, StyleSheet, View, ScrollView } from 'react-native';
+import {
+  Image,
+  Platform,
+  StyleSheet,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 
 import { useTranslation } from 'react-i18next';
 
@@ -8,9 +15,12 @@ import AnimationView from '@components/AnimationView';
 import AppText from '@components/AppText';
 import FeatureItem from '@components/FeatureItem';
 import FullScreenContainer from '@components/FullScreenContainer';
+import Header from '@components/Header';
 import InfoCard from '@components/InfoCard';
 import { useTheme } from '@context/ThemeContext';
+import Routes from '@navigation/routes';
 import { ThemeType } from '@src/theme/colors';
+import { navigate } from '@utils/navigationUtils';
 import {
   hexWithOpacity,
   mobileScreenHeight,
@@ -23,7 +33,10 @@ const HomeScreen: FC = () => {
   const styles = useMemo(() => getStyles(theme), [theme]);
 
   return (
-    <FullScreenContainer style={styles.container} barStyle="light-content">
+    <FullScreenContainer style={styles.container}>
+      {/* Universal Header */}
+      <Header title={t('common.home', 'Home')} showDrawer />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
@@ -45,6 +58,44 @@ const HomeScreen: FC = () => {
               </AppText>
               <AppText style={styles.subtitle}>{t('home.subtitle')}</AppText>
             </AnimationView>
+          </View>
+        </AnimationView>
+
+        {/* Quick Navigation Cards (especially useful for Stack Mode) */}
+        <AnimationView delay={500} animType="FadeIn" duration={800}>
+          <View style={styles.quickNavRow}>
+            <TouchableOpacity
+              style={styles.navCard}
+              onPress={() => navigate(Routes.NoteScreen)}
+              activeOpacity={0.7}
+            >
+              <AppText size={24}>📝</AppText>
+              <AppText variant="bold" size={14} style={styles.navCardTitle}>
+                {t('common.note', 'Notes')}
+              </AppText>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.navCard}
+              onPress={() => navigate(Routes.ProfileScreen)}
+              activeOpacity={0.7}
+            >
+              <AppText size={24}>👤</AppText>
+              <AppText variant="bold" size={14} style={styles.navCardTitle}>
+                {t('common.profile', 'Profile')}
+              </AppText>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.navCard}
+              onPress={() => navigate(Routes.SettingsScreen)}
+              activeOpacity={0.7}
+            >
+              <AppText size={24}>⚙️</AppText>
+              <AppText variant="bold" size={14} style={styles.navCardTitle}>
+                {t('common.settings', 'Settings')}
+              </AppText>
+            </TouchableOpacity>
           </View>
         </AnimationView>
 
@@ -75,60 +126,88 @@ const HomeScreen: FC = () => {
         {/* Project Structure Section */}
         <AnimationView delay={800} animType="FadeIn" duration={800}>
           <InfoCard title={`📁 ${t('home.projectStructure')}`} icon="">
+            <View style={styles.treeBlock}>
+              <AppText style={styles.treeText}>
+                {`src/
+├── assets/        # Images, logos, brand assets
+├── components/    # Reusable UI component library
+├── context/       # AuthContext & ThemeContext
+├── locales/       # i18n translations (en, hi)
+├── mock/          # Mock credentials & sample data
+├── navigation/    # Modular Navigators (v7)
+│   ├── auth/      # AuthCheck, AuthStack
+│   ├── drawer/    # DrawerNavigator
+│   ├── onboarding/# OnboardingStack
+│   ├── stack/     # AppStack
+│   └── tab/       # BottomTabNavigator
+├── screens/       # Modular Screen Views
+│   ├── auth/      # LoginScreen
+│   ├── home/      # HomeScreen
+│   ├── note/      # NoteScreen, AddNoteScreen
+│   ├── onboarding/# OnboardingScreen1, 2, 3
+│   ├── profile/   # ProfileScreen
+│   └── settings/  # SettingsScreen
+├── services/      # Axios & TanStack Query v5
+├── theme/         # Colors, typography, spacing
+├── types/         # TypeScript definitions
+└── utils/         # MMKV storage, i18n, schemas`}
+              </AppText>
+            </View>
+
+            <FeatureItem
+              icon="🧭"
+              title="navigation/"
+              description="Modular navigators: stack/, tab/, drawer/, auth/, and onboarding/."
+            />
             <FeatureItem
               icon="📱"
               title="screens/"
-              description="All your screen components. Add new screens here."
+              description="Modular screens grouped by domain (home, note, profile, auth, onboarding)."
             />
             <FeatureItem
               icon="🧩"
               title="components/"
-              description="Reusable UI components used across screens."
-            />
-            <FeatureItem
-              icon="🧭"
-              title="navigation/"
-              description="Navigation setup with AuthStack and AppStack."
-            />
-            <FeatureItem
-              icon="🎨"
-              title="theme/"
-              description="Centralized colors and styling configuration."
-            />
-            <FeatureItem
-              icon="🌍"
-              title="locales/"
-              description={t('home.localesDescription')}
-            />
-            <FeatureItem
-              icon="🧪"
-              title="mock/"
-              description={t('home.mockDescription')}
-            />
-            <FeatureItem
-              icon="🔧"
-              title="utils/"
-              description="Helper functions and utility methods."
-            />
-            <FeatureItem
-              icon="📦"
-              title="context/"
-              description="React Context for global state management."
-            />
-            <FeatureItem
-              icon="🖼️"
-              title="assets/"
-              description={t('home.assetsDescription')}
+              description="Reusable UI library (Header, AppText, AnimationView, Alert, etc.)."
             />
             <FeatureItem
               icon="⚡"
               title="services/"
-              description={t('home.servicesDescription')}
+              description="TanStack Query v5 hooks, Axios client & centralized query keys."
+            />
+            <FeatureItem
+              icon="📦"
+              title="context/"
+              description="React Context for global state (AuthContext & ThemeContext)."
+            />
+            <FeatureItem
+              icon="🎨"
+              title="theme/"
+              description="Centralized colors, typography, and spacing tokens."
+            />
+            <FeatureItem
+              icon="🌍"
+              title="locales/"
+              description="Multi-language translation files (en.json, hi.json)."
+            />
+            <FeatureItem
+              icon="🔧"
+              title="utils/"
+              description="MMKV storageHelper, i18n configuration, and Yup validation schemas."
             />
             <FeatureItem
               icon="🏷️"
               title="types/"
-              description={t('home.typesDescription')}
+              description="Strict TypeScript types for navigation params, components, and APIs."
+            />
+            <FeatureItem
+              icon="🧪"
+              title="mock/"
+              description="Mock user credentials (user@gmail.com) and note data."
+            />
+            <FeatureItem
+              icon="🖼️"
+              title="assets/"
+              description="Static media assets, light/dark logos, and brand assets."
             />
           </InfoCard>
         </AnimationView>
@@ -139,7 +218,7 @@ const HomeScreen: FC = () => {
             <FeatureItem
               icon="⚡"
               title="React Navigation v7"
-              description="Pre-configured navigation with stack navigators"
+              description="Pre-configured stack, tab, and drawer navigators"
             />
             <FeatureItem
               icon="🎬"
@@ -216,7 +295,7 @@ const HomeScreen: FC = () => {
             <AppText style={styles.cardText}>
               1. Customize the theme in{' '}
               <AppText variant="semiBold" style={styles.highlight}>
-                theme/Colors.ts
+                theme/colors.ts
               </AppText>
             </AppText>
             <AppText style={styles.cardText}>
@@ -273,8 +352,8 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     header: {
       alignItems: 'center',
-      marginBottom: 24,
-      paddingTop: 20,
+      marginBottom: 20,
+      paddingTop: 10,
     },
     logo: {
       height: mobileScreenHeight * 0.15,
@@ -291,6 +370,26 @@ const getStyles = ({ colors }: ThemeType) =>
       color: hexWithOpacity(colors.textColor, 80),
       textAlign: 'center',
     },
+    quickNavRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginBottom: 20,
+      gap: 12,
+    },
+    navCard: {
+      flex: 1,
+      backgroundColor: hexWithOpacity(colors.primary, 8),
+      borderRadius: 14,
+      padding: 14,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderWidth: 1,
+      borderColor: hexWithOpacity(colors.primary, 15),
+    },
+    navCardTitle: {
+      color: colors.textColor,
+      marginTop: 6,
+    },
     cardText: {
       color: colors.textColor,
       lineHeight: 20,
@@ -305,12 +404,26 @@ const getStyles = ({ colors }: ThemeType) =>
       borderLeftColor: colors.primary,
     },
     codeText: {
-      fontFamily: 'monospace',
+      fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
+      color: colors.textColor,
+    },
+    treeBlock: {
+      backgroundColor: hexWithOpacity(colors.textColor, 5),
+      padding: 12,
+      borderRadius: 8,
+      marginBottom: 16,
+      borderLeftWidth: 3,
+      borderLeftColor: colors.primary,
+    },
+    treeText: {
+      fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
+      fontSize: 11,
+      lineHeight: 16,
       color: colors.textColor,
     },
     highlight: {
       color: colors.primary,
-      fontFamily: 'monospace',
+      fontFamily: Platform.OS === 'ios' ? 'Menlo' : 'monospace',
     },
     footer: {
       alignItems: 'center',

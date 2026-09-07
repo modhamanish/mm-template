@@ -6,7 +6,9 @@
   "author": "Manish Modha",
   "license": "ISC",
   "scripts": {
-    "release": "node release.js"
+    "release": "node release.js",
+    "lint": "yarn --cwd MMTemplate lint",
+    "lint:fix": "yarn --cwd MMTemplate lint:fix"
   },
   "files": [
     "MMTemplate",
