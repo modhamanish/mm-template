@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+/node_modules
+
+# Production build artifacts
+build/
+/build
+dist/
+
+# Docusaurus generated files
+.docusaurus/
+.cache-loader/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Operating System & IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Main project exclusions (when switching branches)
+MMTemplate/
+.npmrc
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log

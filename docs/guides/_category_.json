@@ -1,0 +1,9 @@
+{
+  "label": "Architecture & Guides",
+  "position": 3,
+  "collapsed": false,
+  "link": {
+    "type": "generated-index",
+    "description": "Comprehensive guides to MMTemplate architecture, state management, theming, and components."
+  }
+}
