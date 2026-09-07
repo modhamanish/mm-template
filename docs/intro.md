@@ -12,11 +12,29 @@ It is crafted to jumpstart your mobile application development with industry bes
 
 [![React Native](https://img.shields.io/badge/React_Native-0.87.1-61dafb.svg?style=flat&logo=react)](https://reactnative.dev/)
 [![React](https://img.shields.io/badge/React-19.2.3-61dafb.svg?style=flat&logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178c6.svg?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![React Navigation](https://img.shields.io/badge/React_Navigation-v7-green.svg?style=flat)](https://reactnavigation.org/)
-[![Reanimated](https://img.shields.io/badge/Reanimated-v4.6-purple.svg?style=flat)](https://docs.swmansion.com/react-native-reanimated/)
-[![TanStack Query](https://img.shields.io/badge/TanStack_Query-v5-ff4154.svg?style=flat)](https://tanstack.com/query/latest)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178c6.svg?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![React Navigation](https://img.shields.io/badge/React_Navigation-v7.1.26-green.svg?style=flat)](https://reactnavigation.org/)
+[![Reanimated](https://img.shields.io/badge/Reanimated-v4.6.0-purple.svg?style=flat)](https://docs.swmansion.com/react-native-reanimated/)
+[![TanStack Query](https://img.shields.io/badge/TanStack_Query-v5.90.20-ff4154.svg?style=flat)](https://tanstack.com/query/latest)
+[![MMKV](https://img.shields.io/badge/MMKV-v4.3.2-orange.svg?style=flat)](https://github.com/mrousavy/react-native-mmkv)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/modhamanish/mm-template/blob/main/LICENSE)
+
+---
+
+## 📦 Core Library Versions
+
+| Core Dependency | Version | Purpose |
+| :--- | :--- | :--- |
+| **React Native** | `0.87.1` | Mobile framework with New Architecture support |
+| **React** | `19.2.3` | Modern component model & hooks |
+| **TypeScript** | `5.8.3` | Type-safety across screens, navigation & services |
+| **React Navigation** | `7.1.26` | Native Stack (`7.9.0`), Tabs (`7.9.0`), Drawer (`7.1.1`) |
+| **Reanimated** | `4.6.0` | 60fps gesture-driven animations |
+| **TanStack Query** | `5.90.20` | Server-state caching & data synchronization |
+| **Axios** | `1.13.4` | HTTP client with bearer interceptors |
+| **MMKV** | `4.3.2` | Ultra-fast key-value persistent storage |
+| **i18next** | `25.7.3` | Multi-language localization (EN / HI) |
+| **Yup & Formik** | `1.7.1` / `2.4.9` | Schema validation & robust form handling |
 
 ---
 

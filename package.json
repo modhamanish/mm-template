@@ -1,6 +1,6 @@
 {
-  "name": "docs-site",
-  "version": "0.0.0",
+  "name": "@modhamanish/mm-template-docs",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
