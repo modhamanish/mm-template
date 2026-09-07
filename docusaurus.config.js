@@ -55,20 +55,22 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
+            to: '/docs/intro',
             position: 'left',
             label: 'Documentation',
+            exact: true,
           },
           {
             to: '/docs/getting-started/interactive-wizard',
             position: 'left',
             label: 'Interactive Wizard',
+            exact: true,
           },
           {
             to: '/docs/guides/architecture',
             position: 'left',
             label: 'Architecture',
+            exact: true,
           },
           {
             href: 'https://github.com/modhamanish/mm-template',
