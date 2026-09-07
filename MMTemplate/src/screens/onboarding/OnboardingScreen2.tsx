@@ -26,7 +26,7 @@ const OnboardingScreen2: FC = () => {
   };
 
   const handleSkip = () => {
-    resetAndNavigate(Routes.LoginScreen);
+    resetAndNavigate(Routes.AuthStack);
   };
 
   return (

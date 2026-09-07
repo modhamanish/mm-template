@@ -23,7 +23,7 @@ import { hexWithOpacity } from '@utils/utilsHelper';
 
 const Drawer = createDrawerNavigator<MainDrawerParamList>();
 
-const CustomDrawerContent: FC<DrawerContentComponentProps> = props => {
+const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const styles = getStyles(theme);

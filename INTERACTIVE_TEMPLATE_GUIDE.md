@@ -224,8 +224,10 @@ Jab aap is flow ko implement karenge, toh test karne ke liye ye steps follow kar
 ## 🎯 9. Next Steps Summary Checklist
 
 Jab aap implement karne ke liye ready honge:
-- [ ] `MMTemplate/src/navigation/` me `MainDrawer.tsx` component add karein.
-- [ ] `AppNavigator.tsx` aur `AppStack.tsx` ke template variations tayyar karein.
-- [ ] `script.js` me interactive prompt logic aur file modification logic add karein.
-- [ ] Local environment me `npx react-native init` command ke sath test karein.
+- [x] `MMTemplate/src/navigation/` me modular folder structure (`tab/`, `drawer/`, `stack/`, `auth/`, `onboarding/`) add karein.
+- [x] `AppNavigator.tsx` aur `AppStack.tsx` ke template variations tayyar karein.
+- [x] `script.js` me interactive prompt logic (1. Onboarding, 2. Auth, 3. Navigation) aur file modification logic add karein.
+- [x] Template setup finish hone ke baad automatically Git repository initialize karke initial commit (`Initial commit from MM Template`) create karein.
+- [x] Local environment me `npx react-native init` command ke sath test karein.
 - [ ] `release.js` run karke npm par new version release karein.
+

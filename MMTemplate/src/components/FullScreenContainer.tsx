@@ -29,9 +29,8 @@ const FullScreenContainer: FC<FullScreenContainerProps> = ({
       <StatusBar
         animated
         hidden={statusBarHidden}
-        translucent
-        backgroundColor={'transparent'}
         barStyle={appBarStyle}
+        {...({ translucent: true, backgroundColor: 'transparent' } as object)}
       />
       {isKeyboardAvoidingView ? (
         <KeyboardAvoidingView

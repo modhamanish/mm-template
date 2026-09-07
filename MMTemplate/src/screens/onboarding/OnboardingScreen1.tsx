@@ -23,8 +23,8 @@ const OnboardingScreen1: FC = () => {
   };
 
   const handleSkip = () => {
-    // Navigate to Login if auth enabled, or AppStack
-    resetAndNavigate(Routes.LoginScreen);
+    // Navigate to AuthStack if auth enabled, or AppStack
+    resetAndNavigate(Routes.AuthStack);
   };
 
   return (

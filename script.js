@@ -460,15 +460,13 @@ function updateOnboardingDestinations(projectRoot, { isAuth }) {
   const screen2Path = path.join(projectRoot, 'src', 'screens', 'onboarding', 'OnboardingScreen2.tsx');
   const screen3Path = path.join(projectRoot, 'src', 'screens', 'onboarding', 'OnboardingScreen3.tsx');
 
-  const targetRoute = isAuth ? 'Routes.LoginScreen' : 'Routes.AppStack';
-
   [screen1Path, screen2Path, screen3Path].forEach(filePath => {
     if (fs.existsSync(filePath)) {
       let content = fs.readFileSync(filePath, 'utf8');
       if (!isAuth) {
-        content = content.replace(/resetAndNavigate\(Routes\.LoginScreen\)/g, 'resetAndNavigate(Routes.AppStack)');
+        content = content.replace(/resetAndNavigate\(Routes\.AuthStack\)/g, 'resetAndNavigate(Routes.AppStack)');
       } else {
-        content = content.replace(/resetAndNavigate\(Routes\.AppStack\)/g, 'resetAndNavigate(Routes.LoginScreen)');
+        content = content.replace(/resetAndNavigate\(Routes\.AppStack\)/g, 'resetAndNavigate(Routes.AuthStack)');
       }
       fs.writeFileSync(filePath, content, 'utf8');
     }
@@ -515,7 +513,36 @@ function updateScreensIndex(projectRoot, { isAuth, isOnboarding }) {
   fs.writeFileSync(indexPath, lines.join('\n'), 'utf8');
 }
 
-// 10. Update screen headers based on navigation type
+// 10. Generate clean navigation/index.ts barrel exports
+function generateNavigationIndex(projectRoot, { isAuth, isOnboarding, navType }) {
+  const indexPath = path.join(projectRoot, 'src', 'navigation', 'index.ts');
+
+  const lines = [
+    "export { default as AppNavigator } from './AppNavigator';",
+    "export { default as Routes } from './routes';",
+  ];
+
+  if (isAuth) {
+    lines.push("export { AuthStack, AuthCheck } from './auth';");
+  }
+
+  if (isOnboarding) {
+    lines.push("export { OnboardingStack } from './onboarding';");
+  }
+
+  if (navType === 'tab') {
+    lines.push("export { BottomTabNavigator } from './tab';");
+  } else if (navType === 'drawer') {
+    lines.push("export { DrawerNavigator } from './drawer';");
+  }
+
+  lines.push("export { AppStack } from './stack';");
+  lines.push('');
+
+  fs.writeFileSync(indexPath, lines.join('\n'), 'utf8');
+}
+
+// 11. Update screen headers based on navigation type
 function updateScreenHeaders(projectRoot, { navType }) {
   const notePath = path.join(projectRoot, 'src', 'screens', 'note', 'NoteScreen.tsx');
   const profilePath = path.join(projectRoot, 'src', 'screens', 'profile', 'ProfileScreen.tsx');
@@ -526,21 +553,112 @@ function updateScreenHeaders(projectRoot, { navType }) {
     let content = fs.readFileSync(filePath, 'utf8');
     if (navType === 'drawer') {
       // Drawer mode: ensure showDrawer is present, no showBack on root screens
-      content = content.replace(/showBack\s*\n/g, '');
+      content = content.replace(/\bshowBack\b\s*/g, '');
+      if (!content.includes('showDrawer')) {
+        content = content.replace(/(<Header\s+title=[^>]*?)(\/?>)/, '$1 showDrawer $2');
+      }
     } else if (navType === 'tab') {
       // Tab mode: tabs switch screens, so no drawer or back button on root screens
-      content = content.replace(/\s*showDrawer\s*\n/g, '\n');
-      content = content.replace(/\s*showBack\s*\n/g, '\n');
+      content = content.replace(/\bshowDrawer\b\s*/g, '');
+      content = content.replace(/\bshowBack\b\s*/g, '');
     } else if (navType === 'stack') {
       // Pure stack mode: Note & Profile get showBack, Home gets no left button
+      content = content.replace(/\bshowDrawer\b\s*/g, '');
       if (filePath.includes('HomeScreen')) {
-        content = content.replace(/\s*showDrawer\s*\n/g, '\n');
+        content = content.replace(/\bshowBack\b\s*/g, '');
       } else {
-        content = content.replace(/showDrawer/g, 'showBack');
+        if (!content.includes('showBack')) {
+          content = content.replace(/(<Header\s+title=[^>]*?)(\/?>)/, '$1 showBack $2');
+        }
       }
     }
     fs.writeFileSync(filePath, content, 'utf8');
   });
+}
+
+// 12. Update Profile screen for auth/non-auth modes
+function updateProfileScreen(projectRoot, { isAuth }) {
+  const profilePath = path.join(projectRoot, 'src', 'screens', 'profile', 'ProfileScreen.tsx');
+  if (!fs.existsSync(profilePath)) return;
+  let content = fs.readFileSync(profilePath, 'utf8');
+  if (!isAuth) {
+    // Remove useAuth import and call
+    content = content.replace(/import\s*\{\s*useAuth\s*\}\s*from\s*['"]@context\/AuthContext['"];\s*\n/, '');
+    content = content.replace(
+      /\s*const\s*\{\s*user,\s*handleLogout\s*\}\s*=\s*useAuth\(\);/,
+      "  const user = { name: 'Guest User', email: 'guest@example.com' };"
+    );
+    // Remove logout confirmation & button
+    content = content.replace(/\n\s*const confirmLogout = \(\) => \{[\s\S]*?\};\n/, '\n');
+    content = content.replace(
+      /\s*<AnimationView delay=\{600\} animType="FadeIn" duration=\{800\}>\s*<TouchableOpacity\s*style=\{styles\.logoutButton\}[\s\S]*?<\/TouchableOpacity>\s*<\/AnimationView>/,
+      ''
+    );
+    fs.writeFileSync(profilePath, content, 'utf8');
+  }
+}
+
+// 11. Automatically initialize Git repository and create initial commit
+function initGitCommit(projectRoot) {
+  try {
+    const { execSync } = require('child_process');
+    const resolvedRoot = path.resolve(projectRoot);
+    const templateRoot = path.resolve(__dirname);
+    const mmTemplateDir = path.resolve(__dirname, 'MMTemplate');
+
+    // Safety guard: Never run on template repository itself
+    if (resolvedRoot === templateRoot || resolvedRoot === mmTemplateDir) {
+      return;
+    }
+
+    // Check if git CLI is available
+    try {
+      execSync('git --version', { stdio: 'ignore' });
+    } catch {
+      return;
+    }
+
+    console.log(`${colors.dim}  • Initializing Git and preparing initial commit...${colors.reset}`);
+
+    // Initialize git repository if not already initialized
+    if (!fs.existsSync(path.join(projectRoot, '.git'))) {
+      execSync('git init', { cwd: projectRoot, stdio: 'ignore' });
+    }
+
+    // Stage all changes (new files, updates, removals)
+    execSync('git add -A', { cwd: projectRoot, stdio: 'ignore' });
+
+    // Check if there are any existing commits
+    let hasCommits = false;
+    try {
+      execSync('git rev-parse HEAD', { cwd: projectRoot, stdio: 'ignore' });
+      hasCommits = true;
+    } catch {
+      hasCommits = false;
+    }
+
+    if (!hasCommits) {
+      execSync('git commit -m "Initial commit from MM Template" --no-verify', {
+        cwd: projectRoot,
+        stdio: 'ignore',
+      });
+      console.log(`${colors.green}  ✔${colors.reset} Initial Git commit created.`);
+    } else {
+      const status = execSync('git status --porcelain', {
+        cwd: projectRoot,
+        encoding: 'utf8',
+      }).trim();
+      if (status) {
+        execSync('git commit -m "Setup MM Template configuration" --no-verify', {
+          cwd: projectRoot,
+          stdio: 'ignore',
+        });
+        console.log(`${colors.green}  ✔${colors.reset} Git commit updated with template setup.`);
+      }
+    }
+  } catch (err) {
+    // Fail-safe: git errors should never break template initialization
+  }
 }
 
 // Main execution function
@@ -594,13 +712,18 @@ async function main() {
   generateRoutesTs(projectRoot, userConfig);
   generateAppStack(projectRoot, userConfig);
   generateAppNavigator(projectRoot, userConfig);
+  generateNavigationIndex(projectRoot, userConfig);
   generateNavigationTypes(projectRoot, userConfig);
   updateScreensIndex(projectRoot, userConfig);
   updateScreenHeaders(projectRoot, userConfig);
+  updateProfileScreen(projectRoot, userConfig);
 
   if (userConfig.isAuth) {
     updateAuthCheckDestination(projectRoot, userConfig);
   }
+
+  // 6. Automatically initialize Git repo and create Initial Commit
+  initGitCommit(projectRoot);
 
   console.log(`${colors.green}${colors.bold}✔ Configuration applied successfully!${colors.reset}\n`);
 
@@ -631,6 +754,7 @@ async function main() {
   );
   console.log(`${colors.green}  ✓${colors.reset} Architecture: ${colors.white}Modular folder structure (tab, drawer, stack, screens)${colors.reset}`);
   console.log(`${colors.green}  ✓${colors.reset} UI & Header: ${colors.white}Universal Header with back & drawer support${colors.reset}`);
+  console.log(`${colors.green}  ✓${colors.reset} Git: ${colors.white}Initialized with clean Initial Commit${colors.reset}`);
   console.log(`${colors.green}  ✓${colors.reset} Core: ${colors.white}React Native 0.87, React 19, TypeScript, MMKV, Reanimated v4${colors.reset}\n`);
 
   // Next steps

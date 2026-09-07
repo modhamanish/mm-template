@@ -121,7 +121,9 @@ const NoteScreen: FC = () => {
           refreshControl={
             <RefreshControl
               refreshing={isRefetching}
-              onRefresh={refetch}
+              onRefresh={() => {
+                refetch();
+              }}
               tintColor={theme.colors.primary}
               colors={[theme.colors.primary]}
             />

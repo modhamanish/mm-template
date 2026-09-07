@@ -101,11 +101,13 @@ const AppText: FC<AppTextProps> = ({
     }
   };
 
-  const variantStyle = getVariantStyle(variant);
+  const variantStyle: Record<string, unknown> = {
+    ...getVariantStyle(variant),
+  };
 
   // If prop fontFamily is provided, it should override variant's fontFamily
   // And we should still prevent variant's fontWeight (if any) from conflicting with it.
-  if (fontFamily && variantStyle.fontWeight) {
+  if (fontFamily) {
     delete variantStyle.fontWeight;
   }
 

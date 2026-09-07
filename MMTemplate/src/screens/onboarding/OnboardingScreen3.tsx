@@ -19,8 +19,8 @@ const OnboardingScreen3: FC = () => {
   };
 
   const handleGetStarted = () => {
-    // When finished, go to LoginScreen or direct AppStack
-    resetAndNavigate(Routes.LoginScreen);
+    // When finished, go to AuthStack or direct AppStack
+    resetAndNavigate(Routes.AuthStack);
   };
 
   return (
