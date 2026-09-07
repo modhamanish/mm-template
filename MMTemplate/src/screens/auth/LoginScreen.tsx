@@ -59,11 +59,7 @@ const LoginScreen: FC = () => {
   };
 
   return (
-    <FullScreenContainer
-      isKeyboardAvoidingView
-      style={styles.container}
-      barStyle="light-content"
-    >
+    <FullScreenContainer isKeyboardAvoidingView style={styles.container}>
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}

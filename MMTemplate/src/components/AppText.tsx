@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react';
-import { Text, TextStyle } from 'react-native';
+import { StyleSheet, Text, TextStyle } from 'react-native';
 
 import { AppTextProps, AppTextSize } from '@app-types/components.types';
 import { useTheme } from '@context/ThemeContext';
@@ -111,13 +111,16 @@ const AppText: FC<AppTextProps> = ({
     delete variantStyle.fontWeight;
   }
 
+  const flatStyle = StyleSheet.flatten(style) || {};
+
   const combinedStyles: TextStyle = {
     fontSize: getFontSize(size),
-    color: color || colors.textColor,
+    color: colors.textColor,
     textTransform: getTransform(transform),
     ...variantStyle,
     ...(fontFamily ? { fontFamily } : {}),
-    ...(style as object),
+    ...flatStyle,
+    ...(color ? { color } : {}),
   };
 
   return (

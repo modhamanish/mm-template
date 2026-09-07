@@ -20,7 +20,7 @@ const SettingsScreen: FC = () => {
   const styles = useMemo(() => getStyles(theme), [theme]);
 
   return (
-    <FullScreenContainer style={styles.container} barStyle="light-content">
+    <FullScreenContainer style={styles.container}>
       {/* Universal Header */}
       <Header
         title={t('settings.settings', 'Settings')}

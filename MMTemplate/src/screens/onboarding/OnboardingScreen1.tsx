@@ -28,7 +28,7 @@ const OnboardingScreen1: FC = () => {
   };
 
   return (
-    <FullScreenContainer style={styles.container} barStyle="light-content">
+    <FullScreenContainer style={styles.container}>
       {/* Top Bar with Skip */}
       <View style={styles.topBar}>
         <View style={styles.stepBadge}>

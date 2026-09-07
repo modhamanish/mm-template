@@ -47,7 +47,7 @@ const ProfileScreen: FC = () => {
   };
 
   return (
-    <FullScreenContainer style={styles.container} barStyle="light-content">
+    <FullScreenContainer style={styles.container}>
       {/* Universal Header */}
       <Header
         title={t('common.profile', 'Profile')}
