@@ -16,9 +16,16 @@ const AuthCheck: FC = () => {
   const styles = useMemo(() => getStyles(theme), [theme]);
 
   useEffect(() => {
-    setTimeout(() => {
-      resetAndNavigate(isUserLoggedIn() ? Routes.AppStack : Routes.AuthStack);
+    const timer = setTimeout(() => {
+      if (isUserLoggedIn()) {
+        resetAndNavigate(Routes.AppStack);
+      } else {
+        // Direct to OnboardingStack if present, otherwise AuthStack
+        resetAndNavigate(Routes.OnboardingStack);
+      }
     }, 1500);
+
+    return () => clearTimeout(timer);
   }, [isUserLoggedIn]);
 
   return (

@@ -1,5 +1,11 @@
 import React, { FC, useMemo } from 'react';
-import { Image, StyleSheet, View, ScrollView } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 
 import { useTranslation } from 'react-i18next';
 
@@ -8,9 +14,12 @@ import AnimationView from '@components/AnimationView';
 import AppText from '@components/AppText';
 import FeatureItem from '@components/FeatureItem';
 import FullScreenContainer from '@components/FullScreenContainer';
+import Header from '@components/Header';
 import InfoCard from '@components/InfoCard';
 import { useTheme } from '@context/ThemeContext';
+import Routes from '@navigation/routes';
 import { ThemeType } from '@src/theme/colors';
+import { navigate } from '@utils/navigationUtils';
 import {
   hexWithOpacity,
   mobileScreenHeight,
@@ -24,6 +33,9 @@ const HomeScreen: FC = () => {
 
   return (
     <FullScreenContainer style={styles.container} barStyle="light-content">
+      {/* Universal Header */}
+      <Header title={t('common.home', 'Home')} showDrawer />
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
@@ -45,6 +57,44 @@ const HomeScreen: FC = () => {
               </AppText>
               <AppText style={styles.subtitle}>{t('home.subtitle')}</AppText>
             </AnimationView>
+          </View>
+        </AnimationView>
+
+        {/* Quick Navigation Cards (especially useful for Stack Mode) */}
+        <AnimationView delay={500} animType="FadeIn" duration={800}>
+          <View style={styles.quickNavRow}>
+            <TouchableOpacity
+              style={styles.navCard}
+              onPress={() => navigate(Routes.NoteScreen)}
+              activeOpacity={0.7}
+            >
+              <AppText size={24}>📝</AppText>
+              <AppText variant="bold" size={14} style={styles.navCardTitle}>
+                {t('common.note', 'Notes')}
+              </AppText>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.navCard}
+              onPress={() => navigate(Routes.ProfileScreen)}
+              activeOpacity={0.7}
+            >
+              <AppText size={24}>👤</AppText>
+              <AppText variant="bold" size={14} style={styles.navCardTitle}>
+                {t('common.profile', 'Profile')}
+              </AppText>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.navCard}
+              onPress={() => navigate(Routes.SettingsScreen)}
+              activeOpacity={0.7}
+            >
+              <AppText size={24}>⚙️</AppText>
+              <AppText variant="bold" size={14} style={styles.navCardTitle}>
+                {t('common.settings', 'Settings')}
+              </AppText>
+            </TouchableOpacity>
           </View>
         </AnimationView>
 
@@ -78,7 +128,7 @@ const HomeScreen: FC = () => {
             <FeatureItem
               icon="📱"
               title="screens/"
-              description="All your screen components. Add new screens here."
+              description="Modular screens grouped by domain (home, note, profile, auth, onboarding)."
             />
             <FeatureItem
               icon="🧩"
@@ -88,7 +138,7 @@ const HomeScreen: FC = () => {
             <FeatureItem
               icon="🧭"
               title="navigation/"
-              description="Navigation setup with AuthStack and AppStack."
+              description="Modular navigators: stack, tab, drawer, auth, and onboarding."
             />
             <FeatureItem
               icon="🎨"
@@ -139,7 +189,7 @@ const HomeScreen: FC = () => {
             <FeatureItem
               icon="⚡"
               title="React Navigation v7"
-              description="Pre-configured navigation with stack navigators"
+              description="Pre-configured stack, tab, and drawer navigators"
             />
             <FeatureItem
               icon="🎬"
@@ -273,8 +323,8 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     header: {
       alignItems: 'center',
-      marginBottom: 24,
-      paddingTop: 20,
+      marginBottom: 20,
+      paddingTop: 10,
     },
     logo: {
       height: mobileScreenHeight * 0.15,
@@ -290,6 +340,26 @@ const getStyles = ({ colors }: ThemeType) =>
     subtitle: {
       color: hexWithOpacity(colors.textColor, 80),
       textAlign: 'center',
+    },
+    quickNavRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginBottom: 20,
+      gap: 12,
+    },
+    navCard: {
+      flex: 1,
+      backgroundColor: hexWithOpacity(colors.primary, 8),
+      borderRadius: 14,
+      padding: 14,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderWidth: 1,
+      borderColor: hexWithOpacity(colors.primary, 15),
+    },
+    navCardTitle: {
+      color: colors.textColor,
+      marginTop: 6,
     },
     cardText: {
       color: colors.textColor,

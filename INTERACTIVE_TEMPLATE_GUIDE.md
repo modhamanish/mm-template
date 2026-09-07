@@ -12,15 +12,15 @@ Jab user template run karega, toh following questions terminal pe appear honge:
 graph TD
     A[Start: react-native init with mm-template] --> B[React Native CLI files copy karta hai]
     B --> C[Post-Init Script execute hoti hai: script.js]
-    C --> D{Step 1: Auth Setup?}
-    D -->|1. Auth| E1[Keep AuthStack, LoginScreen, AuthCheck]
-    D -->|2. Without Auth| E2[Remove AuthStack, LoginScreen, direct main flow]
+    C --> D{Step 1: Onboarding Screens?}
+    D -->|Yes - y| E1[Keep 3-Step Onboarding Screens & stack]
+    D -->|No - n| E2[Remove Onboarding Screens]
     
-    E1 --> F{Step 2: Onboarding Screens?}
+    E1 --> F{Step 2: Auth Setup?}
     E2 --> F
     
-    F -->|Yes - y| G1[Keep/Add Onboarding/Welcome Screens & state check]
-    F -->|No - n| G2[Remove Onboarding/Welcome Screens]
+    F -->|1. Auth| G1[Keep AuthStack, LoginScreen, AuthCheck]
+    F -->|2. Without Auth| G2[Remove AuthStack, LoginScreen, direct main flow]
     
     G1 --> H{Step 3: Navigation Type?}
     G2 --> H
@@ -114,16 +114,16 @@ const askQuestion = (query) => {
 async function promptUserConfig() {
   console.log("\n⚙️  Configuring your MM Template App...\n");
 
-  // Question 1: Authentication Flow
-  console.log("🔐 Authentication Setup:");
+  // Question 1: Onboarding Flow
+  const onboardingChoice = await askQuestion("📱 Do you need Onboarding screens? (y/n, default y): ");
+  const isOnboarding = onboardingChoice.trim().toLowerCase() !== "n";
+
+  // Question 2: Authentication Flow
+  console.log("\n🔐 Authentication Setup:");
   console.log("  [1] With Auth (Login, AuthCheck & Protected routes)");
   console.log("  [2] Without Auth (Direct Home flow)");
   const authChoice = await askQuestion("Select Auth option (1 or 2, default 1): ");
   const isAuth = authChoice.trim() !== "2";
-
-  // Question 2: Onboarding Flow
-  const onboardingChoice = await askQuestion("\n📱 Do you need Onboarding screens? (y/n, default y): ");
-  const isOnboarding = onboardingChoice.trim().toLowerCase() !== "n";
 
   // Question 3: Navigation Flow
   console.log("\n🧭 Navigation Type:");
@@ -187,7 +187,7 @@ function updatePackageJson(projectRoot, { navType }) {
     // Add Drawer dependencies
     pkg.dependencies = pkg.dependencies || {};
     pkg.dependencies["@react-navigation/drawer"] = "^7.0.0";
-    pkg.dependencies["react-native-gesture-handler"] = "^2.20.0";
+    pkg.dependencies["react-native-gesture-handler"] = "^3.2.1";
     pkg.dependencies["react-native-reanimated"] = "^3.16.0";
     
     // Remove Bottom Tabs if not needed

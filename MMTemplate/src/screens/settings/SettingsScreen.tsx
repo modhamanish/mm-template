@@ -6,10 +6,12 @@ import { useTranslation } from 'react-i18next';
 import AnimationView from '@components/AnimationView';
 import AppText from '@components/AppText';
 import FullScreenContainer from '@components/FullScreenContainer';
+import Header from '@components/Header';
 import LanguageSwitcher from '@components/LanguageSwitcher';
 import ThemeSwitcher from '@components/ThemeSwitcher';
 import { useTheme } from '@context/ThemeContext';
 import { ThemeType } from '@src/theme/colors';
+import { goBack } from '@utils/navigationUtils';
 import { hexWithOpacity } from '@utils/utilsHelper';
 
 const SettingsScreen: FC = () => {
@@ -19,6 +21,13 @@ const SettingsScreen: FC = () => {
 
   return (
     <FullScreenContainer style={styles.container} barStyle="light-content">
+      {/* Universal Header */}
+      <Header
+        title={t('settings.settings', 'Settings')}
+        showBack
+        onBackPress={() => goBack()}
+      />
+
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
@@ -74,7 +83,7 @@ const getStyles = ({ colors }: ThemeType) =>
     },
     scrollContent: {
       padding: 20,
-      paddingTop: 60,
+      paddingTop: 20,
     },
     header: {
       marginBottom: 32,
