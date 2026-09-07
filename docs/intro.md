@@ -10,6 +10,7 @@ description: Overview of MMTemplate - Production-Ready React Native TypeScript B
 
 It is crafted to jumpstart your mobile application development with industry best practices, modern clean architecture, scalable state management, and an **Interactive CLI Setup Wizard**.
 
+[![MMTemplate Version](https://img.shields.io/badge/MMTemplate-v1.4.0-success.svg?style=flat)](https://github.com/modhamanish/mm-template)
 [![React Native](https://img.shields.io/badge/React_Native-0.87.1-61dafb.svg?style=flat&logo=react)](https://reactnative.dev/)
 [![React](https://img.shields.io/badge/React-19.2.3-61dafb.svg?style=flat&logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178c6.svg?style=flat&logo=typescript)](https://www.typescriptlang.org/)

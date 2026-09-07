@@ -54,7 +54,7 @@ function HeroHeader() {
   return (
     <header className={styles.heroSection}>
       <div className="container">
-        <div className={styles.versionBadge}>v1.2.0 • React Native 0.87.1 • TypeScript 5.8.3</div>
+        <div className={styles.versionBadge}>v1.4.0 • React Native 0.87.1 • TypeScript 5.8.3</div>
         <Heading as="h1" className={styles.heroTitle}>
           Build Mobile Apps Faster with <span className={styles.titleGradient}>MMTemplate</span>
         </Heading>
