@@ -58,19 +58,19 @@ const config = {
             to: '/docs/intro',
             position: 'left',
             label: 'Documentation',
-            exact: true,
+            activeBaseRegex: 'docs/(intro|getting-started/installation|category/getting-started)',
           },
           {
             to: '/docs/getting-started/interactive-wizard',
             position: 'left',
             label: 'Interactive Wizard',
-            exact: true,
+            activeBasePath: 'docs/getting-started/interactive-wizard',
           },
           {
             to: '/docs/guides/architecture',
             position: 'left',
-            label: 'Architecture',
-            exact: true,
+            label: 'Architecture & Guides',
+            activeBaseRegex: 'docs/(guides|category/architecture)',
           },
           {
             href: 'https://github.com/modhamanish/mm-template',
